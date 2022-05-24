@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:paddingTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvCertificationName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_marginLeft="10dp"
+            android:textSize="20dp"
+            android:text=""
+            android:hint="사업자 증명서.jpg"/>
+
+        <Button
+            android:id="@+id/btnSelectCertification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="20dp"
+            android:text="증명서 선택" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/certificate"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:gravity="center">
+        <Button
+            android:id="@+id/btnCertificateSuggestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="증명서 제출"
+            android:layout_margin="10dp"/>
+    </LinearLayout>
+
+</LinearLayout>
