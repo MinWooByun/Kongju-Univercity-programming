@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:gravity="center">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="'해줘'A/S"
+            android:textSize="60dp"
+            android:gravity="center"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:gravity="center">
+        <EditText
+            android:id="@+id/edtID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:drawableLeft="@drawable/id"
+            android:hint="ID"/>
+        <EditText
+            android:id="@+id/edtPW"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:drawableLeft="@drawable/pw"
+            android:hint="Password"/>
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="204dp"
+            android:layout_height="54dp"
+            android:text="로그인"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnSignupCustomer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="고객 회원가입"
+            android:layout_weight="1"
+            android:layout_margin="20dp"/>
+
+        <Button
+            android:id="@+id/btnSignupRepairman"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="수리기사 회원가입"
+            android:layout_weight="1"
+            android:layout_margin="20dp"/>
+    </LinearLayout>
+</LinearLayout>
