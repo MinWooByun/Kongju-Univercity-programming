@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string-array name="카테고리">
+        <item>카테고리</item>
+        <item>냉장고</item>
+        <item>세탁기</item>
+        <item>TV</item>
+        <item>컴퓨터</item>
+        <item>에어컨</item>
+        <item>기타</item>
+    </string-array>
+    <string-array name="고장증상">
+        <item>고장증상</item>
+        <item>소음</item>
+        <item>작동안함</item>
+        <item>이상현상</item>
+        <item>기타</item>
+    </string-array>
+</resources>
