@@ -14,7 +14,7 @@
         android:theme="@style/Theme.Ui"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +22,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SubActivity"></activity>
+        <activity android:name=".SubActivity"
+            android:exported="true"/>
+        <activity android:name=".MainActivity"
+            android:exported="true"/>
+        <activity android:name=".SignUpActivity"
+            android:exported="true"/>
+        <activity android:name=".SignUpActivity2"
+            android:exported="true"/>
+        <activity android:name=".SumbitCertificate"
+            android:exported="true"/>
     </application>
 
 </manifest>
