@@ -23,10 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SubActivity"
-            android:exported="true"/>
-        <activity android:name=".MainActivity"
-            android:exported="true"/>
         <activity android:name=".SignUpActivity"
             android:exported="true"/>
         <activity android:name=".SignUpActivity2"
