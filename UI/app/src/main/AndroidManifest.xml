@@ -28,6 +28,28 @@
             android:exported="true"/>
         <activity android:name=".SumbitCertificate"
             android:exported="true"/>
+        <activity android:name=".noticeBoardActivity"
+            android:exported="true"/>
+        <activity android:name=".RequestDetailActivity"
+            android:exported="true"/>
+        <activity android:name=".RequestRegisterActivity"
+            android:exported="true"/>
+        <activity android:name=".Proposal_Suggest"
+            android:exported="true"/>
+        <activity android:name=".Proposal"
+            android:exported="true"/>
+        <activity android:name=".Proposal_Select"
+            android:exported="true"/>
+        <activity android:name=".Proposal_Back"
+            android:exported="true"/>
+        <activity android:name=".AdminAuthority"
+            android:exported="true"/>
+        <activity android:name=".AdminList"
+            android:exported="true"/>
+        <activity android:name=".MyPageRepairMan"
+            android:exported="true"/>
+        <activity android:name=".MyPageUser"
+            android:exported="true"/>
     </application>
 
 </manifest>
