@@ -37,19 +37,18 @@ public class LoginActivity extends AppCompatActivity {
                 String PW = edtPW.getText().toString();
                 sqlDB = myHelper.getReadableDatabase();
                 Cursor cursor;
-
-                cursor=sqlDB.rawQuery("SELECT * FROM userTable WHERE ID = '"+ID+"'" +
-                        "AND PW = '"+PW+"';", null);
-                //입력된 ID와 PW를 비교
-                //등록된 사용자인 경우
+                //입력된 ID와 PW를 userTable에서 검색
+                cursor=sqlDB.rawQuery("SELECT * FROM userTable WHERE id = '"+ID+"'" +
+                        "AND pw = '"+PW+"';", null);
+                //등록된 사용자인 경우, 중복된 ID가 없으므로 카운트가 1일것
                 if (cursor.getCount() > 0) {
                     while(cursor.moveToNext()) {
-                        Toast.makeText(getApplicationContext(), cursor.getString(1), Toast.LENGTH_SHORT).show();
-                        //사용자의 유형에 맞는 게시판 출력
-                        //화면전환시 고객의 ID와 사용자 유형이 넘어갈 필요가 있다고 봄
-                        //intent.putExtra("ID",입력된 ID);
-                        //intent.putExtra("type",로그인한 고객의 유형);
-                        //intent 를 넘길때 ID와 유형이 넘어가도록 작성
+                        Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+                        //사용자의 ID와 type을 넘기고
+                        intent.putExtra("ID",cursor.getString(0));
+                        intent.putExtra("type", cursor.getInt(2));
+                        //type에 맞는 사용자의 적절한 게시판 화면을 출력
+                        startActivity(intent);
                     }
                 }else{
                     //등록된 사용자가 아니면 메시지 출력
@@ -57,14 +56,11 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 sqlDB.close();
                 cursor.close();
-
-
-
             }
         });
 
 
-        //수리기사 회원가입, 구현 중
+        //수리기사 회원가입, 완료
         //수리기사 회원가입 버튼 연결
         Button btnReSignup = (Button) findViewById(R.id.btnSignupRepairman);
         //버튼 클릭시 이벤트 리스너
@@ -78,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        //고객 회원가입, 구현 중
+        //고객 회원가입, 완료
         //고객 회원가입 버튼 연결
         Button btnCuSignup = (Button) findViewById(R.id.btnSignupCustomer);
         //버튼 클릭시 이벤트 리스너
@@ -92,22 +88,20 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+    //DB
     public class myDBHelper extends SQLiteOpenHelper {
-
         public myDBHelper(@Nullable Context context) {
-            super(context, "UDB", null, 1);
+            super(context, "HL_DB.db", null, 1);
         }
-
         @Override
         public void onCreate(SQLiteDatabase db) {
-            db.execSQL("CREATE TABLE userTable (ID CHAR(15), PW CHAR(15)," +
-                    "Utype INTEGER, nickName CHAR(15))");
+            /*db.execSQL("CREATE TABLE userTable (id varchar(20), pw varchar(30)," +
+                    "type int, nickName varchar(1000))");*/
         }
-
         @Override
         public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-            db.execSQL("DROP TABLE IF EXISTS userTable");
-            onCreate(db);
+            /*db.execSQL("DROP TABLE IF EXISTS userTable");
+            onCreate(db);*/
         }
     }
 }
