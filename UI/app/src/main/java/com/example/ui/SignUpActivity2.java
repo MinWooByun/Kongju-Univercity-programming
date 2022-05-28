@@ -32,7 +32,7 @@ public class SignUpActivity2 extends Activity {
         edtrePW = (EditText) findViewById(R.id.edtrePW_Signup2);
         edtNickname = (EditText) findViewById(R.id.edtNickname_Signup2);
         btnSignup = (Button) findViewById(R.id.btnSignup2);
-        btnOverlap = (Button) findViewById(R.id.btnOverlap);
+        btnOverlap = (Button) findViewById(R.id.btnOverlap2);
 
         //회원가입 버튼
         //닉네임 방식 조율 필요
@@ -100,7 +100,7 @@ public class SignUpActivity2 extends Activity {
                     //입력한 ID와 DB에 해당 ID가 존재하는지 비교
                     sqlDB = myHelper.getReadableDatabase();
                     Cursor cursor;
-                    cursor=sqlDB.rawQuery("SELECT * FROM userTable WHERE ID = '"+ID+"';", null);
+                    cursor=sqlDB.rawQuery("SELECT * FROM userTable WHERE id = '"+ID+"';", null);
                     //동일한 ID가 존재하면 중복된 ID라 메시지 출력
                     if (cursor.getCount() > 0) {
                         while(cursor.moveToNext()) {
@@ -134,21 +134,18 @@ public class SignUpActivity2 extends Activity {
 
     //DB
     public class myDBHelper extends SQLiteOpenHelper {
-
-        public myDBHelper(@org.jetbrains.annotations.Nullable Context context) {
-            super(context, "UDB", null, 1);
+        public myDBHelper(@Nullable Context context) {
+            super(context, "HL_DB.db", null, 1);
         }
-
         @Override
         public void onCreate(SQLiteDatabase db) {
-            db.execSQL("CREATE TABLE userTable (ID CHAR(15), PW CHAR(15)," +
-                    "Utype INTEGER, nickName CHAR(15))");
+            /*db.execSQL("CREATE TABLE userTable (id varchar(20), pw varchar(30)," +
+                    "type int, nickName varchar(1000))");*/
         }
-
         @Override
         public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-            db.execSQL("DROP TABLE IF EXISTS userTable");
-            onCreate(db);
+            /*db.execSQL("DROP TABLE IF EXISTS userTable");
+            onCreate(db);*/
         }
     }
 }
