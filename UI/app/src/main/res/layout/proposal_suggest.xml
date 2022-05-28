@@ -21,6 +21,7 @@
             android:layout_weight="1">
         </TextView>
         <EditText
+            android:id="@+id/edtPay"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:hint="비용 입력"
@@ -36,6 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="2">
         <EditText
+            android:id="@+id/edtContent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="40dp"
@@ -59,6 +61,7 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/btnSuggest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="견적 제시"
