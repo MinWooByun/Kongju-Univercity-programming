@@ -13,12 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Ui"
         tools:targetApi="31">
-        <activity
-            android:name=".RequestDetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RequestRegisterActivity"
-            android:exported="false" />
+     
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -29,9 +24,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SubActivity" />
-        <activity
-            android:name=".noticeBoardActivity"
-            android:exported="true" />
+    
     </application>
 
 </manifest>
