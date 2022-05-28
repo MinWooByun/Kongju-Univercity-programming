@@ -13,29 +13,12 @@
         android:layout_weight="1">
     </LinearLayout>
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/pager_images"
+        android:id="@+id/vp1"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_weight="1"
         android:orientation="vertical"
         >
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-        </androidx.appcompat.widget.AppCompatTextView>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-        </TextView>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-        </TextView>
-
-
     </androidx.viewpager.widget.ViewPager>
 
     <me.relex.circleindicator.CircleIndicator
