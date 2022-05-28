@@ -23,8 +23,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SubActivity" />
-    
+        <activity android:name=".SubActivity"
+            android:exported="true"/>
+        <activity android:name=".MainActivity"
+            android:exported="true"/>
+        <activity android:name=".SignUpActivity"
+            android:exported="true"/>
+        <activity android:name=".SignUpActivity2"
+            android:exported="true"/>
+        <activity android:name=".SumbitCertificate"
+            android:exported="true"/>
     </application>
 
 </manifest>
