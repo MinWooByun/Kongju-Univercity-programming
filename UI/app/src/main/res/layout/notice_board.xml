@@ -35,8 +35,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="5"
+            android:layout_weight="1"
             android:src="@android:drawable/ic_menu_search" />
+
+        <ImageButton
+            android:id="@+id/mypage_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:src="@android:drawable/ic_menu_edit" />
     </LinearLayout>
 
     <LinearLayout
@@ -66,12 +74,20 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="수리 의뢰 작성" />
+
         <Button
-            android:id="@+id/check_request"
+            android:id="@+id/check_proposal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="견적 확인" />
+
+        <Button
+            android:id="@+id/Admin_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="권한 승인" />
     </LinearLayout>
 
 </LinearLayout>
