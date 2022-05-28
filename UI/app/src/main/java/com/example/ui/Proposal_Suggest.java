@@ -38,9 +38,9 @@ public class Proposal_Suggest extends AppCompatActivity {
         */
         r_id ="wjdalstjr1";
         p_num = 1;
-        DBHelper helper;
+        dbHelper helper;
         SQLiteDatabase db;
-        helper = new DBHelper(Proposal_Suggest.this, "HL_DB.db", null, 1);
+        helper = new dbHelper(Proposal_Suggest.this, 1);
         db = helper.getWritableDatabase();
         helper.onCreate(db);
         //helper.onUpgrade(db,1,1);
@@ -50,11 +50,11 @@ public class Proposal_Suggest extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String pay_check = EdtPay.getText().toString();
-                int pay = Integer.parseInt(EdtPay.getText().toString());
                 String details = EdtContent.getText().toString();
 
                 //if(Integer.parseInt(EdtPay.getText()))
                 if(isStringInteger(pay_check,10)) {
+                    int pay = Integer.parseInt(EdtPay.getText().toString()); //스트링을변환한거임
                     if(!details.matches("")) {
                         helper.insertProposal(db, r_id, p_num, pay, details);
                         Toast myToast = Toast.makeText(context, "견적 제시를 완료했습니다.", Toast.LENGTH_SHORT);
