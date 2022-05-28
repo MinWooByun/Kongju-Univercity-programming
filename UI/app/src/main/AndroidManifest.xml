@@ -33,7 +33,6 @@
             android:exported="true"/>
         <activity android:name=".SumbitCertificate"
             android:exported="true"/>
-
     </application>
 
 </manifest>
