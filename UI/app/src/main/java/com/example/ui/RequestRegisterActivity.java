@@ -21,11 +21,9 @@ public class RequestRegisterActivity extends AppCompatActivity {
         setContentView(R.layout.request_register);
         dbHelper = new dbHelper(RequestRegisterActivity.this, 1);
 
-        Log.v("u_id", "하이요");
 
         Intent intent = getIntent();
         String u_id= intent.getExtras().getString("u_id");
-        Log.v("u_id", u_id);
 
         //xml 연동
         Button btnR_register = (Button)findViewById(R.id.R_register);
