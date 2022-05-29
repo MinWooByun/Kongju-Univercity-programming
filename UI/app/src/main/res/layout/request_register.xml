@@ -44,7 +44,7 @@
         android:layout_height="match_parent"
         android:layout_weight="10">
         <Spinner
-            android:id="@+id/spinner2"
+            android:id="@+id/R_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
@@ -60,7 +60,7 @@
         android:layout_weight="10">
 
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/R_symptom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -74,7 +74,7 @@
         android:layout_height="match_parent"
         android:layout_weight="10">
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/R_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
