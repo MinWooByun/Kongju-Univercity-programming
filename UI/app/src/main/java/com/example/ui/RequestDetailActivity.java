@@ -61,9 +61,9 @@ public class RequestDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(RequestDetailActivity.this ,Proposal_Suggest.class);
-                startActivity(intent);
                 intent.putExtra("uId", u_id);
                 intent.putExtra("p_num", number);
+                startActivity(intent);
             }
         });
 

@@ -39,10 +39,11 @@ public class RequestRegisterActivity extends AppCompatActivity {
         btnR_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            String title = R_title.getText().toString();
-            String contents = R_contents.getText().toString();
-            int category_n = category.getSelectedItemPosition();
-            int symptom_n = symptom.getSelectedItemPosition();
+                Intent intent = new Intent(RequestRegisterActivity.this ,noticeBoardActivity.class);
+                String title = R_title.getText().toString();
+                String contents = R_contents.getText().toString();
+                int category_n = category.getSelectedItemPosition();
+                int symptom_n = symptom.getSelectedItemPosition();
 
             if(title.equals("") && contents.equals("")){
                 Toast.makeText(getApplicationContext(), "제목이나 고장 증상을 넣어주세요.", Toast.LENGTH_SHORT).show();
@@ -50,6 +51,10 @@ public class RequestRegisterActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "카테고리나 고장증상을 선택해 주세요.", Toast.LENGTH_SHORT).show();
             }else{
                 dbHelper.insertRequest(db, u_id, title, symptom_n, contents,category_n);
+                Toast.makeText(getApplicationContext(), "등록되었습니다.", Toast.LENGTH_SHORT).show();
+                intent.putExtra("uId", u_id);
+                intent.putExtra("type", 2);
+                startActivity(intent);
             }
 
             }

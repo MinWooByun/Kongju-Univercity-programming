@@ -65,8 +65,9 @@ public class noticeBoardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(noticeBoardActivity.this ,RequestRegisterActivity.class);
-                startActivity(intent);
                 intent.putExtra("u_id", u_id);
+                startActivity(intent);
+
 
             }
         });
@@ -76,8 +77,8 @@ public class noticeBoardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(noticeBoardActivity.this ,Proposal_Back.class);
-                startActivity(intent);
                 intent.putExtra("u_id", u_id);
+                startActivity(intent);
 
             }
         });
@@ -92,8 +93,9 @@ public class noticeBoardActivity extends AppCompatActivity {
                 else if(type==0 || type==2)
                     intent = new Intent(noticeBoardActivity.this ,MyPageUser.class);
 
+                intent.putExtra("u_id", u_id);
                     startActivity(intent);
-                    intent.putExtra("u_id", u_id);
+
 
 
 
@@ -105,8 +107,8 @@ public class noticeBoardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(noticeBoardActivity.this ,AdminList.class);
-                startActivity(intent);
                 intent.putExtra("u_id", u_id);
+                startActivity(intent);
             }
         });
 
