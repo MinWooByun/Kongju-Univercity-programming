@@ -63,7 +63,7 @@ public class MyPageRepairMan extends AppCompatActivity {
                 } else {
                     if(Pw.equals(PwReconfirm)) {
                         // 게시판에서 마이페이지로 넘어올 때 id 값을 intent로 받아와야 하는데 아직 미완성
-                        boolean isUpdated = helper.userPwUpdate("KWH2", etPwReconfirm.getText().toString());
+                        boolean isUpdated = helper.repairManPwUpdate("KWH2", etPwReconfirm.getText().toString());
                         if(isUpdated == true) {
                             etPw.setText("");
                             etPwReconfirm.setText("");
