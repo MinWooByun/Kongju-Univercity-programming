@@ -8,10 +8,11 @@ import android.util.Log;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class dbHelper extends SQLiteOpenHelper {
     static final String DB_Name = "HL_DB.db";
+    private static final String TABLE_NAME_userTable = "userTable";
+    private static final String TABLE_NAME_repairManTable = "repairManTable";
 
     public dbHelper(Context context, int version){
         super(context, DB_Name, null, version);
@@ -112,6 +113,4 @@ public class dbHelper extends SQLiteOpenHelper {
         String sql = "INSERT INTO repairSuggestionTable VALUES"+"("+"'"+r_id+"'"+","+p_num+","+e_pay+","+"'"+r_details+"'"+");";
         db.execSQL(sql);
     }
-
-
 }

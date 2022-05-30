@@ -23,17 +23,17 @@ public class AdminAuthority extends AppCompatActivity {
         Button btnRefusal = findViewById(R.id.btnRefusal);
 
         Intent intent = getIntent();
-        String removeList= intent.getExtras().getString("removeList");
+        String id = intent.getExtras().getString("id");
 
-        MyDatabaseHelper myDb = new MyDatabaseHelper(this);
+        dbHelper helper = new dbHelper(this, 1);
 
         btnApprove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminAuthority.this, AdminList.class);
 //                intent.putExtra("position", position);
-                boolean isDelect = myDb.listRemove(removeList);
-                if(isDelect == true) {
+                boolean isUpdate = helper.isProofApprove(id);
+                if(isUpdate == true) {
                     Toast.makeText(AdminAuthority.this,"성공", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(AdminAuthority.this,"실패", Toast.LENGTH_LONG).show();
@@ -48,8 +48,8 @@ public class AdminAuthority extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AdminAuthority.this, AdminList.class);
 //                intent.putExtra("position", position);
-                boolean isDelect = myDb.listRemove(removeList);
-                if(isDelect == true) {
+                boolean isUpdate = helper.isProofRefusal(id);
+                if(isUpdate == true) {
                     Toast.makeText(AdminAuthority.this,"성공", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(AdminAuthority.this,"실패", Toast.LENGTH_LONG).show();
