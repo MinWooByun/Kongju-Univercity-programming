@@ -8,23 +8,68 @@
         android:layout_height="match_parent"
         android:layout_weight="10">
         <TextView
-            android:id="@+id/Rd_title"
+            android:id="@+id/Rd_id"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="의뢰 제목"
+            android:text="작성자 id"
             android:layout_weight="8"
             android:layout_margin="10dp"
             android:gravity="center_vertical"
             android:background="@drawable/rect_editbox"
             />
+
         <Button
             android:id="@+id/btnReport_Update"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center_horizontal"
             android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginHorizontal="10dp"
+            android:text="신고/갱신" />
+
+        <ImageButton
+            android:id="@+id/btn_fix"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@android:drawable/ic_menu_edit" />
+        <ImageButton
+            android:id="@+id/btn_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@android:drawable/ic_menu_delete" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="10"
+        >
+        <TextView
+            android:id="@+id/Rd_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="의뢰 제목"
             android:layout_margin="10dp"
-            android:text="신고/갱신"/>
+            android:gravity="center_vertical"
+            android:background="@drawable/rect_editbox"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="3">
+        <TextView
+            android:id="@+id/Rd_contents"
+            android:layout_width="wrap_content"
+            android:layout_height="400dp"
+            android:text="고장증상"
+            android:layout_weight="8"
+            android:layout_margin="40dp"
+            android:layout_marginBottom="500dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/rect_editbox"
+            />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -54,22 +99,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="3">
-        <TextView
-            android:id="@+id/Rd_contents"
-            android:layout_width="wrap_content"
-            android:layout_height="300dp"
-            android:text="고장증상"
-            android:layout_weight="8"
-            android:layout_margin="50dp"
-            android:layout_marginBottom="500dp"
-            android:gravity="center_vertical"
-            android:background="@drawable/rect_editbox"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:layout_weight="10">
         <Button
             android:id="@+id/btnProposal"
@@ -80,4 +109,5 @@
             android:layout_marginHorizontal="10dp"
             android:text="견적 제시" />
     </LinearLayout>
+
 </LinearLayout>

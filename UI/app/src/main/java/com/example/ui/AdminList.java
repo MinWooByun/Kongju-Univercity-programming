@@ -1,8 +1,5 @@
 package com.example.ui;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,7 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +27,11 @@ public class AdminList extends AppCompatActivity {
         actionBar.hide();
 
         ListView listView = findViewById(R.id.listView);
+        Button btnBack = findViewById(R.id.btnBack);
 
-        MyDatabaseHelper helper = new MyDatabaseHelper(this);
+        dbHelper helper = new dbHelper(this, 1);
         SQLiteDatabase db = helper.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT name FROM conditionsListTable",null);
+        Cursor cursor = db.rawQuery("SELECT id FROM repairManTable WHERE isproof = 0",null);
 
         List<String> list = new ArrayList<>();
         while (cursor.moveToNext()) {
@@ -43,8 +45,15 @@ public class AdminList extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(AdminList.this, AdminAuthority.class);
-                intent.putExtra("removeList", list.get(position));
-                db.close();
+                intent.putExtra("id", list.get(position));
+                startActivity(intent);
+            }
+        });
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminList.this, noticeBoardActivity.class);
                 startActivity(intent);
             }
         });

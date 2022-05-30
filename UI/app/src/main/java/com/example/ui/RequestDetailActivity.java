@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class RequestDetailActivity extends AppCompatActivity {
@@ -32,6 +33,9 @@ public class RequestDetailActivity extends AppCompatActivity {
         //xml과 연동
         Button btnProposal = (Button) findViewById(R.id.btnProposal);
         Button btnReport_Update = (Button) findViewById(R.id.btnReport_Update);
+        ImageButton btnFix = (ImageButton) findViewById(R.id.btn_fix);
+        ImageButton btnDelete = (ImageButton) findViewById(R.id.btn_delete);
+        TextView Rd_id = (TextView)findViewById(R.id.Rd_id);
         TextView Rd_title = (TextView)findViewById(R.id.Rd_title);
         TextView Rd_category = (TextView)findViewById(R.id.Rd_category);
         TextView Rd_symptom = (TextView)findViewById(R.id.Rd_symptom);
@@ -40,10 +44,11 @@ public class RequestDetailActivity extends AppCompatActivity {
         //가져온 db 값들 넣어주기
         String getdata = dbHelper.getRequest(number);
         String[] array = getdata.split("##,#");
-        Rd_title.setText(array[0]);
-        Rd_category.setText(category[Integer.parseInt(array[3])]);
-        Rd_symptom.setText(symptom[Integer.parseInt(array[1])]);
-        Rd_contents.setText(array[2]);
+        Rd_id.setText("작성자: " + array[0]);
+        Rd_title.setText( array[1]);
+        Rd_category.setText(category[Integer.parseInt(array[4])]);
+        Rd_symptom.setText(symptom[Integer.parseInt(array[2])]);
+        Rd_contents.setText(array[3]);
 
 
         //버튼 설정 (고객은 갱신, 수리기사는 신고)
@@ -52,8 +57,10 @@ public class RequestDetailActivity extends AppCompatActivity {
         else if(type == 1)
             btnReport_Update.setText("신고");
 
-        //수리기사일 때만 견적 제시가 보임.
-        if(type!=1)
+
+
+        //수리기사이며, 인증을 받았을 때만 견적 제시가 보임.
+        if(type!=1 && dbHelper.getIsproof(u_id)== 1)
             btnProposal.setVisibility(View.GONE);
 
         //견적제시 버튼
@@ -61,7 +68,7 @@ public class RequestDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(RequestDetailActivity.this ,Proposal_Suggest.class);
-                intent.putExtra("uId", u_id);
+                intent.putExtra("r_id", u_id);
                 intent.putExtra("p_num", number);
                 startActivity(intent);
             }
@@ -81,5 +88,28 @@ public class RequestDetailActivity extends AppCompatActivity {
                }
             }
         });
+
+        //수정 버튼
+        btnFix.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        //삭제 버튼
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RequestDetailActivity.this ,noticeBoardActivity.class);
+                intent.putExtra("u_id", u_id);
+                intent.putExtra("type", 2);
+                dbHelper.deleteRequest(number);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
     }
 }
