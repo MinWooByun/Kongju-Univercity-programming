@@ -14,7 +14,7 @@
         android:theme="@style/Theme.Ui"
         tools:targetApi="31">
         <activity
-            android:name=".LoginActivity"
+            android:name=".MyPageRepairMan"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,8 +46,8 @@
             android:exported="true"/>
         <activity android:name=".AdminList"
             android:exported="true"/>
-        <activity android:name=".MyPageRepairMan"
-            android:exported="true"/>
+<!--        <activity android:name=".MyPageRepairMan"-->
+<!--            android:exported="true"/>-->
         <activity android:name=".MyPageUser"
             android:exported="true"/>
     </application>
