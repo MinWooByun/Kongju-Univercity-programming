@@ -44,7 +44,6 @@ public class noticeBoardActivity extends AppCompatActivity {
         EditText search_Etext = (EditText) findViewById(R.id.search_bar);
         Spinner notice_category = (Spinner) findViewById(R.id.category);
 
-        Log.v("개수: ", String.valueOf(notice_category.getCount()));
         //버튼 설정 (고객은 의뢰 등록과 견적확인, 수리기사는 견적 확인, 관리자는 권한 승인과 견적 확인)
         if(type == 2){
            btnAdminlist.setVisibility(View.GONE);
@@ -103,6 +102,7 @@ public class noticeBoardActivity extends AppCompatActivity {
             }
         });
 
+        //검색
         btnsearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
