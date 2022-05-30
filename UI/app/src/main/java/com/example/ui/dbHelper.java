@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -133,8 +132,6 @@ public class dbHelper extends SQLiteOpenHelper {
         db.execSQL(sql);
         db.execSQL(sql2);
     }
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
 
     public boolean isProofApprove(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
