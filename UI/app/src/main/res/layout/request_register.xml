@@ -12,7 +12,7 @@
         android:layout_weight="10">
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/R_title"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="3"
@@ -21,14 +21,14 @@
             android:gravity="center_horizontal"
             android:inputType="textPersonName"
             android:background="@drawable/rect_editbox"
-            android:text="의뢰 제목" />
+            android:hint="의뢰 제목" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="3">
         <EditText
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/R_Contents"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
@@ -36,7 +36,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="내용을 입력해 주세요."
+            android:hint="내용을 입력해 주세요."
             android:background="@drawable/rect_editbox"/>
     </LinearLayout>
     <LinearLayout
@@ -44,7 +44,7 @@
         android:layout_height="match_parent"
         android:layout_weight="10">
         <Spinner
-            android:id="@+id/spinner2"
+            android:id="@+id/R_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
@@ -60,7 +60,7 @@
         android:layout_weight="10">
 
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/R_symptom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -74,7 +74,7 @@
         android:layout_height="match_parent"
         android:layout_weight="10">
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/R_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"

@@ -1,13 +1,17 @@
 package com.example.ui;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,37 +26,154 @@ public class noticeBoardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notice_board);
 
-        Log.v("start", "시작");
+
+
+        //intent 값 가져오기, helper 설정
+        Intent intent = getIntent();
+        String u_id= intent.getExtras().getString("u_id");
+        int type = intent.getExtras().getInt("type");
         dbHelper = new dbHelper(noticeBoardActivity.this, 1);
 
+        //버튼 매치
+        Button btnReqeustRegister = (Button) findViewById(R.id.btnReqeustRegister);
+        Button btnCheckPro = (Button) findViewById(R.id.check_proposal);
+        Button btnAdminlist = (Button) findViewById(R.id.Admin_list);
+        ImageButton btnMypage = (ImageButton) findViewById(R.id.mypage_btn);
+        ImageButton btnsearch = (ImageButton) findViewById(R.id.search_btn);
+        ImageButton btnlogout = (ImageButton) findViewById(R.id.logout_btn);
+        EditText search_Etext = (EditText) findViewById(R.id.search_bar);
+        Spinner notice_category = (Spinner) findViewById(R.id.category);
+
+        Log.v("개수: ", String.valueOf(notice_category.getCount()));
+        //버튼 설정 (고객은 의뢰 등록과 견적확인, 수리기사는 견적 확인, 관리자는 권한 승인과 견적 확인)
+        if(type == 2){
+           btnAdminlist.setVisibility(View.GONE);
+        }
+        else if(type==1){
+            btnReqeustRegister.setVisibility(View.GONE);
+            btnAdminlist.setVisibility(View.GONE);
+        }
+        else{
+            btnReqeustRegister.setVisibility(View.GONE);
+        }
+
+
+        //리스트 뷰 설정
         ListView listView = findViewById(R.id.contentsBar);
-        Button btnRequestRegister = (Button) findViewById(R.id.btnReqeustRegister);
 
 
-        ArrayList<ListItem> list = dbHelper.getAllTitles();
-
-
-        ListItemAdapter adapter = new ListItemAdapter(this, list);
-        listView.setAdapter(adapter);
-
-        btnRequestRegister.setOnClickListener(new View.OnClickListener() {
+        //카테고리 처리
+        notice_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(noticeBoardActivity.this ,RequestRegisterActivity.class);
-                startActivity(intent);
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if(i!=0){
+                    ArrayList<ListItem> list = dbHelper.getTitles_category(i,notice_category.getCount()-1,u_id);
+                    ListItemAdapter adapter = new ListItemAdapter(noticeBoardActivity.this, list);
+                    listView.setAdapter(adapter);
+                }
+                else{
+                    ArrayList<ListItem> list = dbHelper.getAllTitles();
+                    ListItemAdapter adapter = new ListItemAdapter(noticeBoardActivity.this, list);
+                    listView.setAdapter(adapter);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
 
+        //마이 페이지 버튼
+        btnMypage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = null;
+                if(type == 1)
+                    intent = new Intent(noticeBoardActivity.this ,MyPageRepairMan.class);
+                else if(type==0 || type==2)
+                    intent = new Intent(noticeBoardActivity.this ,MyPageUser.class);
+
+                intent.putExtra("u_id", u_id);
+                    startActivity(intent);
+
+
+
+
+            }
+        });
+
+        btnsearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ArrayList<ListItem> list = null;
+
+                list = dbHelper.getTitles_search(notice_category.getSelectedItemPosition(),search_Etext.getText().toString());
+
+
+
+                ListItemAdapter adapter = new ListItemAdapter(noticeBoardActivity.this, list);
+                listView.setAdapter(adapter);
+            }
+        });
+
+        //로그아웃 버튼
+        btnlogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(null, LoginActivity.class);
+            }
+        });
+
+
+        //제목 클릭
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(noticeBoardActivity.this, RequestDetailActivity.class);
                 ListItem item = (ListItem) parent.getItemAtPosition(position);
                 int number = item.getNumber();
-                Log.v("number", String.valueOf(number));
                 intent.putExtra("number", number);
+                intent.putExtra("type", type);
+                intent.putExtra("u_id", u_id);
                 startActivity(intent);
             }
         });
+
+
+        //수리 의뢰 작성 클릭
+        btnReqeustRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(noticeBoardActivity.this ,RequestRegisterActivity.class);
+                intent.putExtra("u_id", u_id);
+                startActivity(intent);
+
+
+            }
+        });
+
+        //견적 확인 버튼 클릭
+        btnCheckPro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(noticeBoardActivity.this ,Proposal_Back.class);
+                intent.putExtra("u_id", u_id);
+                startActivity(intent);
+
+            }
+        });
+
+        //권한 승인 버튼 클릭
+        btnAdminlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(noticeBoardActivity.this ,AdminList.class);
+                intent.putExtra("u_id", u_id);
+                startActivity(intent);
+            }
+        });
+
+
     }
 }

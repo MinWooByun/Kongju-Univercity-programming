@@ -43,9 +43,9 @@ public class LoginActivity extends AppCompatActivity {
                 //등록된 사용자인 경우, 중복된 ID가 없으므로 카운트가 1일것
                 if (cursor.getCount() > 0) {
                     while(cursor.moveToNext()) {
-                        Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), noticeBoardActivity.class);
                         //사용자의 ID와 type을 넘기고
-                        intent.putExtra("ID",cursor.getString(0));
+                        intent.putExtra("u_id",cursor.getString(0));
                         intent.putExtra("type", cursor.getInt(2));
                         //type에 맞는 사용자의 적절한 게시판 화면을 출력
                         startActivity(intent);
