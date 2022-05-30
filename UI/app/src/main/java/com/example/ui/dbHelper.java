@@ -1,11 +1,11 @@
 package com.example.ui;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.widget.Spinner;
 
 import java.util.ArrayList;
 
@@ -20,6 +20,12 @@ public class dbHelper extends SQLiteOpenHelper {
 
    @Override
     public void onCreate(SQLiteDatabase db) {
+
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+
     }
 
     public ArrayList<ListItem> getAllTitles(){
@@ -103,14 +109,40 @@ public class dbHelper extends SQLiteOpenHelper {
         db.execSQL(sql);
     }
 
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-
-    }
-
-
     public void insertProposal(SQLiteDatabase db, String r_id, int p_num, int e_pay, String r_details){
         String sql = "INSERT INTO repairSuggestionTable VALUES"+"("+"'"+r_id+"'"+","+p_num+","+e_pay+","+"'"+r_details+"'"+");";
         db.execSQL(sql);
+    }
+
+    public boolean isProofApprove(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("isproof", 1);
+        db.update(TABLE_NAME_repairManTable, contentValues, "id = ?", new String[] {id});
+        return true;
+    }
+
+    public boolean isProofRefusal(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("isproof", 0);
+        db.update(TABLE_NAME_repairManTable, contentValues, "id = ?", new String[] {id});
+        return true;
+    }
+
+    public boolean userPwUpdate(String id, String pw) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("pw", pw);
+        db.update(TABLE_NAME_userTable, contentValues, "id = ?", new String[] {id});
+        return true;
+    }
+
+    public boolean repairManPwUpdate(String id, String pw) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("pw", pw);
+        db.update(TABLE_NAME_userTable, contentValues, "id = ?", new String[] {id});
+        return true;
     }
 }
