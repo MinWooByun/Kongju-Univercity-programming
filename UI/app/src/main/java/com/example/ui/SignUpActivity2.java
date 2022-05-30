@@ -18,7 +18,7 @@ import androidx.annotation.Nullable;
 
 public class SignUpActivity2 extends Activity {
     //고객 회원가입
-    myDBHelper myHelper;
+    dbHelper myHelper;
     SQLiteDatabase sqlDB;
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,9 +33,8 @@ public class SignUpActivity2 extends Activity {
         edtNickname = (EditText) findViewById(R.id.edtNickname_Signup2);
         btnSignup = (Button) findViewById(R.id.btnSignup2);
         btnOverlap = (Button) findViewById(R.id.btnOverlap2);
-
+        myHelper = new dbHelper(this,1);
         //회원가입 버튼
-        //닉네임 방식 조율 필요
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,7 +62,7 @@ public class SignUpActivity2 extends Activity {
                     sqlDB.execSQL("INSERT INTO userTable VALUES ('"
                             +edtID.getText().toString()+"','"
                             +edtPW.getText().toString()+"',"
-                            +1+",'"
+                            +2+",'"
                             +edtNickname.getText().toString()+"');");
                     sqlDB.close();
                     Toast.makeText(getApplicationContext(),
@@ -76,10 +75,8 @@ public class SignUpActivity2 extends Activity {
                             "올바르게 작성했는지 다시 확인해 주세요",
                             Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
-        myHelper = new myDBHelper(this);
         //중복체크 버튼
         //완료
         btnOverlap.setOnClickListener(new View.OnClickListener() {
@@ -94,7 +91,7 @@ public class SignUpActivity2 extends Activity {
                 }
                 //특수문자 및 공백이 포함된 경우
                 if(count>=1||ID.length()==0){
-                    Toast.makeText(getApplicationContext(), "오류", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "사용할수 없는 문자나 공백이 포함되었습니다", Toast.LENGTH_SHORT).show();
                 }else{
                     //포함되지 않은 경우
                     //입력한 ID와 DB에 해당 ID가 존재하는지 비교
@@ -129,23 +126,5 @@ public class SignUpActivity2 extends Activity {
             @Override
             public void afterTextChanged(Editable editable) {}
         });
-
-    }
-
-    //DB
-    public class myDBHelper extends SQLiteOpenHelper {
-        public myDBHelper(@Nullable Context context) {
-            super(context, "HL_DB.db", null, 1);
-        }
-        @Override
-        public void onCreate(SQLiteDatabase db) {
-            /*db.execSQL("CREATE TABLE userTable (id varchar(20), pw varchar(30)," +
-                    "type int, nickName varchar(1000))");*/
-        }
-        @Override
-        public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-            /*db.execSQL("DROP TABLE IF EXISTS userTable");
-            onCreate(db);*/
-        }
     }
 }
