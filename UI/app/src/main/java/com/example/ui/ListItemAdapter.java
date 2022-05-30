@@ -4,22 +4,21 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class ListItemAdapter extends BaseAdapter {
     ArrayList<ListItem> items = null;
     Context context;
 
-    public ListItemAdapter(Context context, ArrayList<ListItem> items){
+    public ListItemAdapter(noticeBoardActivity context, ArrayList<ListItem> items){
         this.items = (ArrayList<ListItem>) items;
         this.context =context;
     }
+
     @Override
     public int getCount() {
         return items.size();
@@ -42,7 +41,6 @@ public class ListItemAdapter extends BaseAdapter {
 
         TextView number = view.findViewById(R.id.list_item_number);
         TextView title = view.findViewById(R.id.list_item_title);
-
         ListItem item = items.get(position);
         number.setText(String.valueOf(position+1));
         title.setText(item.getTitle());
