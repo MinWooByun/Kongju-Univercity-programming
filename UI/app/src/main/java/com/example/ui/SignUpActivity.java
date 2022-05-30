@@ -12,15 +12,35 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import java.text.ParseException;
+
 public class SignUpActivity extends Activity {
     //수리기사 회원가입
     //고객 회원가입
-    myDBHelper myHelper;
+    dbHelper myHelper;
     SQLiteDatabase sqlDB;
+    @Override
+    //증명서를 제출하고 로그인 양식으로 넘어옴
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode != 1 || resultCode != RESULT_OK) {
+            Toast.makeText(getApplicationContext(),
+                    "오류발생",
+                    Toast.LENGTH_SHORT).show();
+        }else{
+            //문제가 없으면 로그인으로 넘어감
+            Toast.makeText(getApplicationContext(),
+                    "회원가입 완료",
+                    Toast.LENGTH_SHORT).show();
+            finish();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_up_layout);
@@ -35,16 +55,15 @@ public class SignUpActivity extends Activity {
         edtLink = (EditText) findViewById(R.id.edtLink1);
         btnSignup = (Button) findViewById(R.id.btnSignup1);
         btnOverlap = (Button) findViewById(R.id.btnOverlap1);
-
+        myHelper = new dbHelper(this,1);
         //회원가입 버튼
-        //진행 중
-        //닉네임 방식 조율 필요, 링크는 필수?
+        //완료
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int[] check = {0,0,0,0}; //중복버튼, PW 일치, 닉네임, 링크
                 //중복체크 버튼 활성/비활성 여부
-                if(btnOverlap.isEnabled()) {check[0]=1;
+                if(btnOverlap.isEnabled()) {check[0]=0;
                 }else {check[0]=1;
                 }
                 //PW 일치 여부
@@ -62,37 +81,23 @@ public class SignUpActivity extends Activity {
                     check[3]=1;
                 }else{check[3]=0;
                 }
-                Toast.makeText(getApplicationContext(),
-                        check[0]+","+check[1]+","+check[2]+","+check[3],
-                        Toast.LENGTH_SHORT).show();
-                //조건을 모두 만족하면 회원 등록
+                //조건을 모두 만족하면 증명서 제출 페이지로 넘어감
                 if(check[0]==1&&check[1]==1&&check[2]==1&&check[3]==1){
-                    sqlDB = myHelper.getWritableDatabase();
-
-                    sqlDB.execSQL("INSERT INTO repairManTable VALUES ('"
-                            +edtID.getText().toString()+"',"
-                            +0+",'"
-                            +edtLink.getText().toString()+"');");
-                    sqlDB.execSQL("INSERT INTO userTable VALUES ('"
-                            +edtID.getText().toString()+"','"
-                            +edtPW.getText().toString()+"',"
-                            +2+",'"
-                            +edtNickname.getText().toString()+"');");
-                    sqlDB.close();
-                    Toast.makeText(getApplicationContext(),
-                            edtNickname.getText().toString()+"님 가입이 완료되었습니다.",
-                            Toast.LENGTH_SHORT).show();
-                    finish();
+                    //증명서 제출 페이지로 입력한 데이터를 넘김
+                    Intent intent = new Intent(getApplicationContext(), SumbitCertificate.class);
+                    intent.putExtra("id",edtID.getText().toString());
+                    intent.putExtra("pw", edtPW.getText().toString());
+                    intent.putExtra("nickname",edtNickname.getText().toString());
+                    intent.putExtra("link", edtLink.getText().toString());
+                    startActivityForResult(intent, 1);
                 }else{
                     //조건을 하나라도 만족하지 못하면 메시지 출력
                     Toast.makeText(getApplicationContext(),
                             "올바르게 작성했는지 다시 확인해 주세요",
                             Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
-        myHelper = new myDBHelper(this);
         //중복체크 버튼
         //완료
         btnOverlap.setOnClickListener(new View.OnClickListener() {
@@ -107,7 +112,7 @@ public class SignUpActivity extends Activity {
                 }
                 //특수문자 및 공백이 포함된 경우
                 if(count>=1||ID.length()==0){
-                    Toast.makeText(getApplicationContext(), "오류", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "사용할수 없는 문자나 공백이 포함되었습니다", Toast.LENGTH_SHORT).show();
                 }else{
                     //포함되지 않은 경우
                     //입력한 ID와 DB에 해당 ID가 존재하는지 비교
@@ -142,23 +147,5 @@ public class SignUpActivity extends Activity {
             @Override
             public void afterTextChanged(Editable editable) {}
         });
-
-    }
-
-    //DB
-    public class myDBHelper extends SQLiteOpenHelper {
-        public myDBHelper(@Nullable Context context) {
-            super(context, "HL_DB.db", null, 1);
-        }
-        @Override
-        public void onCreate(SQLiteDatabase db) {
-            /*db.execSQL("CREATE TABLE repairManTable (id varchar(20), isproof INTEGER," +
-                    "openlink varchar(2000))");*/
-        }
-        @Override
-        public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-            /*db.execSQL("DROP TABLE IF EXISTS repairManTable");
-            onCreate(db);*/
-        }
     }
 }
