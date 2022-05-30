@@ -43,16 +43,17 @@ public class RequestRegisterActivity extends AppCompatActivity {
                 int category_n = category.getSelectedItemPosition();
                 int symptom_n = symptom.getSelectedItemPosition();
 
-            if(title.equals("") && contents.equals("")){
+            if(title.equals("") || contents.equals("")){
                 Toast.makeText(getApplicationContext(), "제목이나 고장 증상을 넣어주세요.", Toast.LENGTH_SHORT).show();
-            }else if(category_n == 0 && symptom_n == 0){
+            }else if(category_n == 0 || symptom_n == 0){
                 Toast.makeText(getApplicationContext(), "카테고리나 고장증상을 선택해 주세요.", Toast.LENGTH_SHORT).show();
             }else{
                 dbHelper.insertRequest(db, u_id, title, symptom_n, contents,category_n);
                 Toast.makeText(getApplicationContext(), "등록되었습니다.", Toast.LENGTH_SHORT).show();
-                intent.putExtra("uId", u_id);
+                intent.putExtra("u_id", u_id);
                 intent.putExtra("type", 2);
                 startActivity(intent);
+                finish();
             }
 
             }
