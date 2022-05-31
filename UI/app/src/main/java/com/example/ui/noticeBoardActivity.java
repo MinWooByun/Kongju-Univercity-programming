@@ -178,4 +178,12 @@ public class noticeBoardActivity extends AppCompatActivity {
 
 
     }
+
+    //게시글에서 뒤버튼 처리
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(noticeBoardActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }

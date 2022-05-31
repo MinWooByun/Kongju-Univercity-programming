@@ -27,6 +27,7 @@ public class dbHelper extends SQLiteOpenHelper {
 
     }
 
+    //증명 여부 가져오기
     public int getIsproof(String u_id){
         int result = 0;
         SQLiteDatabase db = getReadableDatabase();
@@ -130,8 +131,9 @@ public class dbHelper extends SQLiteOpenHelper {
         db.execSQL(sql);
     }
 
-    public void updateRequest(SQLiteDatabase db, String u_id,  String title, int symptom, String symptom_contents, int object){
-        String sql = "INSERT INTO repairRequestTable(userID,title,object,symptom,symptom_contents) VALUES ('"+u_id+"'"+","+"'"+title+"'"+","+object+","+symptom+","+"'"+symptom_contents+"'"+");";
+    //수리 의뢰 수정(업데이트)
+    public void updateRequest(SQLiteDatabase db, String u_id,  String title, int symptom, String symptom_contents, int object, int number){
+        String sql = "UPDATE repairRequestTable SET (title,object,symptom,symptom_contents) = ('"+title+"'"+","+object+","+symptom+","+"'"+symptom_contents+"'"+") WHERE number = '" +number+"';";
         db.execSQL(sql);
     }
 
