@@ -59,12 +59,17 @@ public class RequestDetailActivity extends AppCompatActivity {
 
 
         //수리기사이며, 인증을 받았을 때만 견적 제시가 보임.
-        if(type!=1 && dbHelper.getIsproof(u_id)== 1)
+        if(type!=1 && dbHelper.getIsproof(u_id)!= 1)
             btnProposal.setVisibility(View.GONE);
 
         //자신의 글일 때 수정 가능
         if(!array[0].equals(u_id))
             btnFix.setVisibility(View.GONE);
+
+        //관리자와 자신만 삭제 가능
+        if(type!=0 || !array[0].equals(u_id))
+            btnDelete.setVisibility(View.GONE);
+
 
         //견적제시 버튼
         btnProposal.setOnClickListener(new View.OnClickListener() {

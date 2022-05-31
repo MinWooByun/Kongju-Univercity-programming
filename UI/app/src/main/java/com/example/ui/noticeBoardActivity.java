@@ -121,7 +121,9 @@ public class noticeBoardActivity extends AppCompatActivity {
         btnlogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(null, LoginActivity.class);
+                Intent intent = new Intent(noticeBoardActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 
