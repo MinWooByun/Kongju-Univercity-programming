@@ -1,15 +1,14 @@
 package com.example.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class RequestDetailActivity extends AppCompatActivity {
     Resources res;
@@ -63,6 +62,10 @@ public class RequestDetailActivity extends AppCompatActivity {
         if(type!=1 && dbHelper.getIsproof(u_id)== 1)
             btnProposal.setVisibility(View.GONE);
 
+        //자신의 글일 때 수정 가능
+        if(!array[0].equals(u_id))
+            btnFix.setVisibility(View.GONE);
+
         //견적제시 버튼
         btnProposal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +96,10 @@ public class RequestDetailActivity extends AppCompatActivity {
         btnFix.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(RequestDetailActivity.this ,RequestFixActivity.class);
+                intent.putExtra("r_id", u_id);
+                intent.putExtra("number", number);
+                startActivity(intent);
             }
         });
 

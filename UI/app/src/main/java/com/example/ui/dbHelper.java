@@ -37,6 +37,16 @@ public class dbHelper extends SQLiteOpenHelper {
         return result;
     }
 
+    public int getNumber(String u_id){
+        int result = 0;
+        SQLiteDatabase db = getReadableDatabase();
+
+        StringBuffer sb = new StringBuffer();
+        sb.append("SELECT number FROM repairRequestTable WHERE id = '" + u_id +"'");
+        Cursor cursor = db.rawQuery(sb.toString(), null);
+        return result;
+    }
+
     //모든 제목 가져오기
     public ArrayList<ListItem> getAllTitles(){
         StringBuffer sb = new StringBuffer();
@@ -120,11 +130,17 @@ public class dbHelper extends SQLiteOpenHelper {
         db.execSQL(sql);
     }
 
+    public void updateRequest(SQLiteDatabase db, String u_id,  String title, int symptom, String symptom_contents, int object){
+        String sql = "INSERT INTO repairRequestTable(userID,title,object,symptom,symptom_contents) VALUES ('"+u_id+"'"+","+"'"+title+"'"+","+object+","+symptom+","+"'"+symptom_contents+"'"+");";
+        db.execSQL(sql);
+    }
+
     public void insertProposal(SQLiteDatabase db, String r_id, int p_num, int e_pay, String r_details){
         String sql = "INSERT INTO repairSuggestionTable VALUES"+"("+"'"+r_id+"'"+","+p_num+","+e_pay+","+"'"+r_details+"'"+");";
         db.execSQL(sql);
     }
 
+    //수리의뢰 삭제
     public void deleteRequest(int number){
         SQLiteDatabase db = getWritableDatabase();
         String sql = "DELETE FROM repairRequestTable WHERE number = '"+ number +"'";
