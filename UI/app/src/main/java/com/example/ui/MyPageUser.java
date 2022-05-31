@@ -1,5 +1,6 @@
 package com.example.ui;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -27,10 +28,12 @@ public class MyPageUser extends AppCompatActivity {
         EditText etPwReconfirm = findViewById(R.id.etPwReconfirm);
         Button btnUpdate = findViewById(R.id.btnUpdate);
 
+        Intent intent = getIntent();
+        String u_id = intent.getExtras().getString("u_id");
+
         dbHelper helper = new dbHelper(this, 1);
-        SQLiteDatabase db = helper.getWritableDatabase();
-        // 아이디 값을 아직 전 페이지에서 못 받아와서 임시방편임
-        Cursor cursor = db.rawQuery("SELECT nickname FROM userTable WHERE id = 'KWH3' AND type = 0",null);
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT nickname FROM userTable WHERE id = '"+ u_id +"'",null);
 
         while (cursor.moveToNext()) {
             tvNickName.setText(cursor.getString(0));
