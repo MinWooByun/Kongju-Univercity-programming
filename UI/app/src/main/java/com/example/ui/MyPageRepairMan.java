@@ -60,6 +60,7 @@ public class MyPageRepairMan extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MyPageRepairMan.this, SumbitCertificate.class);
                 intent.putExtra("u_id", u_id);
+                intent.putExtra("state", "MyPage");
                 startActivity(intent);
             }
         });

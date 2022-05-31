@@ -85,10 +85,11 @@ public class SignUpActivity extends Activity {
                 if(check[0]==1&&check[1]==1&&check[2]==1&&check[3]==1){
                     //증명서 제출 페이지로 입력한 데이터를 넘김
                     Intent intent = new Intent(getApplicationContext(), SumbitCertificate.class);
-                    intent.putExtra("id",edtID.getText().toString());
+                    intent.putExtra("u_id",edtID.getText().toString());
                     intent.putExtra("pw", edtPW.getText().toString());
                     intent.putExtra("nickname",edtNickname.getText().toString());
                     intent.putExtra("link", edtLink.getText().toString());
+                    intent.putExtra("state","SignUp");
                     startActivityForResult(intent, 1);
                 }else{
                     //조건을 하나라도 만족하지 못하면 메시지 출력

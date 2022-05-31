@@ -45,10 +45,11 @@ public class SumbitCertificate extends Activity {
 
         //회원가입 양식으로부터 받아오는 정보
         Intent intent = getIntent();
-        String re_id= intent.getExtras().getString("id");
-        String re_pw= intent.getExtras().getString("pw");
-        String re_nick= intent.getExtras().getString("nickname");
-        String re_link= intent.getExtras().getString("link");
+        String re_id= intent.getExtras().getString("u_id");
+        String re_pw= intent.getExtras().getString("pw","");
+        String re_nick= intent.getExtras().getString("nickname","");
+        String re_link= intent.getExtras().getString("link","");
+        String state = intent.getExtras().getString("state");
 
         btnSelect = (Button) findViewById(R.id.btnSelectCertification);
         btnSubmit = (Button) findViewById(R.id.btnCertificateSuggestion);
@@ -82,19 +83,27 @@ public class SumbitCertificate extends Activity {
                 sqlDB = myHelper.getWritableDatabase();
                 String sql = "INSERT INTO imgTable(id, imgBLOB) VALUES(?, ?)";
                 Object[] args = new Object[]{re_id, blobByte};
-                try{
-                    sqlDB.execSQL(sql, args);//이미지테이블
-                    sqlDB.execSQL("INSERT INTO repairManTable VALUES ('"//수리기사테이블
-                            +re_id+"',"
-                            +0+",'"
-                            +re_link+"');");
-                    sqlDB.execSQL("INSERT INTO userTable VALUES ('"//전체회원테이블
-                            +re_id+"','"
-                            +re_pw+"',"
-                            +1+",'"
-                            +re_nick+"');");
-                }catch (SQLException ex){
-                    Toast.makeText(getApplicationContext(), "오류가 발생했습니다", Toast.LENGTH_SHORT).show();
+                if(state.compareTo("SignUp")==0){
+                    try{
+                        sqlDB.execSQL(sql, args);//이미지테이블
+                        sqlDB.execSQL("INSERT INTO repairManTable VALUES ('"//수리기사테이블
+                                +re_id+"',"
+                                +0+",'"
+                                +re_link+"');");
+                        sqlDB.execSQL("INSERT INTO userTable VALUES ('"//전체회원테이블
+                                +re_id+"','"
+                                +re_pw+"',"
+                                +1+",'"
+                                +re_nick+"');");
+                    }catch (SQLException ex){
+                        Toast.makeText(getApplicationContext(), "오류가 발생했습니다", Toast.LENGTH_SHORT).show();
+                    }
+                }else if(state.compareTo("MyPage")==0){
+                    try{
+                        sqlDB.execSQL(sql, args);//이미지테이블
+                    }catch (SQLException ex){
+                        Toast.makeText(getApplicationContext(), "오류가 발생했습니다", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 sqlDB.close();
                 //회원가입이 완료되면 처음 로그인으로 돌아감
