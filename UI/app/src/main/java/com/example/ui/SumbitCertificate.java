@@ -81,10 +81,11 @@ public class SumbitCertificate extends Activity {
                 //3. 바이트 파일로 변환된 이미지를 db에 저장
                 //4. 직전 화면에서 받아온 데이터를 db에 저장
                 sqlDB = myHelper.getWritableDatabase();
-                String sql = "INSERT INTO imgTable(id, imgBLOB) VALUES(?, ?)";
-                Object[] args = new Object[]{re_id, blobByte};
+                Object[] args;
                 if(state.compareTo("SignUp")==0){
                     try{
+                        String sql = "INSERT INTO imgTable(id, imgBLOB) VALUES(?, ?)";
+                        args= new Object[]{re_id, blobByte};
                         sqlDB.execSQL(sql, args);//이미지테이블
                         sqlDB.execSQL("INSERT INTO repairManTable VALUES ('"//수리기사테이블
                                 +re_id+"',"
@@ -100,6 +101,8 @@ public class SumbitCertificate extends Activity {
                     }
                 }else if(state.compareTo("MyPage")==0){
                     try{
+                        String sql = "UPDATE imgTable SET imgBLOB = ? WHERE id = ?;";
+                        args= new Object[]{blobByte, re_id};
                         sqlDB.execSQL(sql, args);//이미지테이블
                     }catch (SQLException ex){
                         Toast.makeText(getApplicationContext(), "오류가 발생했습니다", Toast.LENGTH_SHORT).show();
