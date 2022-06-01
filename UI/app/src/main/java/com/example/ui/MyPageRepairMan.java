@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -80,6 +79,11 @@ public class MyPageRepairMan extends AppCompatActivity {
                             etPw.setText("");
                             etPwReconfirm.setText("");
                             Toast.makeText(MyPageRepairMan.this,"성공", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(MyPageRepairMan.this, noticeBoardActivity.class);
+                            intent.putExtra("u_id", u_id);
+                            intent.putExtra("type", 1);
+                            startActivity(intent);
+                            finish();
                         } else {
                             Toast.makeText(MyPageRepairMan.this,"실패", Toast.LENGTH_LONG).show();
                         }
