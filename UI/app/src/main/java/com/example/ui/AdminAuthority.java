@@ -30,6 +30,7 @@ public class AdminAuthority extends AppCompatActivity {
 
         Intent intent = getIntent();
         String id = intent.getExtras().getString("id");
+        String u_id = intent.getExtras().getString("u_id");
 
         //
         imgView = findViewById(R.id.imageView);
@@ -39,14 +40,14 @@ public class AdminAuthority extends AppCompatActivity {
         btnApprove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AdminAuthority.this, AdminList.class);
-//                intent.putExtra("position", position);
                 boolean isUpdate = helper.isProofApprove(id);
                 if(isUpdate == true) {
                     Toast.makeText(AdminAuthority.this,"성공", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(AdminAuthority.this,"실패", Toast.LENGTH_LONG).show();
                 }
+                Intent intent = new Intent(AdminAuthority.this, AdminList.class);
+                intent.putExtra("u_id", u_id);
                 startActivity(intent);
                 finish();
             }
@@ -55,8 +56,6 @@ public class AdminAuthority extends AppCompatActivity {
         btnRefusal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AdminAuthority.this, AdminList.class);
-//                intent.putExtra("position", position);
                 boolean isUpdate = helper.isProofRefusal(id);
                 if(isUpdate == true) {
                     helper.imgDelete(id);
@@ -64,6 +63,8 @@ public class AdminAuthority extends AppCompatActivity {
                 } else {
                     Toast.makeText(AdminAuthority.this,"실패", Toast.LENGTH_LONG).show();
                 }
+                Intent intent = new Intent(AdminAuthority.this, AdminList.class);
+                intent.putExtra("u_id", u_id);
                 startActivity(intent);
                 finish();
             }

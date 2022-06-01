@@ -49,12 +49,16 @@ public class MyPageUser extends AppCompatActivity {
                     Toast.makeText(MyPageUser.this,"비밀번호 입력칸을 채워주세요.", Toast.LENGTH_LONG).show();
                 } else {
                     if(Pw.equals(PwReconfirm)) {
-                        // 게시판에서 마이페이지로 넘어올 때 id 값을 intent로 받아와야 하는데 아직 미완성
                         boolean isUpdated = helper.userPwUpdate("KWH3", etPwReconfirm.getText().toString());
                         if(isUpdated == true) {
                             etPw.setText("");
                             etPwReconfirm.setText("");
                             Toast.makeText(MyPageUser.this,"성공", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(MyPageUser.this, noticeBoardActivity.class);
+                            intent.putExtra("u_id", u_id);
+                            intent.putExtra("type", 2);
+                            startActivity(intent);
+                            finish();
                         } else {
                             Toast.makeText(MyPageUser.this,"실패", Toast.LENGTH_LONG).show();
                         }
