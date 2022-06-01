@@ -27,12 +27,23 @@ public class dbHelper extends SQLiteOpenHelper {
 
     }
 
+    //증명 여부 가져오기
     public int getIsproof(String u_id){
         int result = 0;
         SQLiteDatabase db = getReadableDatabase();
 
         StringBuffer sb = new StringBuffer();
         sb.append("SELECT isproof FROM repairManTable WHERE id = '" + u_id +"'");
+        Cursor cursor = db.rawQuery(sb.toString(), null);
+        return result;
+    }
+
+    public int getNumber(String u_id){
+        int result = 0;
+        SQLiteDatabase db = getReadableDatabase();
+
+        StringBuffer sb = new StringBuffer();
+        sb.append("SELECT number FROM repairRequestTable WHERE id = '" + u_id +"'");
         Cursor cursor = db.rawQuery(sb.toString(), null);
         return result;
     }
@@ -120,11 +131,18 @@ public class dbHelper extends SQLiteOpenHelper {
         db.execSQL(sql);
     }
 
+    //수리 의뢰 수정(업데이트)
+    public void updateRequest(SQLiteDatabase db, String u_id,  String title, int symptom, String symptom_contents, int object, int number){
+        String sql = "UPDATE repairRequestTable SET (title,object,symptom,symptom_contents) = ('"+title+"'"+","+object+","+symptom+","+"'"+symptom_contents+"'"+") WHERE number = '" +number+"';";
+        db.execSQL(sql);
+    }
+
     public void insertProposal(SQLiteDatabase db, String r_id, int p_num, int e_pay, String r_details){
         String sql = "INSERT INTO repairSuggestionTable VALUES"+"("+"'"+r_id+"'"+","+p_num+","+e_pay+","+"'"+r_details+"'"+");";
         db.execSQL(sql);
     }
 
+    //수리의뢰 삭제
     public void deleteRequest(int number){
         SQLiteDatabase db = getWritableDatabase();
         String sql = "DELETE FROM repairRequestTable WHERE number = '"+ number +"'";
@@ -163,5 +181,11 @@ public class dbHelper extends SQLiteOpenHelper {
         contentValues.put("pw", pw);
         db.update(TABLE_NAME_userTable, contentValues, "id = ?", new String[] {id});
         return true;
+    }
+
+    public void imgDelete(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "DELETE FROM imgTable WHERE id = '"+ id +"';";
+        db.execSQL(sql);
     }
 }

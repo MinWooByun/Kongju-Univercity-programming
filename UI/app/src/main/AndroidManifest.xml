@@ -50,8 +50,8 @@
             android:exported="true"/>
         <activity android:name=".MyPageUser"
             android:exported="true"/>
-<!--        <activity android:name=".Satisfied"-->
-<!--            android:exported="true"/>-->
+        <activity android:name=".RequestFixActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>
