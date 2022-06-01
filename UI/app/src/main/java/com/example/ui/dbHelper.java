@@ -156,6 +156,7 @@ public class dbHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put("isproof", 1);
         db.update(TABLE_NAME_repairManTable, contentValues, "id = ?", new String[] {id});
+        db.close();
         return true;
     }
 
@@ -164,6 +165,7 @@ public class dbHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put("isproof", 0);
         db.update(TABLE_NAME_repairManTable, contentValues, "id = ?", new String[] {id});
+        db.close();
         return true;
     }
 
@@ -172,6 +174,7 @@ public class dbHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put("pw", pw);
         db.update(TABLE_NAME_userTable, contentValues, "id = ?", new String[] {id});
+        db.close();
         return true;
     }
 
@@ -180,6 +183,7 @@ public class dbHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put("pw", pw);
         db.update(TABLE_NAME_userTable, contentValues, "id = ?", new String[] {id});
+        db.close();
         return true;
     }
 
