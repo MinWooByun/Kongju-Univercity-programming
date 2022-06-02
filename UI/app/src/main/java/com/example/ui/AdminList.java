@@ -47,6 +47,9 @@ public class AdminList extends AppCompatActivity {
             }
         }
 
+        db.close();
+        cursor.close();
+
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
         listView.setAdapter(adapter);
 

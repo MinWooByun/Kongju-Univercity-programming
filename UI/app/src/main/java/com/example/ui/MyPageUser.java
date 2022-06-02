@@ -39,6 +39,9 @@ public class MyPageUser extends AppCompatActivity {
             tvNickName.setText(cursor.getString(0));
         }
 
+        db.close();
+        cursor.close();
+
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,7 +52,7 @@ public class MyPageUser extends AppCompatActivity {
                     Toast.makeText(MyPageUser.this,"비밀번호 입력칸을 채워주세요.", Toast.LENGTH_LONG).show();
                 } else {
                     if(Pw.equals(PwReconfirm)) {
-                        boolean isUpdated = helper.userPwUpdate("KWH3", etPwReconfirm.getText().toString());
+                        boolean isUpdated = helper.userPwUpdate(u_id, etPwReconfirm.getText().toString());
                         if(isUpdated == true) {
                             etPw.setText("");
                             etPwReconfirm.setText("");
