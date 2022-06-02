@@ -50,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
                         intent.putExtra("type", cursor.getInt(2));
                         //type에 맞는 사용자의 적절한 게시판 화면을 출력
                         startActivity(intent);
+                        finish();
                     }
                 } else {
                     //등록된 사용자가 아니면 메시지 출력
