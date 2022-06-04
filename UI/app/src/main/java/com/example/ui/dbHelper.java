@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -187,12 +188,6 @@ public class dbHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public void imgDelete(String id){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String sql = "DELETE FROM imgTable WHERE id = '"+ id +"';";
-        db.execSQL(sql);
-    }
-
     public long satisfiedUpdate(String id, int statePopup, int kindnessPopup, int termPopup, int pricePopup) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT satisfiedState, satisfiedKindness, satisfiedTerm, price, repairNumber FROM repairManTable WHERE id = 'KWH2'",null);
@@ -222,5 +217,19 @@ public class dbHelper extends SQLiteOpenHelper {
         db.close();
 
         return result;
+    }
+
+    public void reportRequest(Integer number){
+        SQLiteDatabase db = getWritableDatabase();
+        String sql1 = "UPDATE repairRequestTable SET declar = declar + 1 WHERE number = " +number+"";
+        db.execSQL(sql1);
+        Cursor cursor = db.rawQuery("SELECT declar FROM repairRequestTable WHERE number = "+number+";", null);
+        while(cursor.moveToNext()){
+            if (cursor.getInt(0) >= 3) {
+                String sql2 = "DELETE FROM repairRequestTable WHERE number = "+number+";";
+                db.execSQL(sql2);
+            }
+        }
+        db.close();
     }
 }

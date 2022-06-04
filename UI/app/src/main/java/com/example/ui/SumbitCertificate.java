@@ -87,14 +87,14 @@ public class SumbitCertificate extends Activity {
                         String sql = "INSERT INTO imgTable(id, imgBLOB) VALUES(?, ?)";
                         args= new Object[]{re_id, blobByte};
                         sqlDB.execSQL(sql, args);//이미지테이블
-                        sqlDB.execSQL("INSERT INTO repairManTable VALUES ('"//수리기사테이블
+                        sqlDB.execSQL("INSERT INTO repairManTable(id, isproof, openlink) VALUES ('"//수리기사테이블
                                 +re_id+"',"
                                 +0+",'"
                                 +re_link+"');");
                         sqlDB.execSQL("INSERT INTO userTable VALUES ('"//전체회원테이블
                                 +re_id+"','"
                                 +re_pw+"',"
-                                +1+",'"
+                                +2+",'"
                                 +re_nick+"');");
                     }catch (SQLException ex){
                         Toast.makeText(getApplicationContext(), "오류가 발생했습니다", Toast.LENGTH_SHORT).show();
