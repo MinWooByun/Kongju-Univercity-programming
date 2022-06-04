@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -113,21 +114,23 @@ public class dbHelper extends SQLiteOpenHelper {
     //수리 의뢰 내용 가져오기
     public String getRequest(int number){
         StringBuffer sb = new StringBuffer();
-        sb.append("SELECT userId, title, symptom, symptom_contents, object FROM repairRequestTable WHERE number = '" + number + "'");
+        sb.append("SELECT userId, title, symptom, symptom_contents, object, state FROM repairRequestTable WHERE number = '" + number + "'");
 
         SQLiteDatabase db = getReadableDatabase();
 
         String result = "";
         Cursor cursor = db.rawQuery(sb.toString(), null);
         while(cursor.moveToNext()){
-            result += cursor.getString(0) + "##,#" + cursor.getString(1) + "##,#" + cursor.getInt(2) + "##,#" + cursor.getString(3)+ "##,#" + cursor.getInt(4);
+            result += cursor.getString(0) + "##,#" + cursor.getString(1) + "##,#" + cursor.getInt(2) + "##,#" + cursor.getString(3)+ "##,#" + cursor.getInt(4)+ "##,#" + cursor.getInt(5);
         }
         return result;
     }
 
     //수리 의뢰 DB 저장
-    public void insertRequest(SQLiteDatabase db, String u_id,  String title, int symptom, String symptom_contents, int object){
-        String sql = "INSERT INTO repairRequestTable(userID,title,object,symptom,symptom_contents) VALUES ('"+u_id+"'"+","+"'"+title+"'"+","+object+","+symptom+","+"'"+symptom_contents+"'"+");";
+    public void insertRequest( String u_id,  String title, int symptom, String symptom_contents, int object, int tag){
+        SQLiteDatabase db = getWritableDatabase();
+        Log.v("상태:", String.valueOf(tag));
+        String sql = "INSERT INTO repairRequestTable(userID,title,object,symptom,symptom_contents,state) VALUES ('"+u_id+"',"+"'"+title+"','"+object+"','"+symptom+"','"+symptom_contents+"','"+tag+"');";
         db.execSQL(sql);
     }
 
