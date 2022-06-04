@@ -135,9 +135,11 @@ public class noticeBoardActivity extends AppCompatActivity {
                 Intent intent = new Intent(noticeBoardActivity.this, RequestDetailActivity.class);
                 ListItem item = (ListItem) parent.getItemAtPosition(position);
                 int number = item.getNumber();
+                int tag = item.getTag();
                 intent.putExtra("number", number);
                 intent.putExtra("type", type);
                 intent.putExtra("u_id", u_id);
+                intent.putExtra("tag", tag);
                 startActivity(intent);
             }
         });
