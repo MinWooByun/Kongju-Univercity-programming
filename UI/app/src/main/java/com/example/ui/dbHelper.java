@@ -51,7 +51,7 @@ public class dbHelper extends SQLiteOpenHelper {
     //모든 제목 가져오기
     public ArrayList<ListItem> getAllTitles(){
         StringBuffer sb = new StringBuffer();
-        sb.append("SELECT number, title FROM repairRequestTable ORDER BY number DESC");
+        sb.append("SELECT number, title, state FROM repairRequestTable ORDER BY number DESC");
 
         SQLiteDatabase db = getReadableDatabase();
 
@@ -60,7 +60,7 @@ public class dbHelper extends SQLiteOpenHelper {
         ArrayList<ListItem> titles = new ArrayList<ListItem>();
         String title = null;
         while(cursor.moveToNext()){
-            ListItem item = new ListItem(cursor.getInt(0), cursor.getString(1));
+            ListItem item = new ListItem(cursor.getInt(0), cursor.getString(1), cursor.getInt(2));
             titles.add(item);
         }  
         return titles;
@@ -70,10 +70,10 @@ public class dbHelper extends SQLiteOpenHelper {
     public ArrayList<ListItem> getTitles_category(int position, int max_position, String u_id){
         StringBuffer sb = new StringBuffer();
         if(position != max_position){
-            sb.append("SELECT number, title FROM repairRequestTable WHERE object = '" + position +"' ORDER BY number DESC");
+            sb.append("SELECT number, title, state FROM repairRequestTable WHERE object = '" + position +"' ORDER BY number DESC");
         }
         else
-            sb.append("SELECT number, title FROM repairRequestTable WHERE userId = '" + u_id +"' ORDER BY number DESC");
+            sb.append("SELECT number, title, state FROM repairRequestTable WHERE userId = '" + u_id +"' ORDER BY number DESC");
 
         SQLiteDatabase db = getReadableDatabase();
 
@@ -82,7 +82,7 @@ public class dbHelper extends SQLiteOpenHelper {
         ArrayList<ListItem> titles = new ArrayList<ListItem>();
         String title = null;
         while(cursor.moveToNext()){
-            ListItem item = new ListItem(cursor.getInt(0), cursor.getString(1));
+            ListItem item = new ListItem(cursor.getInt(0), cursor.getString(1), cursor.getInt(2));
             titles.add(item);
         }
         return titles;
@@ -93,9 +93,9 @@ public class dbHelper extends SQLiteOpenHelper {
         StringBuffer sb = new StringBuffer();
 
         if(position!=0)
-            sb.append("SELECT number, title FROM repairRequestTable WHERE title LIKE '%" + search_text +"%' AND object = '" + position + "' ORDER BY number DESC");
+            sb.append("SELECT number, titl, state FROM repairRequestTable WHERE title LIKE '%" + search_text +"%' AND object = '" + position + "' ORDER BY number DESC");
         else
-            sb.append("SELECT number, title FROM repairRequestTable WHERE title LIKE '%" + search_text +"%' ORDER BY number DESC");
+            sb.append("SELECT number, title, state FROM repairRequestTable WHERE title LIKE '%" + search_text +"%' ORDER BY number DESC");
 
         SQLiteDatabase db = getReadableDatabase();
 
@@ -104,7 +104,7 @@ public class dbHelper extends SQLiteOpenHelper {
         ArrayList<ListItem> titles = new ArrayList<ListItem>();
         String title = null;
         while(cursor.moveToNext()){
-            ListItem item = new ListItem(cursor.getInt(0), cursor.getString(1));
+            ListItem item = new ListItem(cursor.getInt(0), cursor.getString(1), cursor.getInt(2));
             titles.add(item);
         }
         return titles;
