@@ -14,7 +14,7 @@
         android:theme="@style/Theme.Ui"
         tools:targetApi="31">
         <activity
-            android:name=".LoginActivity"
+            android:name=".test"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -51,6 +51,9 @@
         <activity android:name=".MyPageUser"
             android:exported="true"/>
         <activity android:name=".RequestFixActivity"
+            android:exported="true"/>
+        <activity android:name=".Satisfied"
+            android:theme="@style/Theme.AppCompat.Light.Dialog"
             android:exported="true"/>
     </application>
 

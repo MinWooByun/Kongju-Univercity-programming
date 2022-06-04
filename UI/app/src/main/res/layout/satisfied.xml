@@ -2,23 +2,16 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#eeeeee"
     android:layout_width="350dp"
-    android:layout_height="wrap_content">
-
-    <RatingBar
-        android:id="@+id/ratingBar3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv4"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBar2" />
+    android:layout_gravity="center"
+    android:layout_height="350dp">
 
     <TextView
         android:id="@+id/tv1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:text="만족도 평가"
         android:textColor="@color/black"
         android:textSize="20dp"
@@ -31,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="15dp"
         android:text="수리상태"
         android:textColor="@color/black"
         android:textSize="20dp"
@@ -39,10 +32,10 @@
         app:layout_constraintTop_toBottomOf="@+id/tv1" />
 
     <RatingBar
-        android:id="@+id/ratingBar1"
+        android:id="@+id/ratingBarState"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
+        android:stepSize="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tv2"
         app:layout_constraintTop_toBottomOf="@+id/tv1" />
@@ -52,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:text="친절함"
         android:textColor="@color/black"
         android:textSize="20dp"
@@ -60,32 +53,43 @@
         app:layout_constraintTop_toBottomOf="@+id/tv2" />
 
     <RatingBar
-        android:id="@+id/ratingBar2"
+        android:id="@+id/ratingBarKindness"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
+        android:stepSize="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tv3"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBar1" />
+        app:layout_constraintTop_toBottomOf="@+id/ratingBarState" />
 
     <TextView
         android:id="@+id/tv4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:text="수리기간"
         android:textColor="@color/black"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv3" />
 
+    <RatingBar
+        android:id="@+id/ratingBarTerm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:stepSize="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv4"
+        app:layout_constraintTop_toBottomOf="@+id/ratingBarKindness" />
+
     <TextView
         android:id="@+id/tv5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:text="가격"
         android:textColor="@color/black"
         android:textSize="20dp"
@@ -97,22 +101,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:hint="가격"
         android:textColor="@color/black"
         android:textSize="20dp"
         app:layout_constraintStart_toEndOf="@+id/tv5"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBar3" />
+        app:layout_constraintTop_toBottomOf="@+id/ratingBarTerm" />
 
     <Button
         android:id="@+id/btnSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="5dp"
         android:text="제출"
         android:textSize="20dp"
+        android:textColor="@color/white"
+        android:backgroundTint="#6200eb"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPrice" />
