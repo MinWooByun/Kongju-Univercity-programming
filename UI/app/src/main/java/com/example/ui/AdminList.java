@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdminList extends AppCompatActivity {
-
+    String u_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +36,7 @@ public class AdminList extends AppCompatActivity {
         Cursor cursor = db.rawQuery("SELECT id FROM repairManTable WHERE isproof = 0",null);
 
         Intent intent = getIntent();
-        String u_id = intent.getExtras().getString("u_id");
+        u_id = intent.getExtras().getString("u_id");
 
         List<String> list = new ArrayList<>();
         if(cursor.getCount() == 0) {
@@ -72,5 +72,14 @@ public class AdminList extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+    //뒤로가기 처리
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(AdminList.this, noticeBoardActivity.class);
+        intent.putExtra("u_id", u_id);
+        intent.putExtra("type", 0);
+        startActivity(intent);
+        finish();
     }
 }
