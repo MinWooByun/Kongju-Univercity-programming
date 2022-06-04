@@ -100,7 +100,7 @@ public class RequestDetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //갱신
                if(type == 0){
-                    //갱신시 원래 글을 지우고 내용을 그대로 복사
+                   //갱신시 원래 글을 지우고 내용을 그대로 복사
                }
                //신고
                if(type == 1){
