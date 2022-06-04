@@ -98,8 +98,14 @@ public class RequestDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //갱신
-               if(type == 0){
-                   //갱신시 원래 글을 지우고 내용을 그대로 복사
+               if(type ==2){
+                   String getdata =  dbHelper.getRequest(number);
+                   String[] array = getdata.split("##,#");
+                   dbHelper.deleteRequest(number);
+                   dbHelper.insertRequest(array[0],array[1],Integer.parseInt(array[2]),array[3],Integer.parseInt(array[4]),Integer.parseInt(array[5]));
+                   Toast.makeText(getApplicationContext(),
+                           "갱신되었습니다.",
+                           Toast.LENGTH_SHORT).show();
                }
                //신고
                if(type == 1){
