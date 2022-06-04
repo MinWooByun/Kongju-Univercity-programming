@@ -26,6 +26,7 @@ public class RequestDetailActivity extends AppCompatActivity {
         String u_id= intent.getExtras().getString("u_id");
         int type = intent.getExtras().getInt("type");
         int number = intent.getExtras().getInt("number");
+        int tag = intent.getExtras().getInt("tag");
         dbHelper = new dbHelper(RequestDetailActivity.this, 1);
         String[] category = res.getStringArray(R.array.카테고리);
         String[] symptom = res.getStringArray(R.array.고장증상);
@@ -40,6 +41,7 @@ public class RequestDetailActivity extends AppCompatActivity {
         TextView Rd_category = (TextView)findViewById(R.id.Rd_category);
         TextView Rd_symptom = (TextView)findViewById(R.id.Rd_symptom);
         TextView Rd_contents = (TextView)findViewById(R.id.Rd_contents);
+        Button btnSatisfication = (Button) findViewById(R.id.btnSatisfication);
 
         //가져온 db 값들 넣어주기
         String getdata = dbHelper.getRequest(number);
@@ -56,12 +58,15 @@ public class RequestDetailActivity extends AppCompatActivity {
             btnReport_Update.setText("갱신");
         else if(type == 1)
             btnReport_Update.setText("신고");
+        else
+            btnReport_Update.setVisibility(View.GONE);
 
 
 
         //수리기사이며, 인증을 받았을 때만 견적 제시가 보임.
         if(type!=1 && dbHelper.getIsproof(u_id)!= 1)
             btnProposal.setVisibility(View.GONE);
+
 
         //자신의 글일 때 수정 가능
         Log.v("아이디:", array[0]+" "+u_id);
@@ -72,6 +77,8 @@ public class RequestDetailActivity extends AppCompatActivity {
         if(!(type==0 || array[0].equals(u_id)))
             btnDelete.setVisibility(View.GONE);
 
+        if(tag!=1)
+            btnSatisfication.setVisibility(View.GONE);
 
         //견적제시 버튼
         btnProposal.setOnClickListener(new View.OnClickListener() {
@@ -123,6 +130,15 @@ public class RequestDetailActivity extends AppCompatActivity {
             }
         });
 
+        btnSatisfication.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RequestDetailActivity.this ,Satisfied.class);
+                intent.putExtra("u_id", u_id);
+                intent.putExtra("number", number);
+                startActivity(intent);
+            }
+        });
 
     }
     @Override

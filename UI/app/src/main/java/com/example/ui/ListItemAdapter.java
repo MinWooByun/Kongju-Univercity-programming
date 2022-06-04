@@ -41,9 +41,15 @@ public class ListItemAdapter extends BaseAdapter {
 
         TextView number = view.findViewById(R.id.list_item_number);
         TextView title = view.findViewById(R.id.list_item_title);
+        TextView tag = view.findViewById(R.id.list_item_tag);
         ListItem item = items.get(position);
         number.setText(String.valueOf(position+1));
         title.setText(item.getTitle());
+
+        if(item.getTag()==1)
+            tag.setText("수리 진행중");
+        else if(item.getTag()== 2)
+            tag.setText("수리 완료");
 
         return view;
     }
