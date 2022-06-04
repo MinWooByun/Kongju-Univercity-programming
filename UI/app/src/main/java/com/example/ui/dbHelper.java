@@ -186,7 +186,6 @@ public class dbHelper extends SQLiteOpenHelper {
         db.close();
         return true;
     }
-<<<<<<< MinWooByun
 
     public void imgDelete(String id){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -224,6 +223,4 @@ public class dbHelper extends SQLiteOpenHelper {
 
         return result;
     }
-=======
->>>>>>> main
 }
