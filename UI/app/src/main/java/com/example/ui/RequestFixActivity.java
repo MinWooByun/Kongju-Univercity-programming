@@ -65,7 +65,6 @@ public class RequestFixActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
-
             }
         });
     }

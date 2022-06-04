@@ -47,7 +47,7 @@ public class RequestRegisterActivity extends AppCompatActivity {
             }else if(category_n == 0 || symptom_n == 0){
                 Toast.makeText(getApplicationContext(), "카테고리나 고장증상을 선택해 주세요.", Toast.LENGTH_SHORT).show();
             }else{
-                dbHelper.insertRequest(db, u_id, title, symptom_n, contents,category_n);
+                dbHelper.insertRequest(u_id, title, symptom_n, contents,category_n,0);
                 Toast.makeText(getApplicationContext(), "등록되었습니다.", Toast.LENGTH_SHORT).show();
                 intent.putExtra("u_id", u_id);
                 intent.putExtra("type", 2);

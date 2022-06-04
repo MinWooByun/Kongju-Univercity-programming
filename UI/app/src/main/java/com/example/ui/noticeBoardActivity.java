@@ -1,9 +1,7 @@
 package com.example.ui;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -11,12 +9,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class noticeBoardActivity extends AppCompatActivity {
 
@@ -153,7 +149,7 @@ public class noticeBoardActivity extends AppCompatActivity {
                 Intent intent = new Intent(noticeBoardActivity.this ,RequestRegisterActivity.class);
                 intent.putExtra("u_id", u_id);
                 startActivity(intent);
-
+                finish();
 
             }
         });
@@ -185,6 +181,7 @@ public class noticeBoardActivity extends AppCompatActivity {
     //게시글에서 뒤버튼 처리
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
         Intent intent = new Intent(noticeBoardActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
