@@ -129,7 +129,6 @@ public class dbHelper extends SQLiteOpenHelper {
     //수리 의뢰 DB 저장
     public void insertRequest( String u_id,  String title, int symptom, String symptom_contents, int object, int tag){
         SQLiteDatabase db = getWritableDatabase();
-        Log.v("상태:", String.valueOf(tag));
         String sql = "INSERT INTO repairRequestTable(userID,title,object,symptom,symptom_contents,state) VALUES ('"+u_id+"',"+"'"+title+"','"+object+"','"+symptom+"','"+symptom_contents+"','"+tag+"');";
         db.execSQL(sql);
     }
