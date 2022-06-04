@@ -136,6 +136,7 @@ public class RequestDetailActivity extends AppCompatActivity {
                 Intent intent = new Intent(RequestDetailActivity.this ,Satisfied.class);
                 intent.putExtra("u_id", u_id);
                 intent.putExtra("number", number);
+                intent.putExtra("type", type);
                 startActivity(intent);
             }
         });
@@ -146,9 +147,10 @@ public class RequestDetailActivity extends AppCompatActivity {
         super.onBackPressed();
         Intent intent = getIntent();
         String u_id = intent.getExtras().getString("u_id");
+        int type = intent.getExtras().getInt("type");
         intent = new Intent(RequestDetailActivity.this, noticeBoardActivity.class);
         intent.putExtra("u_id", u_id);
-        intent.putExtra("type", 2);
+        intent.putExtra("type", type);
         startActivity(intent);
         finish();
 
