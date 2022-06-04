@@ -192,4 +192,35 @@ public class dbHelper extends SQLiteOpenHelper {
         String sql = "DELETE FROM imgTable WHERE id = '"+ id +"';";
         db.execSQL(sql);
     }
+
+    public long satisfiedUpdate(String id, int statePopup, int kindnessPopup, int termPopup, int pricePopup) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT satisfiedState, satisfiedKindness, satisfiedTerm, price, repairNumber FROM repairManTable WHERE id = 'KWH2'",null);
+
+        int state = 0;
+        int kindness = 0;
+        int term = 0;
+        int price = 0;
+        int repairNumber = 0;
+
+        while (cursor.moveToNext()) {
+            state = cursor.getInt(0);
+            kindness = cursor.getInt(1);
+            term = cursor.getInt(2);
+            price = cursor.getInt(3);
+            repairNumber = cursor.getInt(4);
+        }
+        cursor.close();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("satisfiedState", (state + statePopup) / (repairNumber + 1));
+        contentValues.put("satisfiedKindness", (kindness + kindnessPopup) / (repairNumber + 1));
+        contentValues.put("satisfiedTerm", (term + termPopup) / (repairNumber + 1));
+        contentValues.put("price", (price + pricePopup) / (repairNumber + 1));
+        contentValues.put("repairNumber", repairNumber + 1);
+        long result = db.update(TABLE_NAME_repairManTable, contentValues, "id = ?", new String[] {id});
+        db.close();
+
+        return result;
+    }
 }
