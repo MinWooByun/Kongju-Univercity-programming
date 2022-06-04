@@ -62,7 +62,7 @@ public class SignUpActivity2 extends Activity {
                     sqlDB.execSQL("INSERT INTO userTable VALUES ('"
                             +edtID.getText().toString()+"','"
                             +edtPW.getText().toString()+"',"
-                            +2+",'"
+                            +1+",'"
                             +edtNickname.getText().toString()+"');");
                     sqlDB.close();
                     Toast.makeText(getApplicationContext(),

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -97,11 +98,16 @@ public class RequestDetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //갱신
                if(type == 0){
-
+                   //갱신시 원래 글을 지우고 내용을 그대로 복사
                }
                //신고
                if(type == 1){
-
+                   dbHelper.reportRequest(number);
+                   Toast.makeText(getApplicationContext(),
+                           "신고 완료",
+                           Toast.LENGTH_SHORT).show();
+                   //3번 누적시 게시글 삭제
+                   //신고시 메시지 출력
                }
             }
         });
