@@ -11,18 +11,19 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Proposal_Suggest extends AppCompatActivity {
+public class Proposal_SuggestFix extends AppCompatActivity {
     EditText EdtPay;
     EditText EdtContent;
     Button BtnSuggest;
-    SQLiteDatabase sqlDB;
     String r_id;
     int p_num;
     int e_pay;
     int type;
     String r_details;
+    dbHelper helper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,22 +32,24 @@ public class Proposal_Suggest extends AppCompatActivity {
         EdtPay = (EditText) findViewById(R.id.edtPay);
         EdtContent = (EditText) findViewById(R.id.edtContent);
         BtnSuggest = (Button) findViewById(R.id.btnSuggest);
+        BtnSuggest.setText("수정");
         // intent가 r_id, p_num을 줄 것임, 일단 테스트는 직접 작성으로 함
-        Intent gIntent = new Intent();
-        gIntent = getIntent();
-
+        Intent gIntent = getIntent();
         r_id = gIntent.getStringExtra("r_id");
         p_num = gIntent.getIntExtra("p_num",0);
-        type = gIntent.getIntExtra("type",0);
+        type = gIntent.getIntExtra("type", 0);
 
-        dbHelper helper;
-        SQLiteDatabase db;
-        helper = new dbHelper(Proposal_Suggest.this, 1);
-        db = helper.getWritableDatabase();
-        helper.onCreate(db);
-        //helper.onUpgrade(db,1,1);
+        helper = new dbHelper(this, 1);
+        e_pay = helper.getEpaySuggetionTableData(r_id,p_num);
+        r_details = helper.getRdetailsSuggetionTableData(r_id,p_num);
+
+        EdtPay.setText(Integer.toString(e_pay));
+        EdtContent.setText(r_details);
+//        helper.updateSuggetionTableData(r_id, p_num);
+
+
+
         Context context = this.getApplicationContext();
-
         BtnSuggest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,18 +60,17 @@ public class Proposal_Suggest extends AppCompatActivity {
                 if(isStringInteger(pay_check,10)) {
                     int pay = Integer.parseInt(EdtPay.getText().toString()); //스트링을변환한거임
                     if(!details.matches("")) {
-                        helper.insertProposal(db, r_id, p_num, pay, details);
-                        Toast myToast = Toast.makeText(context, "견적 제시를 완료했습니다.", Toast.LENGTH_SHORT);
+                        helper.updateSuggstionTableData(r_id, p_num, Integer.parseInt(pay_check), details);
+                        Toast myToast = Toast.makeText(context, "견적 제시를 수정했습니다.", Toast.LENGTH_SHORT);
                         myToast.show();
-                        Intent intent = new Intent(Proposal_Suggest.this,noticeBoardActivity.class);
+                        Intent intent = new Intent(Proposal_SuggestFix.this,ScreenSlidePagerDynamicActivity.class);
                         //Intent intent = new Intent(MainActivity.this,Proposal_Select.class);
                         //사실 DB에 넣어야 되는 내용물들임 버튼눌렀을떄 실행함
-                        intent.putExtra("pay",EdtPay.getText()); // 비용
-                        intent.putExtra("content",EdtContent.getText()); // 견적 내용
-                        intent.putExtra("type",type);
+                        intent.putExtra("u_id", r_id);
+                        intent.putExtra("type", type);
                         startActivity(intent);
                     }else{
-                        Toast myToast = Toast.makeText(context, "견적 제시내용을 작성해 주세요", Toast.LENGTH_SHORT);
+                        Toast myToast = Toast.makeText(context, "견적 내용을 작성해 주세요", Toast.LENGTH_SHORT);
                         myToast.show();
                     }
                 }

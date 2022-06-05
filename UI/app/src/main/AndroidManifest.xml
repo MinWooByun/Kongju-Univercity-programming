@@ -57,6 +57,8 @@
         <activity android:name=".ScreenSlidePagerDynamicActivity"
             android:exported="true">
         </activity>
+        <activity android:name=".Proposal_SuggestFix"
+            android:exported="true"></activity>
     </application>
 
 </manifest>

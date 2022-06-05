@@ -290,6 +290,33 @@ public class dbHelper extends SQLiteOpenHelper {
         }
         return proposalList;
     }
+    public void updateSuggstionTableData(String r_id, int p_num, int e_pay, String r_details){
+        SQLiteDatabase db = getReadableDatabase();
+        String sql =  "UPDATE repairSuggestionTable SET e_pay="+e_pay+","+"  r_details="+"'"+r_details+"'"+" WHERE r_id="+"'"+r_id+"' and p_num="+p_num+";";
+        db.execSQL(sql);
+    }
+    public int getEpaySuggetionTableData(String r_id, int p_num){
+        SQLiteDatabase db = getReadableDatabase();
+        StringBuffer sb = new StringBuffer();
+        sb.append("SELECT e_pay from repairSuggestionTable Where r_id="+"'"+r_id+"'"+" and p_num="+p_num+";");
+        Cursor cursor = db.rawQuery(sb.toString(),null);
+        int result=0;
+        while(cursor.moveToNext()){
+            result=cursor.getInt(0);
+        }
+        return result;
+    }
+    public String getRdetailsSuggetionTableData(String r_id, int p_num){
+        SQLiteDatabase db = getReadableDatabase();
+        StringBuffer sb = new StringBuffer();
+        sb.append("SELECT r_details from repairSuggestionTable Where r_id="+"'"+r_id+"'"+" and p_num="+p_num+";");
+        Cursor cursor = db.rawQuery(sb.toString(),null);
+        String result="";
+        while(cursor.moveToNext()){
+            result=cursor.getString(0);
+        }
+        return result;
+    }
     //의뢰제목도 찾음
     public ArrayList<fragmentListItem> getRepairSuggestionTableData(String u_id){
         //db 다시 생각해야함 u_id에 해당하는 repairRequestTable 의뢰제목 내용 모두 가져와야함
@@ -355,10 +382,10 @@ public class dbHelper extends SQLiteOpenHelper {
         String openlink = cursor.getString(0);
         return openlink;
     }
- 
+
     public void insertProposal(SQLiteDatabase db, String r_id, int p_num, int e_pay, String r_details){
-        String sql = "INSERT INTO repairSuggestionTable VALUES"+"("+"'"+r_id+"'"+","+p_num+","+e_pay+","+"'"+r_details+"'"+");";
-        db.execSQL(sql); 
+        String sql = "INSERT INTO repairSuggestionTable VALUES"+"("+"'"+r_id+"'"+","+p_num+","+e_pay+","+"'"+r_details+"'"+","+0+");";
+        db.execSQL(sql);
     }
     //수리기사가 이미 신고한 글인지 확인
     public boolean checkReport(String id, Integer number){//수리기사 id, 게시글 번호

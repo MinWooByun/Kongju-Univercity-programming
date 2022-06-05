@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MyPageUser extends AppCompatActivity {
     String u_id;
+    int type;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +31,7 @@ public class MyPageUser extends AppCompatActivity {
 
         Intent intent = getIntent();
         u_id = intent.getExtras().getString("u_id");
+        type = intent.getExtras().getInt("type");
 
         dbHelper helper = new dbHelper(this, 1);
         SQLiteDatabase db = helper.getReadableDatabase();
@@ -59,7 +61,7 @@ public class MyPageUser extends AppCompatActivity {
                             Toast.makeText(MyPageUser.this,"성공", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(MyPageUser.this, noticeBoardActivity.class);
                             intent.putExtra("u_id", u_id);
-                            intent.putExtra("type", 2);
+                            intent.putExtra("type", type);
                             startActivity(intent);
                             finish();
                         } else {
@@ -76,7 +78,7 @@ public class MyPageUser extends AppCompatActivity {
     public void onBackPressed() {
         Intent intent = new Intent(MyPageUser.this, noticeBoardActivity.class);
         intent.putExtra("u_id", u_id);
-        intent.putExtra("type", 2);
+        intent.putExtra("type", type);
         startActivity(intent);
         finish();
     }

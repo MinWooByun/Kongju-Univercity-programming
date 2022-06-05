@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MyPageRepairMan extends AppCompatActivity {
     String u_id;
+    int isproof, r_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +38,8 @@ public class MyPageRepairMan extends AppCompatActivity {
         dbHelper helper = new dbHelper(this, 1);
         SQLiteDatabase db = helper.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM userTable WHERE id = '"+ u_id +"'",null);
-        Cursor cursor1 = db.rawQuery("SELECT openlink FROM repairManTable WHERE id = '" + u_id +"'", null);
+        Cursor cursor1 = db.rawQuery("SELECT isproof, openlink FROM repairManTable WHERE id = '" + u_id +"'", null);
+        Cursor cursor2 = db.rawQuery("SELECT id FROM imgTable WHERE id = '" + u_id +"'", null);
 
         while (cursor.moveToNext()) {
             tvNickName.setText(cursor.getString(0));
@@ -49,9 +51,14 @@ public class MyPageRepairMan extends AppCompatActivity {
         }
 
         while (cursor1.moveToNext()) {
-            etOpenLink.setText(cursor1.getString(0));
-            String openlink = cursor1.getString(0);
+            isproof = cursor1.getInt(0);
+            etOpenLink.setText(cursor1.getString(1));
+            String openlink = cursor1.getString(1);
             intent1.putExtra("openlink", openlink);
+        }
+
+        while (cursor2.moveToNext()) {
+            r_id = cursor2.getCount();
         }
 
         db.close();
@@ -61,10 +68,18 @@ public class MyPageRepairMan extends AppCompatActivity {
         btnCertificate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MyPageRepairMan.this, SumbitCertificate.class);
-                intent.putExtra("u_id", u_id);
-                intent.putExtra("state", "MyPage");
-                startActivity(intent);
+                if(isproof == 0) {
+                    if(r_id == 0) {
+                        Intent intent = new Intent(MyPageRepairMan.this, SumbitCertificate.class);
+                        intent.putExtra("u_id", u_id);
+                        intent.putExtra("state", "MyPage");
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(MyPageRepairMan.this, "증명서 심사가 진행중입니다.", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(MyPageRepairMan.this, "증명서 인증이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

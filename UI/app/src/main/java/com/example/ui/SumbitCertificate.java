@@ -94,8 +94,8 @@ public class SumbitCertificate extends Activity {
                     }
                 }else if(state.compareTo("MyPage")==0){
                     try{
-                        String sql = "UPDATE imgTable SET imgBLOB = ? WHERE id = ?;";
-                        args= new Object[]{blobByte, re_id};
+                        String sql = "INSERT INTO imgTable(id, imgBLOB) VALUES(?, ?)";
+                        args= new Object[]{re_id, blobByte};
                         sqlDB.execSQL(sql, args);//이미지테이블
                     }catch (SQLException ex){
                         Toast.makeText(getApplicationContext(), "오류가 발생했습니다", Toast.LENGTH_SHORT).show();
