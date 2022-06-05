@@ -75,7 +75,7 @@ public class AdminList extends AppCompatActivity {
             }
         });
     }
-    //뒤로가기 처리
+
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(AdminList.this, noticeBoardActivity.class);

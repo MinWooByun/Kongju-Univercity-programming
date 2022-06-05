@@ -74,6 +74,7 @@ public class MyPageUser extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(MyPageUser.this, noticeBoardActivity.class);

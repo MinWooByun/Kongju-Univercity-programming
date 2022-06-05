@@ -114,6 +114,7 @@ public class MyPageRepairMan extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(MyPageRepairMan.this, noticeBoardActivity.class);
