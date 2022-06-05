@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 public class RequestRegisterActivity extends AppCompatActivity {
     dbHelper dbHelper;
+    String u_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +23,7 @@ public class RequestRegisterActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        String u_id= intent.getExtras().getString("u_id");
+        u_id= intent.getExtras().getString("u_id");
 
         //xml 연동
         Button btnR_register = (Button)findViewById(R.id.R_register);
@@ -57,5 +58,14 @@ public class RequestRegisterActivity extends AppCompatActivity {
 
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(RequestRegisterActivity.this, noticeBoardActivity.class);
+        intent.putExtra("u_id", u_id);
+        intent.putExtra("type", 2);
+        startActivity(intent);
+        finish();
     }
 }

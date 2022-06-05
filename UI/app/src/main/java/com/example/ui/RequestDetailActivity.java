@@ -62,11 +62,12 @@ public class RequestDetailActivity extends AppCompatActivity {
         else
             btnReport_Update.setVisibility(View.GONE);
 
-        if(!array[0].equals(u_id) && type!= 2)
+        //신고_갱신 버튼은 자신의 아이디가 아니거나 관리자는 보이면 안 된다.
+        if(!array[0].equals(u_id) || type== 0)
             btnReport_Update.setVisibility(View.GONE);
 
         //수리기사이며, 인증을 받았을 때만 견적 제시가 보임.
-        if(type!=1 && dbHelper.getIsproof(u_id)!= 1 && tag != 0)
+        if(type!=1 || dbHelper.getIsproof(u_id)!= 1 || tag != 0)
             btnProposal.setVisibility(View.GONE);
 
 
@@ -93,6 +94,13 @@ public class RequestDetailActivity extends AppCompatActivity {
             }
         });
 
+        //기사가 이미 신고한 글이면 신고버튼 비활성
+        //신고한적이 없으면 신고버튼 활성(디폴트)
+        if(dbHelper.checkReport(u_id, number)){
+            //신고이력 존재
+            btnReport_Update.setEnabled(false);
+        }
+
         //신고 or 갱신 버튼
         btnReport_Update.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,12 +117,24 @@ public class RequestDetailActivity extends AppCompatActivity {
                }
                //신고
                if(type == 1){
-                   dbHelper.reportRequest(number);
-                   Toast.makeText(getApplicationContext(),
-                           "신고 완료",
-                           Toast.LENGTH_SHORT).show();
-                   //3번 누적시 게시글 삭제
-                   //신고시 메시지 출력
+                   if(dbHelper.reportRequest(u_id, number)){
+                       Toast.makeText(getApplicationContext(),
+                               "신고 완료",
+                               Toast.LENGTH_SHORT).show();
+                       btnReport_Update.setEnabled(false);
+                   }else{
+                       Toast.makeText(getApplicationContext(),
+                               "신고가 누적되어 게시글 삭제",
+                               Toast.LENGTH_SHORT).show();
+                       Intent intent = getIntent();
+                       String u_id = intent.getExtras().getString("u_id");
+                       int type = intent.getExtras().getInt("type");
+                       intent = new Intent(RequestDetailActivity.this, noticeBoardActivity.class);
+                       intent.putExtra("u_id", u_id);
+                       intent.putExtra("type", type);
+                       startActivity(intent);
+                       finish();
+                   }
                }
             }
         });
@@ -167,6 +187,5 @@ public class RequestDetailActivity extends AppCompatActivity {
         intent.putExtra("type", type);
         startActivity(intent);
         finish();
-
     }
 }
