@@ -69,6 +69,22 @@ public class dbHelper extends SQLiteOpenHelper {
         return result;
     }
 
+    public int getSuggestionCount_InRequest(String u_id, int p_num){
+        int result = 0;
+        SQLiteDatabase db = getReadableDatabase();
+        StringBuffer sb = new StringBuffer();
+
+            sb.append("SELECT Count(r_id) FROM repairSuggestionTable WHERE r_id = '" + u_id +"'AND p_num = '"+p_num+"';");
+            Cursor cursor = db.rawQuery(sb.toString(), null);
+            while(cursor.moveToNext())
+                result = cursor.getInt(0);
+
+
+
+        return result;
+    }
+
+
     //증명 여부 가져오기
     public int getIsproof(String u_id){
         int result = 0;
