@@ -219,17 +219,43 @@ public class dbHelper extends SQLiteOpenHelper {
         return result;
     }
 
-    public void reportRequest(Integer number){
+    //수리기사가 이미 신고한 글인지 확인
+    public boolean checkReport(String id, Integer number){//수리기사 id, 게시글 번호
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM declarTable WHERE r_id = '"+id+"' AND p_num = '"+number+"';", null);
+        while(cursor.moveToNext()){
+            //신고이력이 존재하면 카우튼가 0보다 클것
+            //true 리턴
+            if (cursor.getCount() > 0) {
+                db.close();
+                return true;
+            }
+        }
+        //존재하지 않으면 false를 리턴
+        db.close();
+        return false;
+    }
+
+    //기사가 게시글 신고
+    public boolean reportRequest(String id, Integer number){//게시글 번호
         SQLiteDatabase db = getWritableDatabase();
         String sql1 = "UPDATE repairRequestTable SET declar = declar + 1 WHERE number = " +number+"";
+        String sql2 = "INSERT INTO declarTable VALUES('"+id+"','"+number+"')";
         db.execSQL(sql1);
+        db.execSQL(sql2);
         Cursor cursor = db.rawQuery("SELECT declar FROM repairRequestTable WHERE number = "+number+";", null);
         while(cursor.moveToNext()){
+            //신고가 3번 누적되면 자동으로 게시글 삭제
             if (cursor.getInt(0) >= 3) {
-                String sql2 = "DELETE FROM repairRequestTable WHERE number = "+number+";";
-                db.execSQL(sql2);
+                String sql3 = "DELETE FROM repairRequestTable WHERE number = "+number+";";
+                String sql4 = "DELETE FROM declarTable WHERE p_num = "+number+";";
+                db.execSQL(sql3);
+                db.execSQL(sql4);
+                db.close();
+                return false;
             }
         }
         db.close();
+        return true;
     }
 }

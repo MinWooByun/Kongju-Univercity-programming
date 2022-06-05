@@ -151,8 +151,7 @@ public class noticeBoardActivity extends AppCompatActivity {
                 Intent intent = new Intent(noticeBoardActivity.this ,RequestRegisterActivity.class);
                 intent.putExtra("u_id", u_id);
                 startActivity(intent);
-
-
+                finish();
             }
         });
 
@@ -183,6 +182,7 @@ public class noticeBoardActivity extends AppCompatActivity {
     //게시글에서 뒤버튼 처리
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
         Intent intent = new Intent(noticeBoardActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
