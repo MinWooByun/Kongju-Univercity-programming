@@ -2,8 +2,6 @@ package com.example.ui;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,12 +22,12 @@ public class Satisfied extends Activity {
         EditText etPrice = findViewById(R.id.etPrice);
         Button btnSubmit = findViewById(R.id.btnSubmit);
 
-        dbHelper helper = new dbHelper(this, 1);
-        SQLiteDatabase db = helper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT repairNumber FROM repairManTable WHERE id = 'KWH2'",null);
+        Intent intent = getIntent();
+        String u_id = intent.getExtras().getString("u_id");
+        int type = intent.getExtras().getInt("type");
+        int number = intent.getExtras().getInt("number");
 
-        db.close();
-        cursor.close();
+        dbHelper helper = new dbHelper(this, 1);
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,8 +35,8 @@ public class Satisfied extends Activity {
                 int state = Math.round(ratingBarState.getRating());
                 int kindness = Math.round(ratingBarKindness.getRating());
                 int term = Math.round(ratingBarTerm.getRating());
-                int price = 0;
                 String price1 = etPrice.getText().toString().trim();
+                int price = 0;
 
                 if(price1.equals("")) {
                     price = 0;
@@ -49,9 +47,7 @@ public class Satisfied extends Activity {
                 if(state == 0.0 || kindness == 0.0 || term == 0.0 || price == 0) {
                     Toast.makeText(Satisfied.this, "평가를 완료해주세요.", Toast.LENGTH_LONG).show();
                 } else {
-                    Intent intent = getIntent();
-                    String u_id = intent.getExtras().getString("u_id");
-                    long result = helper.satisfiedUpdate(u_id, state, kindness, term, price);
+                    long result = helper.satisfiedUpdate(u_id, number, state, kindness, term, price);
                     if(result == -1) {
                         Toast.makeText(Satisfied.this, "오류발생", Toast.LENGTH_LONG).show();
                     } else {
@@ -59,7 +55,11 @@ public class Satisfied extends Activity {
                     }
                 }
 
-                Intent intent = new Intent(Satisfied.this, test.class);
+                Intent intent = new Intent(Satisfied.this, RequestDetailActivity.class);
+                intent.putExtra("u_id", u_id);
+                intent.putExtra("type", type);
+                intent.putExtra("number", number);
+                intent.putExtra("tag", 2);
                 startActivity(intent);
                 finish();
             }
