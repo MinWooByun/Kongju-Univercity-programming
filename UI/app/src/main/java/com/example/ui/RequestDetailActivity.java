@@ -161,7 +161,7 @@ public class RequestDetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(RequestDetailActivity.this ,noticeBoardActivity.class);
                 intent.putExtra("u_id", u_id);
-                intent.putExtra("type", 2);
+                intent.putExtra("type", type);
                 dbHelper.deleteRequest(number);
                 startActivity(intent);
                 finish();
