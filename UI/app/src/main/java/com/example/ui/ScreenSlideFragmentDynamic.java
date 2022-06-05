@@ -36,7 +36,7 @@ public class ScreenSlideFragmentDynamic extends Fragment{
     TextView tvProposalSS;
     TextView tvProposalSK;
     TextView tvProposalST;
-    TextView tvProposalRID;
+
 
     public String u_id;
     private String r_name;
@@ -78,7 +78,7 @@ public class ScreenSlideFragmentDynamic extends Fragment{
         tvProposalRN = rootView.findViewById(R.id.tvProposalRequestName);
         tvProposalEP = rootView.findViewById(R.id.tvProposalExpectPayment);
         tvProposalSC = rootView.findViewById(R.id.tvProposalSuggestContent);
-        tvProposalRID = rootView.findViewById(R.id.tvProposalRID);
+
         switch(state){
             case 0: {
                 tvProposalS.setText("의뢰중");
@@ -96,7 +96,7 @@ public class ScreenSlideFragmentDynamic extends Fragment{
                 tvProposalS.setText("불러올수 없습니다");
                 break;}
         }
-        tvProposalRID.setText(r_id);
+
         tvProposalSS.setText(String.format("%.2f",s_state));
         tvProposalSK.setText(String.format("%.2f",s_kindness));
         tvProposalST.setText(String.format("%.2f",s_term));

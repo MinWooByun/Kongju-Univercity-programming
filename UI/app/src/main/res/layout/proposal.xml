@@ -19,7 +19,6 @@
             android:orientation="horizontal">
             <TextView
                 android:layout_width="0dp"
-                android:gravity="center"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="의뢰 진행도"
@@ -28,8 +27,6 @@
             </TextView>
             <TextView
                 android:id="@+id/tvProposalProgression"
-                android:gravity="left|center"
-                android:textSize="30dp"
                 android:layout_width="0dp"
                 android:textColor="@color/black"
                 android:layout_height="match_parent"
@@ -42,32 +39,6 @@
             android:layout_weight="1"
             android:orientation="horizontal">
             <TextView
-                android:gravity="center"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-               android:text="기사 아이디"
-
-                android:textColor="@color/black"
-                android:textSize="30dp">
-            </TextView>
-            <TextView
-                android:id="@+id/tvProposalRID"
-                android:layout_width="0dp"
-                android:textSize="20dp"
-                android:textColor="@color/black"
-                android:gravity="left|center"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-            </TextView>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-            <TextView
-                android:gravity="center"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -88,25 +59,16 @@
                     android:orientation="horizontal">
                     <TextView
                         android:text="서술력"
-                        android:gravity="center"
-                        android:textSize="20dp"
-                        android:textColor="@color/black"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"></TextView>
                     <TextView
                         android:text="친절성"
-                        android:gravity="center"
-                        android:textSize="20dp"
-                        android:textColor="@color/black"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"></TextView>
                     <TextView
                         android:text="대화성"
-                        android:gravity="center"
-                        android:textSize="20dp"
-                        android:textColor="@color/black"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"></TextView>
@@ -142,7 +104,6 @@
             android:layout_weight="1"
             android:orientation="horizontal">
             <TextView
-                android:gravity="center"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -153,8 +114,6 @@
             <TextView
                 android:id="@+id/tvProposalRequestName"
                 android:layout_width="0dp"
-                android:gravity="left|center"
-                android:textSize="20dp"
                 android:textColor="@color/black"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
@@ -166,7 +125,6 @@
             android:layout_height="0dp"
             android:layout_weight="1">
             <TextView
-                android:gravity="center"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -180,8 +138,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="left|center"
-                android:textSize="20dp"
                 android:textColor="@color/black">
 
             </TextView>
@@ -192,11 +148,9 @@
             android:layout_height="0dp"
             android:layout_weight="3">
             <TextView
-                android:gravity="top|center"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_marginTop="15dp"
                 android:text="견적 내용"
                 android:textSize="30dp"
                 android:textColor="@color/black">
@@ -207,8 +161,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="left|top"
-                android:textSize="20dp"
                 android:textColor="@color/black">
 
             </TextView>
@@ -223,12 +175,10 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
                 android:textSize="30dp"
                 android:textColor="@color/black"></TextView>
             <TextView
                 android:id="@+id/tvOpenTalk"
-                android:gravity="center"
                 android:text="Open Link"
                 android:textSize="30dp"
                 android:textColor="#0000ff"
