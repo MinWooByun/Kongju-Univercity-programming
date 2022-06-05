@@ -64,6 +64,7 @@ public class RequestDetailActivity extends AppCompatActivity {
         if(type!=1 && dbHelper.getIsproof(u_id)!= 1)
             btnProposal.setVisibility(View.GONE);
 
+
         //자신의 글이 아니면 수정 버튼이 보여지면 안 된다.
         if(!array[0].equals(u_id))
             btnFix.setVisibility(View.GONE);
