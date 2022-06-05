@@ -36,7 +36,7 @@ public class ScreenSlideFragmentDynamic extends Fragment{
     TextView tvProposalSS;
     TextView tvProposalSK;
     TextView tvProposalST;
-    TextView tvProposalRID;
+
 
     public String u_id;
     private String r_name;
@@ -71,7 +71,6 @@ public class ScreenSlideFragmentDynamic extends Fragment{
         //tvCancel =  rootView.findViewById(R.id.tvCancel);
         tvSubmit = rootView.findViewById(R.id.tvSubmit);
 
-        tvProposalRID = rootView.findViewById(R.id.tvProposalRID);
         tvProposalS = rootView.findViewById(R.id.tvProposalProgression);
         tvProposalSS = rootView.findViewById(R.id.tvProposalSState);
         tvProposalSK = rootView.findViewById(R.id.tvProposalSKindness);
@@ -98,7 +97,6 @@ public class ScreenSlideFragmentDynamic extends Fragment{
                 break;}
         }
 
-        tvProposalRID.setText(r_id);
         tvProposalSS.setText(String.format("%.2f",s_state));
         tvProposalSK.setText(String.format("%.2f",s_kindness));
         tvProposalST.setText(String.format("%.2f",s_term));
