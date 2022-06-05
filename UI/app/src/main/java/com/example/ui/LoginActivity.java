@@ -68,7 +68,12 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 } else {
                     //등록된 사용자가 아니면 메시지 출력
-                    Toast.makeText(getApplicationContext(), "존재하지 않는 계정정보 입니다", Toast.LENGTH_SHORT).show();
+                    cursor = sqlDB.rawQuery("SELECT * FROM userTable WHERE id = '" + ID + "';", null);
+                    if (cursor.getCount() > 0){
+                        Toast.makeText(getApplicationContext(), "비밀번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(getApplicationContext(), "존재하지 않는 계정정보 입니다", Toast.LENGTH_SHORT).show();
+                    }
                     sqlDB.close();
                     cursor.close();
                 }

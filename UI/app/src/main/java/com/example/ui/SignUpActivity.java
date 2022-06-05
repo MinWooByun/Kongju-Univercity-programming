@@ -45,13 +45,12 @@ public class SignUpActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_up_layout);
 
-        EditText edtID, edtPW, edtrePW, edtNickname, edtLink;
+        EditText edtID, edtPW, edtrePW, edtLink;
         Button btnSignup, btnOverlap;
 
         edtID = (EditText) findViewById(R.id.edtID_Signup1);
         edtPW = (EditText) findViewById(R.id.edtPW_Signup1);
         edtrePW = (EditText) findViewById(R.id.edtrePW_Signup1);
-        edtNickname = (EditText) findViewById(R.id.edtNickname_Signup1);
         edtLink = (EditText) findViewById(R.id.edtLink1);
         btnSignup = (Button) findViewById(R.id.btnSignup1);
         btnOverlap = (Button) findViewById(R.id.btnOverlap1);
@@ -61,7 +60,7 @@ public class SignUpActivity extends Activity {
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int[] check = {0,0,0,0}; //중복버튼, PW 일치, 닉네임, 링크
+                int[] check = {0,0,0}; //중복버튼, PW 일치, 닉네임, 링크
                 //중복체크 버튼 활성/비활성 여부
                 if(btnOverlap.isEnabled()) {check[0]=0;
                 }else {check[0]=1;
@@ -71,23 +70,17 @@ public class SignUpActivity extends Activity {
                     check[1]=1;
                 }else{check[1]=0;
                 }
-                //닉네임 입력 여부
-                if(edtNickname.length()>=1){
-                    check[2]=1;
-                }else{check[2]=0;
-                }
                 //링크 입력 여부
                 if(edtLink.length()>=1){
                     check[3]=1;
                 }else{check[3]=0;
                 }
                 //조건을 모두 만족하면 증명서 제출 페이지로 넘어감
-                if(check[0]==1&&check[1]==1&&check[2]==1&&check[3]==1){
+                if(check[0]==1&&check[1]==1&&check[2]==1){
                     //증명서 제출 페이지로 입력한 데이터를 넘김
                     Intent intent = new Intent(getApplicationContext(), SumbitCertificate.class);
                     intent.putExtra("u_id",edtID.getText().toString());
                     intent.putExtra("pw", edtPW.getText().toString());
-                    intent.putExtra("nickname",edtNickname.getText().toString());
                     intent.putExtra("link", edtLink.getText().toString());
                     intent.putExtra("state","SignUp");
                     startActivityForResult(intent, 1);
