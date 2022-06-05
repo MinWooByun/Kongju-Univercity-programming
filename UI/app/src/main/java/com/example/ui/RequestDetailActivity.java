@@ -160,6 +160,7 @@ public class RequestDetailActivity extends AppCompatActivity {
                 intent.putExtra("u_id", u_id);
                 intent.putExtra("number", number);
                 startActivity(intent);
+                finish();
             }
         });
 

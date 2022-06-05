@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -182,6 +183,7 @@ public class noticeBoardActivity extends AppCompatActivity {
                     intent.putExtra("u_id", u_id);
                     intent.putExtra("type", type);
                     startActivity(intent);
+                    finish();
                 }
                else {
                    if(type==1)
@@ -205,6 +207,7 @@ public class noticeBoardActivity extends AppCompatActivity {
                 Intent intent = new Intent(noticeBoardActivity.this ,AdminList.class);
                 intent.putExtra("u_id", u_id);
                 startActivity(intent);
+                finish();
             }
         });
 

@@ -56,10 +56,10 @@ public class dbHelper extends SQLiteOpenHelper {
             sb.append("SELECT number FROM repairRequestTable WHERE userID = '" + u_id +"' AND state != 2;");
             Cursor cursor = db.rawQuery(sb.toString(), null);
             while(cursor.moveToNext()){
-                sb2.append("SELECT Count(r_id) FROM repairSuggestionTable WHERE p_num = " + cursor.getInt(0) +";");
+                sb2.append("SELECT Count(r_id) FROM repairSuggestionTable WHERE p_num = '" + cursor.getInt(0) +"';");
                 Cursor cursor2 = db.rawQuery(sb2.toString(), null);
                 while(cursor2.moveToNext()){
-                    result += cursor.getInt(0);
+                    result += cursor2.getInt(0);
                 }
             }
 
