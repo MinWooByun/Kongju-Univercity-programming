@@ -14,7 +14,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MyPageUser extends AppCompatActivity {
-
+    String u_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +29,7 @@ public class MyPageUser extends AppCompatActivity {
         Button btnUpdate = findViewById(R.id.btnUpdate);
 
         Intent intent = getIntent();
-        String u_id = intent.getExtras().getString("u_id");
+        u_id = intent.getExtras().getString("u_id");
 
         dbHelper helper = new dbHelper(this, 1);
         SQLiteDatabase db = helper.getReadableDatabase();
@@ -71,5 +71,13 @@ public class MyPageUser extends AppCompatActivity {
                 }
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(MyPageUser.this, noticeBoardActivity.class);
+        intent.putExtra("u_id", u_id);
+        intent.putExtra("type", 2);
+        startActivity(intent);
+        finish();
     }
 }
