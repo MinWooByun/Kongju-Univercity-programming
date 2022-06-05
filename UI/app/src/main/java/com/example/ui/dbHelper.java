@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import java.util.ArrayList;
 
 public class dbHelper extends SQLiteOpenHelper {
@@ -34,8 +33,10 @@ public class dbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
 
         StringBuffer sb = new StringBuffer();
-        sb.append("SELECT Count(u_id) FROM repairRequestTable WHERE id = '" + u_id +"', state != 2");
+        sb.append("SELECT Count(userID) FROM repairRequestTable WHERE userID = '" + u_id +"'AND state != 2");
         Cursor cursor = db.rawQuery(sb.toString(), null);
+        while(cursor.moveToNext())
+            result = cursor.getInt(0);
         return result;
     }
 
