@@ -5,37 +5,42 @@
       <map>
         <entry key="..\:/Users/ItSub/Desktop/Kongju-Univercity-programming/UI/app/src/main/res/layout/admin_authority.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/ItSub/Desktop/Kongju-Univercity-programming/UI/app/src/main/res/layout/admin_list.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/ItSub/Desktop/Kongju-Univercity-programming/UI/app/src/main/res/layout/certificate.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/ItSub/Desktop/Kongju-Univercity-programming/UI/app/src/main/res/layout/fragment_screen_slide_page3.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/ItSub/Desktop/Kongju-Univercity-programming/UI/app/src/main/res/layout/listview_item.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/ItSub/Desktop/Kongju-Univercity-programming/UI/app/src/main/res/layout/login.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/ItSub/Desktop/Kongju-Univercity-programming/UI/app/src/main/res/layout/mypage_customer.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/ItSub/Desktop/Kongju-Univercity-programming/UI/app/src/main/res/layout/mypage_repairman.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/ItSub/Desktop/Kongju-Univercity-programming/UI/app/src/main/res/layout/notice_board.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/ItSub/Desktop/Kongju-Univercity-programming/UI/app/src/main/res/layout/proposal_back.xml" value="0.1875" />
         <entry key="..\:/Users/ItSub/Desktop/Kongju-Univercity-programming/UI/app/src/main/res/layout/proposal_select.xml" value="0.1875" />
-        <entry key="..\:/Users/ItSub/Desktop/Kongju-Univercity-programming/UI/app/src/main/res/layout/proposal_suggest.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/ItSub/Desktop/Kongju-Univercity-programming/UI/app/src/main/res/layout/request_detail.xml" value="0.16757246376811594" />
-        <entry key="..\:/Users/ItSub/Desktop/Kongju-Univercity-programming/UI/app/src/main/res/layout/request_register.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/ItSub/Desktop/Kongju-Univercity-programming/UI/app/src/main/res/layout/satisfied.xml" value="0.17916666666666667" />
-        <entry key="..\:/Users/ItSub/Desktop/Kongju-Univercity-programming/UI/app/src/main/res/layout/sign_up_layout.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/ItSub/Desktop/Kongju-Univercity-programming/UI/app/src/main/res/layout/sign_up_layout2.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/ItSub/Desktop/Kongju-Univercity-programming/UI/app/src/main/res/layout/proposal_suggest.xml" value="0.1875" />
         <entry key="..\:/Users/ItSub/Desktop/UI/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.332" />
         <entry key="..\:/Users/ItSub/Desktop/UI/app/src/main/res/drawable/ic_launcher_background.xml" value="0.332" />
         <entry key="..\:/Users/ItSub/Desktop/UI/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/ItSub/Desktop/UI/app/src/main/res/layout/activity_sub.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/chang/Desktop/git/Kongju-Univercity-programming/Kongju-Univercity-programming-1/UI/app/src/main/res/drawable/resourcelist.xml" value="0.1085" />
+        <entry key="..\:/Users/chang/Desktop/git/Kongju-Univercity-programming/Kongju-Univercity-programming-1/UI/app/src/main/res/layout/activity_dynamic_slide.xml" value="0.1" />
+        <entry key="..\:/Users/chang/Desktop/git/Kongju-Univercity-programming/Kongju-Univercity-programming-1/UI/app/src/main/res/layout/activity_slide.xml" value="0.1" />
+        <entry key="..\:/Users/chang/Desktop/git/Kongju-Univercity-programming/Kongju-Univercity-programming-1/UI/app/src/main/res/layout/admin_authority.xml" value="0.20606884057971014" />
+        <entry key="..\:/Users/chang/Desktop/git/Kongju-Univercity-programming/Kongju-Univercity-programming-1/UI/app/src/main/res/layout/admin_list.xml" value="0.20606884057971014" />
+        <entry key="..\:/Users/chang/Desktop/git/Kongju-Univercity-programming/Kongju-Univercity-programming-1/UI/app/src/main/res/layout/certificate.xml" value="0.12335359675785208" />
+        <entry key="..\:/Users/chang/Desktop/git/Kongju-Univercity-programming/Kongju-Univercity-programming-1/UI/app/src/main/res/layout/fragment_screen_dynamic_slide.xml" value="0.1" />
+        <entry key="..\:/Users/chang/Desktop/git/Kongju-Univercity-programming/Kongju-Univercity-programming-1/UI/app/src/main/res/layout/fragment_screen_slide_page.xml" value="0.1125" />
+        <entry key="..\:/Users/chang/Desktop/git/Kongju-Univercity-programming/Kongju-Univercity-programming-1/UI/app/src/main/res/layout/fragment_screen_slide_page2.xml" value="0.12335359675785208" />
+        <entry key="..\:/Users/chang/Desktop/git/Kongju-Univercity-programming/Kongju-Univercity-programming-1/UI/app/src/main/res/layout/fragment_screen_slide_page3.xml" value="0.1" />
+        <entry key="..\:/Users/chang/Desktop/git/Kongju-Univercity-programming/Kongju-Univercity-programming-1/UI/app/src/main/res/layout/listview_item.xml" value="0.20606884057971014" />
+        <entry key="..\:/Users/chang/Desktop/git/Kongju-Univercity-programming/Kongju-Univercity-programming-1/UI/app/src/main/res/layout/login.xml" value="0.103125" />
+        <entry key="..\:/Users/chang/Desktop/git/Kongju-Univercity-programming/Kongju-Univercity-programming-1/UI/app/src/main/res/layout/mypage_repairman.xml" value="0.20606884057971014" />
+        <entry key="..\:/Users/chang/Desktop/git/Kongju-Univercity-programming/Kongju-Univercity-programming-1/UI/app/src/main/res/layout/notice_board.xml" value="0.20606884057971014" />
+        <entry key="..\:/Users/chang/Desktop/git/Kongju-Univercity-programming/Kongju-Univercity-programming-1/UI/app/src/main/res/layout/proposal.xml" value="0.20606884057971014" />
+        <entry key="..\:/Users/chang/Desktop/git/Kongju-Univercity-programming/Kongju-Univercity-programming-1/UI/app/src/main/res/layout/proposal_back.xml" value="0.12335359675785208" />
+        <entry key="..\:/Users/chang/Desktop/git/Kongju-Univercity-programming/Kongju-Univercity-programming-1/UI/app/src/main/res/layout/proposal_select.xml" value="0.12335359675785208" />
+        <entry key="..\:/Users/chang/Desktop/git/Kongju-Univercity-programming/Kongju-Univercity-programming-1/UI/app/src/main/res/layout/proposal_suggest.xml" value="0.12335359675785208" />
+        <entry key="..\:/Users/chang/Desktop/git/Kongju-Univercity-programming/Kongju-Univercity-programming-1/UI/app/src/main/res/layout/request_detail.xml" value="0.264" />
+        <entry key="..\:/Users/chang/Desktop/git/Kongju-Univercity-programming/Kongju-Univercity-programming-1/UI/app/src/main/res/layout/request_register.xml" value="0.12335359675785208" />
+        <entry key="..\:/Users/chang/Desktop/git/Kongju-Univercity-programming/Kongju-Univercity-programming-1/UI/app/src/main/res/layout/sign_up_layout.xml" value="0.20606884057971014" />
+        <entry key="..\:/Users/chang/Desktop/git/Kongju-Univercity-programming/Kongju-Univercity-programming-1/UI/app/src/main/res/layout/sign_up_layout2.xml" value="0.20606884057971014" />
         <entry key="..\:/Users/dndud/Desktop/git/Kongju-Univercity-programming-2/UI/app/src/main/res/layout/certificate.xml" value="0.1" />
-        <entry key="..\:/Users/dndud/Desktop/git/Kongju-Univercity-programming-2/UI/app/src/main/res/layout/login.xml" value="0.24739583333333334" />
         <entry key="..\:/Users/dndud/Desktop/git/Kongju-Univercity-programming-2/UI/app/src/main/res/layout/proposal_back.xml" value="0.125" />
         <entry key="..\:/Users/dndud/Desktop/git/Kongju-Univercity-programming-2/UI/app/src/main/res/layout/proposal_suggest.xml" value="0.15625" />
-        <entry key="..\:/Users/dndud/Desktop/git/Kongju-Univercity-programming-2/UI/app/src/main/res/layout/sign_up_layout.xml" value="0.24739583333333334" />
         <entry key="..\:/Users/koh12/Desktop/Kongju-Univercity-programming/UI/app/src/main/res/drawable-v24/rect_editbox.xml" value="0.359" />
-        <entry key="..\:/Users/koh12/Desktop/Kongju-Univercity-programming/UI/app/src/main/res/drawable-v24/rect_editbox2.xml" value="0.227" />
-        <entry key="..\:/Users/koh12/Desktop/Kongju-Univercity-programming/UI/app/src/main/res/drawable-v24/rect_listview.xml" value="0.227" />
-        <entry key="..\:/Users/koh12/Desktop/Kongju-Univercity-programming/UI/app/src/main/res/drawable/memo_border.xml" value="0.227" />
-        <entry key="..\:/Users/koh12/Desktop/Kongju-Univercity-programming/UI/app/src/main/res/drawable/memo_under.xml" value="0.227" />
-        <entry key="..\:/Users/koh12/Desktop/Kongju-Univercity-programming/UI/app/src/main/res/drawable/resourceback.xml" value="0.227" />
-        <entry key="..\:/Users/koh12/Desktop/Kongju-Univercity-programming/UI/app/src/main/res/drawable/resourcelist.xml" value="0.227" />
         <entry key="..\:/Users/koh12/Desktop/Kongju-Univercity-programming/UI/app/src/main/res/layout/activity_main.xml" value="0.3401268115942029" />
         <entry key="..\:/Users/koh12/Desktop/Kongju-Univercity-programming/UI/app/src/main/res/layout/admin_list.xml" value="0.18693009118541035" />
         <entry key="..\:/Users/koh12/Desktop/Kongju-Univercity-programming/UI/app/src/main/res/layout/certificate.xml" value="0.2" />
@@ -49,12 +54,6 @@
         <entry key="..\:/Users/koh12/Desktop/Kongju-Univercity-programming/UI/app/src/main/res/layout/request_detail.xml" value="0.3401268115942029" />
         <entry key="..\:/Users/koh12/Desktop/Kongju-Univercity-programming/UI/app/src/main/res/layout/request_register.xml" value="0.3401268115942029" />
         <entry key="..\:/Users/koh12/Desktop/Kongju-Univercity-programming/UI/app/src/main/res/layout/sign_up_layout.xml" value="0.17481884057971014" />
-        <entry key="..\:/git/Kongju-Univercity-programming-2/UI/app/src/main/res/layout/activity_slide.xml" value="0.14492753623188406" />
-        <entry key="..\:/git/Kongju-Univercity-programming-2/UI/app/src/main/res/layout/admin_authority.xml" value="0.1" />
-        <entry key="..\:/git/Kongju-Univercity-programming-2/UI/app/src/main/res/layout/admin_list.xml" value="0.14492753623188406" />
-        <entry key="..\:/git/Kongju-Univercity-programming-2/UI/app/src/main/res/layout/certificate.xml" value="0.1" />
-        <entry key="..\:/git/Kongju-Univercity-programming-2/UI/app/src/main/res/layout/fragment_screen_slide_page.xml" value="0.14492753623188406" />
-        <entry key="..\:/git/Kongju-Univercity-programming-2/UI/app/src/main/res/layout/login.xml" value="0.3125" />
       </map>
     </option>
   </component>
