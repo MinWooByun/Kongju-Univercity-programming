@@ -29,6 +29,16 @@ public class dbHelper extends SQLiteOpenHelper {
 
     }
 
+    public int getRequestCount(String u_id){
+        int result = 0;
+        SQLiteDatabase db = getReadableDatabase();
+
+        StringBuffer sb = new StringBuffer();
+        sb.append("SELECT Count(u_id) FROM repairRequestTable WHERE id = '" + u_id +"'");
+        Cursor cursor = db.rawQuery(sb.toString(), null);
+        return result;
+    }
+
     //증명 여부 가져오기
     public int getIsproof(String u_id){
         int result = 0;

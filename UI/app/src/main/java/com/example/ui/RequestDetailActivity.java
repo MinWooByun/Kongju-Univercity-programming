@@ -43,6 +43,7 @@ public class RequestDetailActivity extends AppCompatActivity {
         TextView Rd_symptom = (TextView)findViewById(R.id.Rd_symptom);
         TextView Rd_contents = (TextView)findViewById(R.id.Rd_contents);
         Button btnSatisfication = (Button) findViewById(R.id.btnSatisfication);
+        Button btnSatisfication_check =  (Button) findViewById(R.id.btnSatisficationcheck);
 
         //가져온 db 값들 넣어주기
         String getdata = dbHelper.getRequest(number);
@@ -82,6 +83,10 @@ public class RequestDetailActivity extends AppCompatActivity {
         //만족도 평가 버튼은 자신이 아니고, 수리중인 상태가 아니면 보여지면 안 된다.
         if(tag!=1 || !(array[0].equals(u_id)))
             btnSatisfication.setVisibility(View.GONE);
+
+        //태그가 완료중이 아니면 만족도 평가 확인 버튼이 보여지면 안 된다.
+        if(tag!=2)
+            btnSatisfication_check.setVisibility(View.GONE);
 
         //견적제시 버튼
         btnProposal.setOnClickListener(new View.OnClickListener() {
@@ -163,7 +168,7 @@ public class RequestDetailActivity extends AppCompatActivity {
             }
         });
 
-        //만족도 평가
+        //만족도 평가 버튼
         btnSatisfication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -171,6 +176,16 @@ public class RequestDetailActivity extends AppCompatActivity {
                 intent.putExtra("u_id", u_id);
                 intent.putExtra("number", number);
                 intent.putExtra("type", type);
+                startActivity(intent);
+            }
+        });
+
+        //만족도 평가 확인 버튼
+        btnSatisfication_check.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RequestDetailActivity.this ,Satisfied.class);
+                intent.putExtra("number", number);
                 startActivity(intent);
             }
         });
