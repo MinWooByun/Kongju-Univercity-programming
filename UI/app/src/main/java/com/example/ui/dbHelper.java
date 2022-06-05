@@ -217,21 +217,7 @@ public class dbHelper extends SQLiteOpenHelper {
 
         return result;
     }
-
-    public void reportRequest(Integer number){
-        SQLiteDatabase db = getWritableDatabase();
-        String sql1 = "UPDATE repairRequestTable SET declar = declar + 1 WHERE number = " +number+"";
-        db.execSQL(sql1);
-        Cursor cursor = db.rawQuery("SELECT declar FROM repairRequestTable WHERE number = "+number+";", null);
-        while(cursor.moveToNext()){
-            if (cursor.getInt(0) >= 3) {
-                String sql2 = "DELETE FROM repairRequestTable WHERE number = "+number+";";
-                db.execSQL(sql2);
-            }
-        }
-        db.close();
-    }
-    //민석 삽입
+    
     //의뢰제목도 찾음
     public ArrayList<fragmentListItem> getRepairSuggestionTableData(String u_id){
         //db 다시 생각해야함 u_id에 해당하는 repairRequestTable 의뢰제목 내용 모두 가져와야함
