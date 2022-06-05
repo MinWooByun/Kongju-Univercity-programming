@@ -155,7 +155,23 @@ public class ScreenSlideFragmentDynamic extends Fragment{
             */
             }
         }else {
-            tvSubmit.setVisibility(View.GONE);
+            tvSubmit.setText("수정 하기");
+            if(u_check == 0) {
+                tvSubmit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(ct, Proposal_SuggestFix.class);
+                        intent.putExtra("r_id", r_id);
+                        intent.putExtra("p_num", p_num);
+                        //intent.putExtra("e_pay", e_pay);
+                        //intent.putExtra("r_detail",r_details);
+                        intent.putExtra("type", type);
+                        startActivity(intent);
+                    }
+                });
+            }else if(u_check == 1){
+                tvSubmit.setVisibility(View.GONE);
+            }
         }
         return rootView;
     }
