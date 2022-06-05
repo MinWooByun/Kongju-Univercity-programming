@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -15,6 +14,7 @@ public class dbHelper extends SQLiteOpenHelper {
     private static final String TABLE_NAME_repairManTable = "repairManTable";
     private static final String TABLE_NAME_satisficationTable = "satisficationTable";
     private static final String TABLE_NAME_repairRequestTable = "repairRequestTable";
+    private static final String TABLE_NAME_repairSuggestionTable = "repairSuggestionTable";
 
     public dbHelper(Context context, int version){
         super(context, DB_Name, null, version);
@@ -248,6 +248,7 @@ public class dbHelper extends SQLiteOpenHelper {
         contentValues.put("price", pricePopup);
         long result = db.insert(TABLE_NAME_satisficationTable, null, contentValues);
         db.execSQL("UPDATE '"+TABLE_NAME_repairRequestTable+"' SET state = 2 WHERE number = '"+number+"'");
+        db.execSQL("DELETE FROM '"+TABLE_NAME_repairSuggestionTable+"' WHERE p_num = '"+number+"'");
         db.close();
 
         return result;
