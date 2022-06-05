@@ -24,7 +24,7 @@ public class MyPageRepairMan extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-        TextView tvNickName = findViewById(R.id.tvNickName);
+        TextView tvId = findViewById(R.id.tvId);
         EditText etPw = findViewById(R.id.etPw);
         EditText etPwReconfirm = findViewById(R.id.etPwReconfirm);
         EditText etOpenLink = findViewById(R.id.etOpenLink);
@@ -42,7 +42,7 @@ public class MyPageRepairMan extends AppCompatActivity {
         Cursor cursor2 = db.rawQuery("SELECT id FROM imgTable WHERE id = '" + u_id +"'", null);
 
         while (cursor.moveToNext()) {
-            tvNickName.setText(cursor.getString(0));
+            tvId.setText(cursor.getString(0));
             String pw = cursor.getString(1);
             String nickname = cursor.getString(3);
             intent1.putExtra("u_id", u_id);
