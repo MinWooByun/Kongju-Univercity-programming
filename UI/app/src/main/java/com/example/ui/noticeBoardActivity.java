@@ -152,6 +152,8 @@ public class noticeBoardActivity extends AppCompatActivity {
                 intent.putExtra("u_id", u_id);
                 startActivity(intent);
                 finish();
+
+
             }
         });
 
