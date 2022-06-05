@@ -157,9 +157,15 @@ public class dbHelper extends SQLiteOpenHelper {
 
 
              if(position!=0)
-                 sb.append("SELECT a.number, a.title, a.state, b.r_id FROM repairRequestTable a LEFT OUTER JOIN satisficationTable b ON a.number = b.p_num where b.r_id = '"+ search_text +"' OR a.userID = '"+ search_text +"' OR a.title LIKE '%"+ search_text +"%' AND a.object = '" + position + "' ORDER BY number DESC;");
+                 sb.append("SELECT a.number, a.title, a.state, a.object, b.r_id " +
+                         "FROM repairRequestTable a LEFT OUTER JOIN satisficationTable b " +
+                         "ON a.number = b.p_num " +
+                         "WHERE (r_id = '"+ search_text +"' OR userID = '"+ search_text +"' OR title LIKE '%"+ search_text +"%') AND object = '" + position + "' ORDER BY number DESC;");
              else
-                 sb.append("SELECT a.number, a.title, a.state, b.r_id FROM repairRequestTable a LEFT OUTER JOIN satisficationTable b ON a.number = b.p_num where b.r_id = '"+ search_text +"' OR a.userID = '"+ search_text +"' OR a.title LIKE '%"+ search_text +"%'  ORDER BY number DESC;");
+                 sb.append("SELECT a.number, a.title, a.state, a.object, b.r_id " +
+                         "FROM repairRequestTable a LEFT OUTER JOIN satisficationTable b " +
+                         "ON a.number = b.p_num " +
+                         "WHERE r_id = '"+ search_text +"' OR userID = '"+ search_text +"' OR title LIKE '%"+ search_text +"%'  ORDER BY number DESC;");
 
 
             Cursor cursor = db.rawQuery(sb.toString(), null);
