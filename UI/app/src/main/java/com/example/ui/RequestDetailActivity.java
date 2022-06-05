@@ -68,7 +68,7 @@ public class RequestDetailActivity extends AppCompatActivity {
             btnReport_Update.setVisibility(View.GONE);
 
         //수리기사이며, 인증을 받았을 때만 견적 제시가 보임.
-        if(!(type==1 && dbHelper.getIsproof(u_id)== 1 && tag == 0))
+        if(!(type==1 && dbHelper.getIsproof(u_id)== 1 && tag == 0 ))
             btnProposal.setVisibility(View.GONE);
 
 
@@ -92,11 +92,18 @@ public class RequestDetailActivity extends AppCompatActivity {
         btnProposal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(RequestDetailActivity.this ,Proposal_Suggest.class);
-                intent.putExtra("r_id", u_id);
-                intent.putExtra("p_num", number);
-                intent.putExtra("type", type);
-                startActivity(intent);
+                if(dbHelper.getSuggestionCount(u_id,type)>=1){
+                    Toast.makeText(getApplicationContext(),
+                            "이미 견적을 제시하였습니다.",
+                            Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Intent intent = new Intent(RequestDetailActivity.this ,Proposal_Suggest.class);
+                    intent.putExtra("r_id", u_id);
+                    intent.putExtra("p_num", number);
+                    intent.putExtra("type", type);
+                    startActivity(intent);
+                }
             }
         });
 
