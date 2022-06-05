@@ -34,7 +34,7 @@ public class Proposal_Suggest extends AppCompatActivity {
         gIntent = getIntent();
 
         r_id = gIntent.getStringExtra("r_id");
-        p_num = getIntent.getIntExtra("p_num",0);
+        p_num = getIntent.getIntExtra("p_num");
         */
         r_id ="wjdalstjr1";
         p_num = 1;

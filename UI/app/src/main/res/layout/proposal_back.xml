@@ -1,59 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- activity_screen_slide.xml -->
-<androidx.constraintlayout.widget.ConstraintLayout
+<!-- fragment_screen_slide_page.xml -->
+<androidx.appcompat.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/resourcelist">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clayout1"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".AdminList">
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/viewPagerDynamic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_weight="1">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+        android:layout_weight="1">
+    </LinearLayout>
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPagerDynamic"
+        android:id="@+id/vp1"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        >
+    </androidx.viewpager.widget.ViewPager>
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/clayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/clayout1"
-        app:layout_constraintVertical_weight="3"></androidx.viewpager.widget.ViewPager>
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clayout2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/viewPagerDynamic"
-        app:layout_constraintVertical_weight="1">
-        <!-->
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnP_Select2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="견적 선택"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </androidx.appcompat.widget.AppCompatButton>
-        <-->
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_weight="1">
+    </LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

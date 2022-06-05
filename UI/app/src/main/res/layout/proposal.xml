@@ -1,226 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- fragment_screen_slide_page.xml -->
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:fillViewport="true"
-    android:id="@+id/contentDynamic"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="400dp"
+    android:background="#F6E6E6"
     android:orientation="vertical">
+
+
     <LinearLayout
-        android:id="@+id/LLpage"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:background="#F6E6E6"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="의뢰 진행도"
-                android:textColor="@color/black"
-                android:textSize="30dp">
-            </TextView>
-            <TextView
-                android:id="@+id/tvProposalProgression"
-                android:layout_width="0dp"
-                android:textColor="@color/black"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-            </TextView>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="기사 별점"
-                android:textColor="@color/black"
-                android:textSize="30dp">
-            </TextView>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:textColor="@color/black"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:text="서술력"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"></TextView>
-                    <TextView
-                        android:text="친절성"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"></TextView>
-                    <TextView
-                        android:text="대화성"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"></TextView>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/tvProposalSState"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"></TextView>
-                    <TextView
-
-                        android:id="@+id/tvProposalSKindness"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"></TextView>
-                    <TextView
-
-                        android:id="@+id/tvProposalSTerm"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"></TextView>
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="의뢰 제목"
-                android:textColor="@color/black"
-                android:textSize="30dp">
-            </TextView>
-            <TextView
-                android:id="@+id/tvProposalRequestName"
-                android:layout_width="0dp"
-                android:textColor="@color/black"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-            </TextView>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:text="의뢰 제목"
+            android:textColor="@color/black"
+            android:textSize="30dp">
+        </TextView>
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="0dp"
+            android:textColor="@color/black"
+            android:layout_height="match_parent"
             android:layout_weight="1">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textColor="@color/black"
-                android:text="예상 비용"
-                android:textSize="30dp">
 
-            </TextView>
-            <TextView
-                android:id="@+id/tvProposalExpectPayment"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textColor="@color/black">
-
-            </TextView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="견적 내용"
-                android:textSize="30dp"
-                android:textColor="@color/black">
-
-            </TextView>
-            <TextView
-                android:id="@+id/tvProposalSuggestContent"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textColor="@color/black">
-
-            </TextView>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-            <TextView
-                android:text="오픈 링크"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textSize="30dp"
-                android:textColor="@color/black"></TextView>
-            <TextView
-                android:id="@+id/tvOpenTalk"
-                android:text="Open Link"
-                android:textSize="30dp"
-                android:textColor="#0000ff"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"></TextView>
-
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/black"></View>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/tvCancel"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textSize="30dp"
-                android:text="뒤로 가기"
-                android:gravity="center"
-                android:textColor="@color/black">
-            </TextView>
-            <View
-                android:layout_width="1px"
-                android:layout_height="match_parent"
-                android:background="@color/black"></View>
-            <TextView
-                android:id="@+id/tvSubmit"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textSize="30dp"
-                android:text="선택"
-                android:gravity="center"
-                android:textColor="@color/black">
-
-            </TextView>
-        </LinearLayout>
+        </TextView>
     </LinearLayout>
-</ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:text="예상 비용"
+            android:textSize="30dp">
+
+        </TextView>
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/black">
+
+        </TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="견적 내용"
+            android:textSize="30dp"
+            android:textColor="@color/black">
+
+        </TextView>
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/black">
+
+        </TextView>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"></View>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="30dp"
+            android:text="CANCEL"
+            android:gravity="center"
+            android:textColor="@color/black">
+        </TextView>
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@color/black"></View>
+        <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+            android:textSize="30dp"
+            android:text="SUBMIT"
+            android:gravity="center"
+            android:textColor="@color/black">
+
+        </TextView>
+    </LinearLayout>
+</LinearLayout>

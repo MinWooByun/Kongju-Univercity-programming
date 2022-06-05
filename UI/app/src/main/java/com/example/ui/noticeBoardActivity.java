@@ -158,7 +158,7 @@ public class noticeBoardActivity extends AppCompatActivity {
         btnCheckPro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(noticeBoardActivity.this ,ScreenSlidePagerDynamicActivity.class);
+                Intent intent = new Intent(noticeBoardActivity.this ,Proposal_Back.class);
                 intent.putExtra("u_id", u_id);
                 startActivity(intent);
 
