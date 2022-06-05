@@ -72,9 +72,13 @@ public class ScreenSlidePagerDynamicActivity extends FragmentActivity {
         */
         //여기서 생성자 불러와서 실행
         helper = new dbHelper(this, 1);
-        //if()
-        ArrayList<fragmentListItem> flist = helper.getRepairSuggestionTableData(u_id);
-        //else{
+        ArrayList<fragmentListItem> flist;
+        if(type == 2) {
+            flist = helper.getRepairSuggestionTableData(u_id);
+        }
+        else {//수리기사일때
+            flist = helper.getRMRepairSuggetionTableData(u_id);
+        }
 
         //}
 

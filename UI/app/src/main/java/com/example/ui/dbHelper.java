@@ -248,7 +248,44 @@ public class dbHelper extends SQLiteOpenHelper {
 
         return result;
     }
-    
+    //수리기사 견적확인
+    public ArrayList<fragmentListItem> getRMRepairSuggetionTableData(String r_id){
+        //db 다시 생각해야함 u_id에 해당하는 repairRequestTable 의뢰제목 내용 모두 가져와야함
+        //동시에 repairSuggetionTable에서 그 의뢰에 해당하는 e_pay, r_details를 (p_num)으로 검색
+
+        SQLiteDatabase db = getReadableDatabase();
+        SQLiteDatabase db2 = getReadableDatabase();
+        SQLiteDatabase db3 = getReadableDatabase();
+        ArrayList<fragmentListItem> proposalList = new ArrayList<fragmentListItem>();
+        /*
+        ArrayList<requestListItem> getRequestList = getRequestName(u_id);
+        Cursor.requestCursor = db.rawQuery
+        */
+
+        StringBuffer sb = new StringBuffer();//2,3,4가 state kindness termavg
+        sb.append("SELECT p_num, e_pay, r_details, r_id,u_checked  from repairSuggestionTable Where r_id="+"'"+r_id+"'"+";");
+        Cursor rS_cursor = db.rawQuery(sb.toString(),null);
+        while(rS_cursor.moveToNext()){
+            StringBuffer sb2 = new StringBuffer();
+            int p_num = rS_cursor.getInt(0);
+            sb2.append("SELECT number, title, state from repairRequestTable Where number="+p_num+" and state!="+2+";");
+            Cursor rR_cursor = db2.rawQuery(sb2.toString(), null);
+            while(rR_cursor.moveToNext()){//db에서 자료 가져와서 한 row객체<<당 4개의 자료(r_id, p_num, e_pay, r_details +추가
+                StringBuffer sb3 = new StringBuffer();
+                sb3.append("SELECT AVG(S_State), AVG(S_Kindness), AVG(S_Term) FROM satisficationTable Where r_id="+"'"+rS_cursor.getString(3)+"'"+";");
+                Cursor rM_cursor = db3.rawQuery(sb3.toString(),null);
+                while(rM_cursor.moveToNext()){
+                    fragmentListItem item = new fragmentListItem(rR_cursor.getString(1),
+                            rR_cursor.getInt(0),rS_cursor.getInt(1),
+                            rS_cursor.getString(2), rS_cursor.getString(3),
+                            rR_cursor.getInt(2),rM_cursor.getFloat(0),rM_cursor.getFloat(1),
+                            rM_cursor.getFloat(2),rS_cursor.getInt(4));
+                    proposalList.add(item);
+                }
+            }
+        }
+        return proposalList;
+    }
     //의뢰제목도 찾음
     public ArrayList<fragmentListItem> getRepairSuggestionTableData(String u_id){
         //db 다시 생각해야함 u_id에 해당하는 repairRequestTable 의뢰제목 내용 모두 가져와야함
