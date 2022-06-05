@@ -62,11 +62,12 @@ public class RequestDetailActivity extends AppCompatActivity {
         else
             btnReport_Update.setVisibility(View.GONE);
 
-        if(!array[0].equals(u_id) && type!= 2)
+        //신고_갱신 버튼은 자신의 아이디가 아니거나 관리자는 보이면 안 된다.
+        if(!array[0].equals(u_id) || type== 0)
             btnReport_Update.setVisibility(View.GONE);
 
         //수리기사이며, 인증을 받았을 때만 견적 제시가 보임.
-        if(type!=1 && dbHelper.getIsproof(u_id)!= 1 && tag != 0)
+        if(type!=1 || dbHelper.getIsproof(u_id)!= 1 || tag != 0)
             btnProposal.setVisibility(View.GONE);
 
 
