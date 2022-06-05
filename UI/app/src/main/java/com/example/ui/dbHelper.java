@@ -395,5 +395,11 @@ public class dbHelper extends SQLiteOpenHelper {
         db.close();
         return true;
     }
+    //이미지 제거
+    public void imgDelete(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "DELETE FROM imgTable WHERE id = '"+ id +"';";
+        db.execSQL(sql);
+    }
 }
 
