@@ -48,6 +48,8 @@ public class dbHelper extends SQLiteOpenHelper {
         StringBuffer sb = new StringBuffer();
         sb.append("SELECT isproof FROM repairManTable WHERE id = '" + u_id +"'");
         Cursor cursor = db.rawQuery(sb.toString(), null);
+        while(cursor.moveToNext())
+            result = cursor.getInt(0);
         return result;
     }
 
