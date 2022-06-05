@@ -45,9 +45,9 @@ public class fragmentListItemAdapter extends BaseAdapter {
 
     public int get_State(int position) { return items.get(position).getState();}
 
-    public int getS_State(int position) { return items.get(position).getSstate();}
-    public int getS_Kindness(int position) { return items.get(position).getSkindness();}
-    public int getS_Term(int position) { return items.get(position).getSterm();}
+    public float getS_State(int position) { return items.get(position).getSstate();}
+    public float getS_Kindness(int position) { return items.get(position).getSkindness();}
+    public float getS_Term(int position) { return items.get(position).getSterm();}
 
     public int getU_check(int position) {return items.get(position).getUcheck();}
     @Override

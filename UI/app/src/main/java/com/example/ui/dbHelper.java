@@ -249,13 +249,13 @@ public class dbHelper extends SQLiteOpenHelper {
             while(rS_cursor.moveToNext()){//db에서 자료 가져와서 한 row객체<<당 4개의 자료(r_id, p_num, e_pay, r_details +추가
 
                 StringBuffer sb3 = new StringBuffer();
-                sb3.append("SELECT S_State, S_Kindness, S_Term FROM repairManTable Where id="+"'"+rS_cursor.getString(3)+"';");
+                sb3.append("SELECT AVG(S_State), AVG(S_Kindness), AVG(S_Term) FROM satisficationTable Where r_id="+"'"+rS_cursor.getString(3)+"'"+";");
                 Cursor rM_cursor = db3.rawQuery(sb3.toString(),null);
                 while(rM_cursor.moveToNext()){
                     fragmentListItem item = new fragmentListItem(rR_cursor.getString(1),rR_cursor.getInt(0),rS_cursor.getInt(1),
                             rS_cursor.getString(2), rS_cursor.getString(3),
-                            rR_cursor.getInt(2),rM_cursor.getInt(0),rM_cursor.getInt(1),
-                            rM_cursor.getInt(2),rS_cursor.getInt(4));
+                            rR_cursor.getInt(2),rM_cursor.getFloat(0),rM_cursor.getFloat(1),
+                            rM_cursor.getFloat(2),rS_cursor.getInt(4));
                     proposalList.add(item);
                 }
 

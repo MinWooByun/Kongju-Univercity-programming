@@ -8,9 +8,9 @@ public class fragmentListItem {
     private String r_details;
     private String r_id;
     private int state;
-    private int s_state;
-    private int s_kindness;
-    private int s_term;
+    private float s_state;
+    private float s_kindness;
+    private float s_term;
     private int u_check;
 
     public String getRName() {
@@ -25,9 +25,9 @@ public class fragmentListItem {
     }
     public String getRid() { return r_id;}
     public int getState(){return state;}
-    public int getSstate(){return s_state;}
-    public int getSkindness(){return s_kindness;}
-    public int getSterm(){return s_term;}
+    public float getSstate(){return s_state;}
+    public float getSkindness(){return s_kindness;}
+    public float getSterm(){return s_term;}
     public int getUcheck(){return u_check;}
 
     public void setRName(String r_name) {this.r_name = r_name; }
@@ -42,19 +42,19 @@ public class fragmentListItem {
     public void setState(int state) {
         this.state = state;
     }
-    public void setSstate(int s_state) {
+    public void setSstate(float s_state) {
         this.s_state = s_state;
     }
-    public void setSkindness(int s_kindness) {
+    public void setSkindness(float s_kindness) {
         this.s_kindness = s_kindness;
     }
-    public void setSterm(int s_term) {
+    public void setSterm(float s_term) {
         this.s_term = s_term;
     }
     public void setUcheck(int u_check) {this.u_check=u_check;}
 
     fragmentListItem (String r_name, int p_num, int e_pay , String r_details, String r_id,
-    int state, int s_state, int s_kindness, int s_term, int u_check){
+    int state, float s_state, float s_kindness, float s_term, int u_check){
         this.r_name = r_name;
         this.p_num = p_num;
         this.e_pay = e_pay;

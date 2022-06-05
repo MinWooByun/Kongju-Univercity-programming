@@ -50,9 +50,9 @@ public class ScreenSlidePagerDynamicActivity extends FragmentActivity {
     int[] pnums;
     int[] epays;
     int[] states;
-    int[] s_states;
-    int[] s_kindnesses;
-    int[] s_terms;
+    float[] s_states;
+    float[] s_kindnesses;
+    float[] s_terms;
     int[] u_checks;
     String[] rdetails;
     dbHelper helper;
@@ -72,7 +72,12 @@ public class ScreenSlidePagerDynamicActivity extends FragmentActivity {
         */
         //여기서 생성자 불러와서 실행
         helper = new dbHelper(this, 1);
+        //if()
         ArrayList<fragmentListItem> flist = helper.getRepairSuggestionTableData(u_id);
+        //else{
+
+        //}
+
         fragmentListItemAdapter fadapter = new fragmentListItemAdapter(this, flist);
         NUM_PAGES = fadapter.getCount();
         //uid는 위에서intent로 받아올것입니다.
@@ -82,9 +87,9 @@ public class ScreenSlidePagerDynamicActivity extends FragmentActivity {
         epays = new int[NUM_PAGES];
         rdetails = new String[NUM_PAGES];
         states = new int[NUM_PAGES];
-        s_states = new int[NUM_PAGES];
-        s_kindnesses = new int[NUM_PAGES];
-        s_terms = new int[NUM_PAGES];
+        s_states = new float[NUM_PAGES];
+        s_kindnesses = new float[NUM_PAGES];
+        s_terms = new float[NUM_PAGES];
         u_checks = new int[NUM_PAGES];
         for(int i=0; i < NUM_PAGES ; i++){
             rnames[i] = fadapter.getR_name(i);

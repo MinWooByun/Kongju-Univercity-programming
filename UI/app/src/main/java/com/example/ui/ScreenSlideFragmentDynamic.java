@@ -46,9 +46,9 @@ public class ScreenSlideFragmentDynamic extends Fragment{
     private String r_details;
 
     private int state;
-    private int s_state;
-    private int s_kindness;
-    private int s_term;
+    private float s_state;
+    private float s_kindness;
+    private float s_term;
     private int u_check;
 
     private int type;
@@ -97,9 +97,9 @@ public class ScreenSlideFragmentDynamic extends Fragment{
                 break;}
         }
 
-        tvProposalSS.setText(Integer.toString(s_state));
-        tvProposalSK.setText(Integer.toString(s_kindness));
-        tvProposalST.setText(Integer.toString(s_term));
+        tvProposalSS.setText(String.format("%.2f",s_state));
+        tvProposalSK.setText(String.format("%.2f",s_kindness));
+        tvProposalST.setText(String.format("%.2f",s_term));
         tvProposalRN.setText(r_name);
         tvProposalEP.setText(Integer.toString(e_pay));
         tvProposalSC.setText(r_details);
@@ -182,7 +182,7 @@ public class ScreenSlideFragmentDynamic extends Fragment{
          */
 
     }
-    public ScreenSlideFragmentDynamic(String r_name,int p_num, int e_pay,String r_details,String r_id,int state, int s_state, int s_kindness, int s_term,int u_check,int type,String u_id){
+    public ScreenSlideFragmentDynamic(String r_name,int p_num, int e_pay,String r_details,String r_id,int state, float s_state, float s_kindness, float s_term,int u_check,int type,String u_id){
         this.r_name = r_name;
         this.p_num = p_num;
         this.e_pay = e_pay;
