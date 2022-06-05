@@ -170,6 +170,7 @@ public class ScreenSlideFragmentDynamic extends Fragment{
                         //intent.putExtra("r_detail",r_details);
                         intent.putExtra("type", type);
                         startActivity(intent);
+                        getActivity().finish();
                     }
                 });
             }else if(u_check == 1){

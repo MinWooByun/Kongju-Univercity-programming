@@ -115,6 +115,10 @@ public class ScreenSlidePagerDynamicActivity extends FragmentActivity {
     }
     @Override
     public void onBackPressed() {
+        Intent intent = new Intent(ScreenSlidePagerDynamicActivity.this, noticeBoardActivity.class);
+        intent.putExtra("u_id", u_id);
+        intent.putExtra("type", type);
+        startActivity(intent);
         //안드로이드 백버튼 막기
         finish();
     }/*

@@ -69,6 +69,7 @@ public class Proposal_SuggestFix extends AppCompatActivity {
                         intent.putExtra("u_id", r_id);
                         intent.putExtra("type", type);
                         startActivity(intent);
+                        finish();
                     }else{
                         Toast myToast = Toast.makeText(context, "견적 내용을 작성해 주세요", Toast.LENGTH_SHORT);
                         myToast.show();
