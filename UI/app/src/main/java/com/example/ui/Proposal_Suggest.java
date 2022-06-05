@@ -67,6 +67,7 @@ public class Proposal_Suggest extends AppCompatActivity {
                         intent.putExtra("content",EdtContent.getText()); // 견적 내용
                         intent.putExtra("type",type);
                         startActivity(intent);
+                        finish();
                     }else{
                         Toast myToast = Toast.makeText(context, "견적 제시내용을 작성해 주세요", Toast.LENGTH_SHORT);
                         myToast.show();
