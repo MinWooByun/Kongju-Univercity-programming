@@ -58,7 +58,7 @@ public class AdminAuthority extends AppCompatActivity {
             public void onClick(View v) {
                 boolean isUpdate = helper.isProofRefusal(id);
                 if(isUpdate == true) {
-                    helper.imgDelete(id);ㄱ
+                    helper.imgDelete(id);
                     Toast.makeText(AdminAuthority.this,"성공", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(AdminAuthority.this,"실패", Toast.LENGTH_LONG).show();

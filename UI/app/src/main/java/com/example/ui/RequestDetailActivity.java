@@ -95,6 +95,7 @@ public class RequestDetailActivity extends AppCompatActivity {
                 Intent intent = new Intent(RequestDetailActivity.this ,Proposal_Suggest.class);
                 intent.putExtra("r_id", u_id);
                 intent.putExtra("p_num", number);
+                intent.putExtra("type", type);
                 startActivity(intent);
             }
         });

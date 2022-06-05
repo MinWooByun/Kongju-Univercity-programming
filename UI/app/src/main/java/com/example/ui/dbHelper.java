@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class dbHelper extends SQLiteOpenHelper {
@@ -32,7 +34,7 @@ public class dbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
 
         StringBuffer sb = new StringBuffer();
-        sb.append("SELECT Count(userID) FROM repairRequestTable WHERE userID = '" + u_id +"'AND state != 2");
+        sb.append("SELECT Count(userID) FROM repairRequestTable WHERE userID = '" + u_id +"'AND state != 2;");
         Cursor cursor = db.rawQuery(sb.toString(), null);
         while(cursor.moveToNext())
             result = cursor.getInt(0);
@@ -44,20 +46,20 @@ public class dbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         StringBuffer sb = new StringBuffer();
         if(type==1){
-            sb.append("SELECT Count(r_id) FROM repairSuggestionTable WHERE r_id = '" + u_id +"'");
+            sb.append("SELECT Count(r_id) FROM repairSuggestionTable WHERE r_id = '" + u_id +"';");
             Cursor cursor = db.rawQuery(sb.toString(), null);
             while(cursor.moveToNext())
                 result = cursor.getInt(0);
         }
         else if(type==2){
             StringBuffer sb2 = new StringBuffer();
-            sb.append("SELECT number FROM repairRequestTable WHERE userID = '" + u_id +"' AND state != 2");
+            sb.append("SELECT number FROM repairRequestTable WHERE userID = '" + u_id +"' AND state != 2;");
             Cursor cursor = db.rawQuery(sb.toString(), null);
             while(cursor.moveToNext()){
-                sb2.append("SELECT Count(r_id) FROM repairSuggestionTable WHERE p_num = '" + cursor.getInt(0) +"'");
+                sb2.append("SELECT Count(r_id) FROM repairSuggestionTable WHERE p_num = " + cursor.getInt(0) +";");
                 Cursor cursor2 = db.rawQuery(sb2.toString(), null);
                 while(cursor2.moveToNext()){
-                    result = cursor.getInt(0);
+                    result += cursor.getInt(0);
                 }
             }
 
@@ -73,7 +75,7 @@ public class dbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
 
         StringBuffer sb = new StringBuffer();
-        sb.append("SELECT isproof FROM repairManTable WHERE id = '" + u_id +"'");
+        sb.append("SELECT isproof FROM repairManTable WHERE id = '" + u_id +"';");
         Cursor cursor = db.rawQuery(sb.toString(), null);
         while(cursor.moveToNext())
             result = cursor.getInt(0);
@@ -85,7 +87,7 @@ public class dbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
 
         StringBuffer sb = new StringBuffer();
-        sb.append("SELECT number FROM repairRequestTable WHERE id = '" + u_id +"'");
+        sb.append("SELECT number FROM repairRequestTable WHERE id = '" + u_id +"';");
         Cursor cursor = db.rawQuery(sb.toString(), null);
         return result;
     }
@@ -93,7 +95,7 @@ public class dbHelper extends SQLiteOpenHelper {
     //모든 제목 가져오기
     public ArrayList<ListItem> getAllTitles(){
         StringBuffer sb = new StringBuffer();
-        sb.append("SELECT number, title, state FROM repairRequestTable ORDER BY number DESC");
+        sb.append("SELECT number, title, state FROM repairRequestTable ORDER BY number DESC;");
 
         SQLiteDatabase db = getReadableDatabase();
 
@@ -109,13 +111,13 @@ public class dbHelper extends SQLiteOpenHelper {
     }
 
     //카테고리로 제목들 가져오기
-    public ArrayList<ListItem> getTitles_category(int position, int max_position, String u_id){
+    public ArrayList<ListItem> getTitles_category(int number, int max_position, String u_id){
         StringBuffer sb = new StringBuffer();
-        if(position != max_position){
-            sb.append("SELECT number, title, state FROM repairRequestTable WHERE object = '" + position +"' ORDER BY number DESC");
+        if(number != max_position){
+            sb.append("SELECT number, title, state FROM repairRequestTable WHERE object = '" + number +"' ORDER BY number DESC;");
         }
         else
-            sb.append("SELECT number, title, state FROM repairRequestTable WHERE userId = '" + u_id +"' ORDER BY number DESC");
+            sb.append("SELECT number, title, state FROM repairRequestTable WHERE userId = '" + u_id +"' ORDER BY number DESC;");
 
         SQLiteDatabase db = getReadableDatabase();
 
@@ -133,29 +135,31 @@ public class dbHelper extends SQLiteOpenHelper {
     //검색으로 제목 가져오기
     public ArrayList<ListItem> getTitles_search(int position, String search_text){
         StringBuffer sb = new StringBuffer();
-
-        if(position!=0)
-            sb.append("SELECT number, titl, state FROM repairRequestTable WHERE title LIKE '%" + search_text +"%' AND object = '" + position + "' ORDER BY number DESC");
-        else
-            sb.append("SELECT number, title, state FROM repairRequestTable WHERE title LIKE '%" + search_text +"%' ORDER BY number DESC");
+        ArrayList<ListItem> titles = new ArrayList<ListItem>();
 
         SQLiteDatabase db = getReadableDatabase();
 
-        Cursor cursor = db.rawQuery(sb.toString(), null);
 
-        ArrayList<ListItem> titles = new ArrayList<ListItem>();
-        String title = null;
+             if(position!=0)
+                 sb.append("SELECT a.number, a.title, a.state, b.r_id FROM repairRequestTable a LEFT OUTER JOIN satisficationTable b ON a.number = b.p_num where b.r_id = '"+ search_text +"' OR a.userID = '"+ search_text +"' OR a.title LIKE '%"+ search_text +"%' AND a.object = '" + position + "' ORDER BY number DESC;");
+             else
+                 sb.append("SELECT a.number, a.title, a.state, b.r_id FROM repairRequestTable a LEFT OUTER JOIN satisficationTable b ON a.number = b.p_num where b.r_id = '"+ search_text +"' OR a.userID = '"+ search_text +"' OR a.title LIKE '%"+ search_text +"%'  ORDER BY number DESC;");
+
+
+            Cursor cursor = db.rawQuery(sb.toString(), null);
+
         while(cursor.moveToNext()){
             ListItem item = new ListItem(cursor.getInt(0), cursor.getString(1), cursor.getInt(2));
             titles.add(item);
         }
+
         return titles;
     }
 
     //수리 의뢰 내용 가져오기
     public String getRequest(int number){
         StringBuffer sb = new StringBuffer();
-        sb.append("SELECT userId, title, symptom, symptom_contents, object, state FROM repairRequestTable WHERE number = '" + number + "'");
+        sb.append("SELECT userId, title, symptom, symptom_contents, object, state FROM repairRequestTable WHERE number = '" + number + "';");
 
         SQLiteDatabase db = getReadableDatabase();
 
@@ -183,8 +187,8 @@ public class dbHelper extends SQLiteOpenHelper {
     //수리의뢰 삭제
     public void deleteRequest(int number){
         SQLiteDatabase db = getWritableDatabase();
-        String sql = "DELETE FROM repairRequestTable WHERE number = '"+ number +"'";
-        String sql2 = "UPDATE repairRequestTable SET number = number - 1 WHERE number > '" +number+"'";
+        String sql = "DELETE FROM repairRequestTable WHERE number = '"+ number +"';";
+        String sql2 = "UPDATE repairRequestTable SET number = number - 1 WHERE number > '" +number+"';";
         db.execSQL(sql);
         db.execSQL(sql2);
     }
