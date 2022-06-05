@@ -92,7 +92,7 @@ public class RequestDetailActivity extends AppCompatActivity {
         btnProposal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(dbHelper.getSuggestionCount(u_id,type)>=1){
+                if(dbHelper.getSuggestionCount_InRequest(u_id,number)>=1){
                     Toast.makeText(getApplicationContext(),
                             "이미 견적을 제시하였습니다.",
                             Toast.LENGTH_SHORT).show();

@@ -63,8 +63,8 @@ public class Proposal_Suggest extends AppCompatActivity {
                         Intent intent = new Intent(Proposal_Suggest.this,noticeBoardActivity.class);
                         //Intent intent = new Intent(MainActivity.this,Proposal_Select.class);
                         //사실 DB에 넣어야 되는 내용물들임 버튼눌렀을떄 실행함
-                        intent.putExtra("pay",EdtPay.getText()); // 비용
-                        intent.putExtra("content",EdtContent.getText()); // 견적 내용
+                        intent.putExtra("u_id",r_id); // 비용
+                        //intent.putExtra("content",EdtContent.getText()); // 견적 내용
                         intent.putExtra("type",type);
                         startActivity(intent);
                         finish();
