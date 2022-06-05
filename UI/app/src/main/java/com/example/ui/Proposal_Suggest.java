@@ -1,6 +1,7 @@
 package com.example.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -29,15 +30,13 @@ public class Proposal_Suggest extends AppCompatActivity {
         EdtPay = (EditText) findViewById(R.id.edtPay);
         EdtContent = (EditText) findViewById(R.id.edtContent);
         BtnSuggest = (Button) findViewById(R.id.btnSuggest);
-        /* intent가 r_id, p_num을 줄 것임, 일단 테스트는 직접 작성으로 함
+        // intent가 r_id, p_num을 줄 것임, 일단 테스트는 직접 작성으로 함
         Intent gIntent = new Intent();
         gIntent = getIntent();
 
         r_id = gIntent.getStringExtra("r_id");
-        p_num = getIntent.getIntExtra("p_num",0);
-        */
-        r_id ="wjdalstjr1";
-        p_num = 1;
+        p_num = gIntent.getIntExtra("p_num",0);
+
         dbHelper helper;
         SQLiteDatabase db;
         helper = new dbHelper(Proposal_Suggest.this, 1);
@@ -59,6 +58,12 @@ public class Proposal_Suggest extends AppCompatActivity {
                         helper.insertProposal(db, r_id, p_num, pay, details);
                         Toast myToast = Toast.makeText(context, "견적 제시를 완료했습니다.", Toast.LENGTH_SHORT);
                         myToast.show();
+                        Intent intent = new Intent(Proposal_Suggest.this,noticeBoardActivity.class);
+                        //Intent intent = new Intent(MainActivity.this,Proposal_Select.class);
+                        //사실 DB에 넣어야 되는 내용물들임 버튼눌렀을떄 실행함
+                        intent.putExtra("pay",EdtPay.getText()); // 비용
+                        intent.putExtra("content",EdtContent.getText()); // 견적 내용
+                        startActivity(intent);
                     }else{
                         Toast myToast = Toast.makeText(context, "견적 제시내용을 작성해 주세요", Toast.LENGTH_SHORT);
                         myToast.show();
@@ -69,14 +74,8 @@ public class Proposal_Suggest extends AppCompatActivity {
                     myToast.show();
                 }
 
-                /*
-                Intent intent = new Intent(MainActivity.this,Proposal_Select.class);
-               // Intent intent = new Intent(Proposal_Suggest.this,noticeboard.class);
-                //사실 DB에 넣어야 되는 내용물들임 버튼눌렀을떄 실행함
-                intent.putExtra("pay",EdtPay.getText()); // 비용
-                intent.putExtra("content",EdtContent.getText()); // 견적 내용
-                startActivity(intent);
-                 */
+
+
             }
         });
     }
