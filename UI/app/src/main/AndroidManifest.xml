@@ -51,8 +51,12 @@
         <activity android:name=".Satisfied"
             android:theme="@style/Theme.AppCompat.Light.Dialog"
             android:exported="true"/>
+        <activity android:name=".SatisfiedConfirm"
+            android:theme="@style/Theme.AppCompat.Light.Dialog"
+            android:exported="true"/>
         <activity android:name=".ScreenSlidePagerDynamicActivity"
-            android:exported="true"></activity>
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>

@@ -184,7 +184,7 @@ public class RequestDetailActivity extends AppCompatActivity {
         btnSatisfication_check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(RequestDetailActivity.this ,Satisfied.class);
+                Intent intent = new Intent(RequestDetailActivity.this ,SatisfiedConfirm.class);
                 intent.putExtra("number", number);
                 startActivity(intent);
             }
