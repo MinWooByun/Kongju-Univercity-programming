@@ -12,6 +12,8 @@ public class dbHelper extends SQLiteOpenHelper {
     static final String DB_Name = "HL_DB.db";
     private static final String TABLE_NAME_userTable = "userTable";
     private static final String TABLE_NAME_repairManTable = "repairManTable";
+    private static final String TABLE_NAME_satisficationTable = "satisficationTable";
+    private static final String TABLE_NAME_repairRequestTable = "repairRequestTable";
 
     public dbHelper(Context context, int version){
         super(context, DB_Name, null, version);
@@ -193,32 +195,17 @@ public class dbHelper extends SQLiteOpenHelper {
         db.execSQL(sql);
     }
 
-    public long satisfiedUpdate(String id, int statePopup, int kindnessPopup, int termPopup, int pricePopup) {
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT satisfiedState, satisfiedKindness, satisfiedTerm, price, repairNumber FROM repairManTable WHERE id = 'KWH2'",null);
-
-        int state = 0;
-        int kindness = 0;
-        int term = 0;
-        int price = 0;
-        int repairNumber = 0;
-
-        while (cursor.moveToNext()) {
-            state = cursor.getInt(0);
-            kindness = cursor.getInt(1);
-            term = cursor.getInt(2);
-            price = cursor.getInt(3);
-            repairNumber = cursor.getInt(4);
-        }
-        cursor.close();
-
+    public long satisfiedUpdate(String id, int number, int statePopup, int kindnessPopup, int termPopup, int pricePopup) {
+        SQLiteDatabase db = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("satisfiedState", (state + statePopup) / (repairNumber + 1));
-        contentValues.put("satisfiedKindness", (kindness + kindnessPopup) / (repairNumber + 1));
-        contentValues.put("satisfiedTerm", (term + termPopup) / (repairNumber + 1));
-        contentValues.put("price", (price + pricePopup) / (repairNumber + 1));
-        contentValues.put("repairNumber", repairNumber + 1);
-        long result = db.update(TABLE_NAME_repairManTable, contentValues, "id = ?", new String[] {id});
+        contentValues.put("r_id", id);
+        contentValues.put("p_num", number);
+        contentValues.put("S_State", statePopup);
+        contentValues.put("S_Kindness", kindnessPopup);
+        contentValues.put("S_Term", termPopup);
+        contentValues.put("price", pricePopup);
+        long result = db.insert(TABLE_NAME_satisficationTable, null, contentValues);
+        db.execSQL("UPDATE '"+TABLE_NAME_repairRequestTable+"' SET state = 2 WHERE number = '"+number+"'");
         db.close();
 
         return result;
