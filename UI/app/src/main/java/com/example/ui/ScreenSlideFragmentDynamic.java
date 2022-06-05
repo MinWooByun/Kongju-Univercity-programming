@@ -29,7 +29,7 @@ public class ScreenSlideFragmentDynamic extends Fragment{
     TextView tvProposalRN;
     TextView tvProposalEP;
     TextView tvProposalSC;
-    TextView tvCancel;
+    //TextView tvCancel;
     TextView tvSubmit;
     TextView tvOpenTalk;
     TextView tvProposalS;
@@ -68,7 +68,7 @@ public class ScreenSlideFragmentDynamic extends Fragment{
                 R.layout.proposal, container, false);
         ct = container.getContext();
         tvOpenTalk = rootView.findViewById(R.id.tvOpenTalk);
-        tvCancel =  rootView.findViewById(R.id.tvCancel);
+        //tvCancel =  rootView.findViewById(R.id.tvCancel);
         tvSubmit = rootView.findViewById(R.id.tvSubmit);
 
         tvProposalS = rootView.findViewById(R.id.tvProposalProgression);
@@ -116,7 +116,7 @@ public class ScreenSlideFragmentDynamic extends Fragment{
         };
         Pattern pattern1 = Pattern.compile("Open Link"); // 링크로 이동
         Linkify.addLinks(tvOpenTalk, pattern1, "",null,mTransform);
-
+        /*
         tvCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -124,8 +124,11 @@ public class ScreenSlideFragmentDynamic extends Fragment{
                 intent.putExtra("u_id", u_id);
                 intent.putExtra("type", type);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
+
+         */
         //u_check, state에 따라 다르게 처리해야 한다. 그 상황별 버튼 설정
         if(type==2) {
             if (u_check == 0) {//submit
@@ -184,6 +187,8 @@ public class ScreenSlideFragmentDynamic extends Fragment{
         intent.putExtra("u_id", u_id);
         intent.putExtra("type", type);
         startActivity(intent);
+        getActivity().finish();
+
     }
     public void mOnPopupClick(String r_id,int p_num){
         helper.updateStatesToOne(r_id, p_num);
@@ -193,6 +198,7 @@ public class ScreenSlideFragmentDynamic extends Fragment{
         intent.putExtra("u_id", u_id);
         intent.putExtra("type", type);
         startActivity(intent);
+        getActivity().finish();
 
 
         /*
