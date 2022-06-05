@@ -50,12 +50,17 @@ public class ScreenSlideFragmentDynamic extends Fragment{
     private int s_kindness;
     private int s_term;
     private int u_check;
+
+    private int type;
 /*
     public static ScreenSlideFragmentDynamic newInstance() {
         ScreenSlideFragmentDynamic ssp = new ScreenSlideFragmentDynamic();
         return ssp;
     }
  */
+    public ScreenSlideFragmentDynamic(){
+
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -116,7 +121,8 @@ public class ScreenSlideFragmentDynamic extends Fragment{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ct, noticeBoardActivity.class);
-              //  intent.putExtra("")
+                intent.putExtra("u_id", u_id);
+                intent.putExtra("type", type);
                 startActivity(intent);
             }
         });
@@ -138,7 +144,7 @@ public class ScreenSlideFragmentDynamic extends Fragment{
                 tvSubmit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        mOnCancelClick(r_id, p_num);
+                        mOnCancelClick(r_id, p_num, type);
                     }
                 });
             }
@@ -150,11 +156,13 @@ public class ScreenSlideFragmentDynamic extends Fragment{
         return rootView;
     }
 
-    public void mOnCancelClick(String r_id, int p_num){
+    public void mOnCancelClick(String r_id, int p_num, int type){
         helper.updateStatesToZero(r_id,p_num);
         Toast myToast = Toast.makeText(ct, "철회 하였습니다.",Toast.LENGTH_SHORT);
         //intent로 페이지 재출력 가능?
         Intent intent = new Intent(ct, ScreenSlidePagerDynamicActivity.class);
+        intent.putExtra("u_id", u_id);
+        intent.putExtra("type", type);
         startActivity(intent);
     }
     public void mOnPopupClick(String r_id,int p_num){
@@ -162,6 +170,8 @@ public class ScreenSlideFragmentDynamic extends Fragment{
         Toast myToast = Toast.makeText(ct, "의뢰를 진행하였습니다.",Toast.LENGTH_SHORT);
         //데이터 담아서 팝업 액티비티 호출
         Intent intent = new Intent(ct, ScreenSlidePagerDynamicActivity.class);
+        intent.putExtra("u_id", u_id);
+        intent.putExtra("type", type);
         startActivity(intent);
 
 
@@ -172,7 +182,7 @@ public class ScreenSlideFragmentDynamic extends Fragment{
          */
 
     }
-    public ScreenSlideFragmentDynamic(String r_name,int p_num, int e_pay,String r_details,String r_id,int state, int s_state, int s_kindness, int s_term,int u_check){
+    public ScreenSlideFragmentDynamic(String r_name,int p_num, int e_pay,String r_details,String r_id,int state, int s_state, int s_kindness, int s_term,int u_check,int type,String u_id){
         this.r_name = r_name;
         this.p_num = p_num;
         this.e_pay = e_pay;
@@ -183,6 +193,8 @@ public class ScreenSlideFragmentDynamic extends Fragment{
         this.s_kindness = s_kindness;
         this.s_term = s_term;
         this.u_check = u_check;
+        this.type= type;
+        this.u_id = u_id;
     }
 
 }

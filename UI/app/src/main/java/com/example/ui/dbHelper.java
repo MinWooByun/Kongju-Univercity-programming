@@ -240,7 +240,7 @@ public class dbHelper extends SQLiteOpenHelper {
             StringBuffer sb = new StringBuffer();
             int p_num = rR_cursor.getInt(0);
             String r_name = rR_cursor.getString(1);
-            sb.append("SELECT p_num, e_pay, r_details, r_id,u_check  from repairSuggestionTable Where p_num="+p_num+";");
+            sb.append("SELECT p_num, e_pay, r_details, r_id,u_checked  from repairSuggestionTable Where p_num="+p_num+";");
             Cursor rS_cursor = db2.rawQuery(sb.toString(), null);
             while(rS_cursor.moveToNext()){//db에서 자료 가져와서 한 row객체<<당 4개의 자료(r_id, p_num, e_pay, r_details +추가
 
@@ -262,7 +262,7 @@ public class dbHelper extends SQLiteOpenHelper {
     public void updateStatesToZero(String r_id, int p_num){
         SQLiteDatabase db = getReadableDatabase();
         SQLiteDatabase db2 = getReadableDatabase();
-        String sql = "UPDATE repairSuggestionTable SET u_check=0 WHERE r_id="+"'"+r_id+"'and p_num="+p_num+";";
+        String sql = "UPDATE repairSuggestionTable SET u_checked=0 WHERE r_id="+"'"+r_id+"'and p_num="+p_num+";";
         db.execSQL(sql);
         String sql2 = "UPDATE repairRequestTable SET state=0 WHERE number="+p_num+";";
         db2.execSQL(sql2);
@@ -270,7 +270,7 @@ public class dbHelper extends SQLiteOpenHelper {
     public void updateStatesToOne(String r_id, int p_num) {
         SQLiteDatabase db = getReadableDatabase();
         SQLiteDatabase db2 = getReadableDatabase();
-        String sql = "UPDATE repairSuggestionTable SET u_check=1 WHERE r_id="+"'"+r_id+"'and p_num="+p_num+";";
+        String sql = "UPDATE repairSuggestionTable SET u_checked=1 WHERE r_id="+"'"+r_id+"'and p_num="+p_num+";";
         db.execSQL(sql);
         String sql2 = "UPDATE repairRequestTable SET state=1 WHERE number="+p_num+";";
         db2.execSQL(sql2);

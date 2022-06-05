@@ -169,6 +169,8 @@ public class noticeBoardActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(noticeBoardActivity.this ,ScreenSlidePagerDynamicActivity.class);
                 intent.putExtra("u_id", u_id);
+                intent.putExtra("type", type);
+
                 startActivity(intent);
 
             }

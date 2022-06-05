@@ -42,6 +42,8 @@ public class ScreenSlidePagerDynamicActivity extends FragmentActivity {
      */
     private PagerAdapter pagerAdapter; // 이거 바꿔야할수도?? 모르겠다..
 
+    int type;
+
     String u_id;
     String[] rnames;
     String[] rids;
@@ -58,14 +60,16 @@ public class ScreenSlidePagerDynamicActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.proposal_back);
-        /*
+        Intent intent = getIntent();
+
+
         Intent gIntent = new Intent();
         gIntent = getIntent();
-        u_id = gIntent.getStringExtra("u_id");
-        */
-        u_id="KWH";
+        u_id = gIntent.getExtras().getString("u_id");
+        type = gIntent.getExtras().getInt("type");
         /*
-*/
+        u_id="KWH";
+        */
         //여기서 생성자 불러와서 실행
         helper = new dbHelper(this, 1);
         ArrayList<fragmentListItem> flist = helper.getRepairSuggestionTableData(u_id);
@@ -130,8 +134,11 @@ public class ScreenSlidePagerDynamicActivity extends FragmentActivity {
 
         @Override
         public Fragment getItem(int position) {
-            ScreenSlideFragmentDynamic temp = new ScreenSlideFragmentDynamic(rnames[position],pnums[position],epays[position],rdetails[position],
-                    rids[position],states[position],s_states[position],s_kindnesses[position],s_terms[position],u_checks[position]);
+            ScreenSlideFragmentDynamic temp = new ScreenSlideFragmentDynamic(rnames[position],pnums[position],
+                    epays[position],rdetails[position],
+                    rids[position],states[position],
+                    s_states[position],s_kindnesses[position],
+                    s_terms[position],u_checks[position],type,u_id);
             return temp;
         }
 
