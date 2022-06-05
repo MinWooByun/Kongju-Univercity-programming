@@ -34,7 +34,7 @@ public class dbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
 
         StringBuffer sb = new StringBuffer();
-        sb.append("SELECT Count(u_id) FROM repairRequestTable WHERE id = '" + u_id +"'");
+        sb.append("SELECT Count(u_id) FROM repairRequestTable WHERE id = '" + u_id +"', state != 2");
         Cursor cursor = db.rawQuery(sb.toString(), null);
         return result;
     }
