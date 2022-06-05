@@ -24,7 +24,7 @@ public class MyPageUser extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-        TextView tvId = findViewById(R.id.tvId);
+        TextView tvNickName = findViewById(R.id.tvNickName);
         EditText etPw = findViewById(R.id.etPw);
         EditText etPwReconfirm = findViewById(R.id.etPwReconfirm);
         Button btnUpdate = findViewById(R.id.btnUpdate);
@@ -35,10 +35,10 @@ public class MyPageUser extends AppCompatActivity {
 
         dbHelper helper = new dbHelper(this, 1);
         SQLiteDatabase db = helper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT id FROM userTable WHERE id = '"+ u_id +"'",null);
+        Cursor cursor = db.rawQuery("SELECT nickname FROM userTable WHERE id = '"+ u_id +"'",null);
 
         while (cursor.moveToNext()) {
-            tvId.setText(cursor.getString(0));
+            tvNickName.setText(cursor.getString(0));
         }
 
         db.close();

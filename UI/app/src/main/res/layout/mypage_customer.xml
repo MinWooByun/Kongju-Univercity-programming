@@ -9,16 +9,16 @@
         android:id="@+id/tv1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
+        android:layout_marginStart="70dp"
         android:layout_marginTop="100dp"
-        android:text="아이디 : "
-        android:textColor="@color/black"
+        android:text="닉네임 : "
         android:textSize="20dp"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvId"
+        android:id="@+id/tvNickName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
@@ -48,7 +48,7 @@
         android:inputType="textPassword"
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/tv2"
-        app:layout_constraintTop_toBottomOf="@+id/tvId" />
+        app:layout_constraintTop_toBottomOf="@+id/tvNickName" />
 
     <TextView
         android:id="@+id/tv3"
