@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 //로그인
@@ -28,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText edtID = (EditText) findViewById(R.id.edtID);
         EditText edtPW = (EditText) findViewById(R.id.edtPW);
         Button btnLogin = (Button) findViewById(R.id.btnLogin);
+        CheckBox cbAuto = (CheckBox) findViewById(R.id.cbAutologin);
         myHelper = new dbHelper(this, 1);
         //로그인 버튼 이벤트 리스너너
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -42,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
                 cursor = sqlDB.rawQuery("SELECT * FROM userTable WHERE id = '" + ID + "'" +
                         "AND pw = '" + PW + "';", null);
                 //등록된 사용자인 경우, 중복된 ID가 없으므로 카운트가 1일것
+
                 if (cursor.getCount() > 0) {
                     while (cursor.moveToNext()) {
                         Intent intent = new Intent(getApplicationContext(), noticeBoardActivity.class);
@@ -50,14 +53,16 @@ public class LoginActivity extends AppCompatActivity {
                         intent.putExtra("type", cursor.getInt(2));
                         //type에 맞는 사용자의 적절한 게시판 화면을 출력
                         startActivity(intent);
+                        sqlDB.close();
+                        cursor.close();
                         finish();
                     }
                 } else {
                     //등록된 사용자가 아니면 메시지 출력
                     Toast.makeText(getApplicationContext(), "존재하지 않음", Toast.LENGTH_SHORT).show();
+                    sqlDB.close();
+                    cursor.close();
                 }
-                sqlDB.close();
-                cursor.close();
             }
         });
 
@@ -86,5 +91,9 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }
