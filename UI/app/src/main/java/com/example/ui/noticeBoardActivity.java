@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -48,7 +49,8 @@ public class noticeBoardActivity extends AppCompatActivity {
             btnReqeustRegister.setVisibility(View.GONE);
             btnAdminlist.setVisibility(View.GONE);
         }
-        else{
+        else if(type==0){
+            btnCheckPro.setVisibility(View.GONE);
             btnReqeustRegister.setVisibility(View.GONE);
         }
 
@@ -153,7 +155,9 @@ public class noticeBoardActivity extends AppCompatActivity {
                     finish();
                 }
                else{
-
+                    Toast.makeText(getApplicationContext(),
+                            "게시글이 5개 초과됩니다.",
+                            Toast.LENGTH_SHORT).show();
                 }
 
             }
