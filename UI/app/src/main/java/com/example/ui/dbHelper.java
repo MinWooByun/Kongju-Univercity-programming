@@ -189,6 +189,7 @@ public class dbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         String sql = "DELETE FROM repairRequestTable WHERE number = '"+ number +"';";
         String sql2 = "UPDATE repairRequestTable SET number = number - 1 WHERE number > '" +number+"';";
+        db.execSQL("DELETE FROM repairSuggestionTable WHERE p_num = '"+number+"'");
         db.execSQL(sql);
         db.execSQL(sql2);
     }
