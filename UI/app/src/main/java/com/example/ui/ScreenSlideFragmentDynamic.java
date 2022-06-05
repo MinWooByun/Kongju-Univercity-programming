@@ -127,31 +127,35 @@ public class ScreenSlideFragmentDynamic extends Fragment{
             }
         });
         //u_check, state에 따라 다르게 처리해야 한다. 그 상황별 버튼 설정
-        if(u_check == 0) {//submit
-            if(state == 0) { // 의뢰진행도, 견적 선택유무 둘다 0일땐 submit을 활성화한다.
-                tvSubmit.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        mOnPopupClick(r_id, p_num);
-                    }
-                });
-            }else if(state == 1) { //의뢰 진행도가 1일때는 submit이 사라지게해야한다.
-                tvSubmit.setVisibility(View.GONE);
-            }
-        }else if(u_check == 1){//의뢰 진행도가 1, 선택되서 진행중이다.
-            if(state == 1) {//의뢰 진행도가 1이고 선택된 견적제시면 선택을 취소해야 한다. DB접해야 할수있다.
-                tvSubmit.setText("선택 철회");
-                tvSubmit.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        mOnCancelClick(r_id, p_num, type);
-                    }
-                });
-            }
+        if(type==2) {
+            if (u_check == 0) {//submit
+                if (state == 0) { // 의뢰진행도, 견적 선택유무 둘다 0일땐 submit을 활성화한다.
+                    tvSubmit.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            mOnPopupClick(r_id, p_num);
+                        }
+                    });
+                } else if (state == 1) { //의뢰 진행도가 1일때는 submit이 사라지게해야한다.
+                    tvSubmit.setVisibility(View.GONE);
+                }
+            } else if (u_check == 1) {//의뢰 진행도가 1, 선택되서 진행중이다.
+                if (state == 1) {//의뢰 진행도가 1이고 선택된 견적제시면 선택을 취소해야 한다. DB접해야 할수있다.
+                    tvSubmit.setText("선택 철회");
+                    tvSubmit.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            mOnCancelClick(r_id, p_num, type);
+                        }
+                    });
+                }
             /*
             else if(state==0){//견적제시가 1인데 진행도가 0일수가 없다.
             }
             */
+            }
+        }else {
+            tvSubmit.setVisibility(View.GONE);
         }
         return rootView;
     }
