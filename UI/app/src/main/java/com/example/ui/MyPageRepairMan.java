@@ -24,9 +24,9 @@ public class MyPageRepairMan extends AppCompatActivity {
         actionBar.hide();
 
         TextView tvNickName = findViewById(R.id.tvNickName);
-        TextView tvOpenLink = findViewById(R.id.tvOpenLink);
         EditText etPw = findViewById(R.id.etPw);
         EditText etPwReconfirm = findViewById(R.id.etPwReconfirm);
+        EditText etOpenLink = findViewById(R.id.etOpenLink);
         Button btnCertificate = findViewById(R.id.btnCertificate);
         Button btnUpdate = findViewById(R.id.btnUpdate);
 
@@ -49,7 +49,7 @@ public class MyPageRepairMan extends AppCompatActivity {
         }
 
         while (cursor1.moveToNext()) {
-            tvOpenLink.setText(cursor1.getString(0));
+            etOpenLink.setText(cursor1.getString(0));
             String openlink = cursor1.getString(0);
             intent1.putExtra("openlink", openlink);
         }
@@ -73,13 +73,13 @@ public class MyPageRepairMan extends AppCompatActivity {
             public void onClick(View v) {
                 String Pw = etPw.getText().toString();
                 String PwReconfirm = etPwReconfirm.getText().toString();
+                String OpenLink = etOpenLink.getText().toString();
 
-                if(Pw.equals("") || PwReconfirm.equals("")) {
-                    Toast.makeText(MyPageRepairMan.this,"비밀번호 입력칸을 채워주세요.", Toast.LENGTH_LONG).show();
+                if(Pw.equals("") || PwReconfirm.equals("") || OpenLink.equals("")) {
+                    Toast.makeText(MyPageRepairMan.this,"비밀번호 및 오픈링크 입력칸을 채워주세요.", Toast.LENGTH_LONG).show();
                 } else {
                     if(Pw.equals(PwReconfirm)) {
-                        // 게시판에서 마이페이지로 넘어올 때 id 값을 intent로 받아와야 하는데 아직 미완성
-                        boolean isUpdated = helper.repairManPwUpdate(u_id, etPwReconfirm.getText().toString());
+                        boolean isUpdated = helper.repairManUpdate(u_id, PwReconfirm, OpenLink);
                         if(isUpdated == true) {
                             etPw.setText("");
                             etPwReconfirm.setText("");

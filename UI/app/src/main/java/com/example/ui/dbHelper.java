@@ -180,7 +180,7 @@ public class dbHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public boolean userPwUpdate(String id, String pw) {
+    public boolean userUpdate(String id, String pw) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("pw", pw);
@@ -189,11 +189,12 @@ public class dbHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public boolean repairManPwUpdate(String id, String pw) {
+    public boolean repairManUpdate(String id, String pw , String openLink) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("pw", pw);
         db.update(TABLE_NAME_userTable, contentValues, "id = ?", new String[] {id});
+        db.execSQL("UPDATE '"+TABLE_NAME_repairManTable+"' SET openlink = '"+openLink+"' WHERE id = '"+id+"'");
         db.close();
         return true;
     }

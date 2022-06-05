@@ -52,7 +52,7 @@ public class MyPageUser extends AppCompatActivity {
                     Toast.makeText(MyPageUser.this,"비밀번호 입력칸을 채워주세요.", Toast.LENGTH_LONG).show();
                 } else {
                     if(Pw.equals(PwReconfirm)) {
-                        boolean isUpdated = helper.userPwUpdate(u_id, etPwReconfirm.getText().toString());
+                        boolean isUpdated = helper.userUpdate(u_id, etPwReconfirm.getText().toString());
                         if(isUpdated == true) {
                             etPw.setText("");
                             etPwReconfirm.setText("");

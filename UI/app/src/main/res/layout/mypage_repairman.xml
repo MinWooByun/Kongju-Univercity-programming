@@ -77,23 +77,22 @@
         android:id="@+id/tv4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
+        android:layout_marginStart="64dp"
         android:layout_marginTop="20dp"
-        android:text="링크"
+        android:text="링크 : "
         android:textColor="@color/black"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv3" />
 
-    <TextView
-        android:id="@+id/tvOpenLink"
+    <EditText
+        android:id="@+id/etOpenLink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:inputType="textPersonName"
         android:text=""
-        android:textColor="@color/black"
-        android:textSize="20dp"
         app:layout_constraintStart_toEndOf="@+id/tv4"
         app:layout_constraintTop_toBottomOf="@+id/etPwReconfirm" />
 
@@ -101,12 +100,12 @@
         android:id="@+id/btnCertificate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:text="증명서 제출"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvOpenLink" />
+        app:layout_constraintTop_toBottomOf="@+id/etOpenLink" />
 
     <Button
         android:id="@+id/btnUpdate"
