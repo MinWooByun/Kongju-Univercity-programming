@@ -94,7 +94,7 @@ public class SumbitCertificate extends Activity {
                         sqlDB.execSQL("INSERT INTO userTable VALUES ('"//전체회원테이블
                                 +re_id+"','"
                                 +re_pw+"',"
-                                +2+",'"
+                                +1+",'"
                                 +re_nick+"');");
                     }catch (SQLException ex){
                         Toast.makeText(getApplicationContext(), "오류가 발생했습니다", Toast.LENGTH_SHORT).show();
