@@ -60,6 +60,7 @@ public class AdminList extends AppCompatActivity {
                 intent.putExtra("id", list.get(position));
                 intent.putExtra("u_id", u_id);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -70,6 +71,7 @@ public class AdminList extends AppCompatActivity {
                 intent.putExtra("u_id", u_id);
                 intent.putExtra("type", 0);
                 startActivity(intent);
+                finish();
             }
         });
     }

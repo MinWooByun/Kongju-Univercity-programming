@@ -53,9 +53,6 @@ public class SignUpActivity2 extends Activity {
                     check[2]=1;
                 }else{check[2]=0;
                 }
-                Toast.makeText(getApplicationContext(),
-                        check[0]+","+check[1]+","+check[2],
-                        Toast.LENGTH_SHORT).show();
                 //조건을 모두 만족하면 회원 등록
                 if(check[0]==1&&check[1]==1&&check[2]==1){
                     sqlDB = myHelper.getWritableDatabase();
