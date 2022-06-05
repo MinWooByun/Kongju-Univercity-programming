@@ -24,13 +24,12 @@ public class SignUpActivity2 extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_up_layout2);
 
-        EditText edtID, edtPW, edtrePW,edtNickname;
+        EditText edtID, edtPW, edtrePW;
         Button btnSignup, btnOverlap;
 
         edtID = (EditText) findViewById(R.id.edtID_Signup2);
         edtPW = (EditText) findViewById(R.id.edtPW_Signup2);
         edtrePW = (EditText) findViewById(R.id.edtrePW_Signup2);
-        edtNickname = (EditText) findViewById(R.id.edtNickname_Signup2);
         btnSignup = (Button) findViewById(R.id.btnSignup2);
         btnOverlap = (Button) findViewById(R.id.btnOverlap2);
         myHelper = new dbHelper(this,1);
@@ -38,7 +37,7 @@ public class SignUpActivity2 extends Activity {
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int[] check = {0,0,0};
+                int[] check = {0,0};
                 //중복체크 버튼 활성/비활성 여부
                 if(btnOverlap.isEnabled()) {check[0]=0;
                 }else {check[0]=1;
@@ -48,22 +47,16 @@ public class SignUpActivity2 extends Activity {
                     check[1]=1;
                 }else{check[1]=0;
                 }
-                //닉네임 입력 여부
-                if(edtNickname.length()>=1){
-                    check[2]=1;
-                }else{check[2]=0;
-                }
                 //조건을 모두 만족하면 회원 등록
-                if(check[0]==1&&check[1]==1&&check[2]==1){
+                if(check[0]==1&&check[1]==1){
                     sqlDB = myHelper.getWritableDatabase();
                     sqlDB.execSQL("INSERT INTO userTable VALUES ('"
                             +edtID.getText().toString()+"','"
                             +edtPW.getText().toString()+"',"
-                            +2+",'"
-                            +edtNickname.getText().toString()+"');");
+                            +2+");");
                     sqlDB.close();
                     Toast.makeText(getApplicationContext(),
-                            edtNickname.getText().toString()+"님 가입이 완료되었습니다.",
+                            edtID.getText().toString()+"님 가입이 완료되었습니다.",
                             Toast.LENGTH_SHORT).show();
                     finish();
                 }else{
