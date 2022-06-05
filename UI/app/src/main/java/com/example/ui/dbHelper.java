@@ -139,11 +139,6 @@ public class dbHelper extends SQLiteOpenHelper {
         db.execSQL(sql);
     }
 
-    public void insertProposal(SQLiteDatabase db, String r_id, int p_num, int e_pay, String r_details){
-        String sql = "INSERT INTO repairSuggestionTable VALUES"+"("+"'"+r_id+"'"+","+p_num+","+e_pay+","+"'"+r_details+"'"+");";
-        db.execSQL(sql);
-    }
-
     //수리의뢰 삭제
     public void deleteRequest(int number){
         SQLiteDatabase db = getWritableDatabase();
@@ -232,5 +227,76 @@ public class dbHelper extends SQLiteOpenHelper {
             }
         }
         db.close();
+    }
+    //민석 삽입
+    //의뢰제목도 찾음
+    public ArrayList<fragmentListItem> getRepairSuggestionTableData(String u_id){
+        //db 다시 생각해야함 u_id에 해당하는 repairRequestTable 의뢰제목 내용 모두 가져와야함
+        //동시에 repairSuggetionTable에서 그 의뢰에 해당하는 e_pay, r_details를 (p_num)으로 검색
+        //
+        SQLiteDatabase db = getReadableDatabase();
+        SQLiteDatabase db2 = getReadableDatabase();
+        SQLiteDatabase db3 = getReadableDatabase();
+        ArrayList<fragmentListItem> proposalList = new ArrayList<fragmentListItem>();
+        /*
+        ArrayList<requestListItem> getRequestList = getRequestName(u_id);
+        Cursor.requestCursor = db.rawQuery
+        */
+        StringBuffer sb2 = new StringBuffer();//2,3,4가 state kindness termavg
+        sb2.append("SELECT number, title, state from repairRequestTable Where userID="+"'"+u_id+"'and state!="+2+";"); //satis
+        Cursor rR_cursor = db.rawQuery(sb2.toString(),null);
+
+        while(rR_cursor.moveToNext()){
+
+            StringBuffer sb = new StringBuffer();
+            int p_num = rR_cursor.getInt(0);
+            String r_name = rR_cursor.getString(1);
+            sb.append("SELECT p_num, e_pay, r_details, r_id,u_check  from repairSuggestionTable Where p_num="+p_num+";");
+            Cursor rS_cursor = db2.rawQuery(sb.toString(), null);
+            while(rS_cursor.moveToNext()){//db에서 자료 가져와서 한 row객체<<당 4개의 자료(r_id, p_num, e_pay, r_details +추가
+
+                StringBuffer sb3 = new StringBuffer();
+                sb3.append("SELECT S_State, S_Kindness, S_Term FROM repairManTable Where id="+"'"+rS_cursor.getString(3)+"';");
+                Cursor rM_cursor = db3.rawQuery(sb3.toString(),null);
+                while(rM_cursor.moveToNext()){
+                    fragmentListItem item = new fragmentListItem(rR_cursor.getString(1),rR_cursor.getInt(0),rS_cursor.getInt(1),
+                            rS_cursor.getString(2), rS_cursor.getString(3),
+                            rR_cursor.getInt(2),rM_cursor.getInt(0),rM_cursor.getInt(1),
+                            rM_cursor.getInt(2),rS_cursor.getInt(4));
+                    proposalList.add(item);
+                }
+
+            }
+        }
+        return proposalList;
+    }
+    public void updateStatesToZero(String r_id, int p_num){
+        SQLiteDatabase db = getReadableDatabase();
+        SQLiteDatabase db2 = getReadableDatabase();
+        String sql = "UPDATE repairSuggestionTable SET u_check=0 WHERE r_id="+"'"+r_id+"'and p_num="+p_num+";";
+        db.execSQL(sql);
+        String sql2 = "UPDATE repairRequestTable SET state=0 WHERE number="+p_num+";";
+        db2.execSQL(sql2);
+    }
+    public void updateStatesToOne(String r_id, int p_num) {
+        SQLiteDatabase db = getReadableDatabase();
+        SQLiteDatabase db2 = getReadableDatabase();
+        String sql = "UPDATE repairSuggestionTable SET u_check=1 WHERE r_id="+"'"+r_id+"'and p_num="+p_num+";";
+        db.execSQL(sql);
+        String sql2 = "UPDATE repairRequestTable SET state=1 WHERE number="+p_num+";";
+        db2.execSQL(sql2);
+    }
+
+    public String getOpenLink(SQLiteDatabase db, String r_id) {//오픈링크 받아오는 메소드
+        String sql= "SELECT openlink from repairManTable Where id="+"'"+r_id+"'"+";";
+        Cursor cursor = db.rawQuery(sql,null);
+        cursor.moveToNext();
+        String openlink = cursor.getString(0);
+        return openlink;
+    }
+ 
+    public void insertProposal(SQLiteDatabase db, String r_id, int p_num, int e_pay, String r_details){
+        String sql = "INSERT INTO repairSuggestionTable VALUES"+"("+"'"+r_id+"'"+","+p_num+","+e_pay+","+"'"+r_details+"'"+");";
+        db.execSQL(sql); 
     }
 }
