@@ -197,11 +197,11 @@ public class dbHelper extends SQLiteOpenHelper {
 
     public long satisfiedUpdate(String id, int number, int statePopup, int kindnessPopup, int termPopup, int pricePopup) {
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT r_id FROM repairSuggestionTable WHERE number = '"+ number +"', u_checked = 1",null);
+        Cursor cursor = db.rawQuery("SELECT r_id FROM repairSuggestionTable WHERE p_num = '"+number+"' AND u_checked = 1",null);
 
-        int r_id = 0;
+        String r_id = "";
         while (cursor.moveToNext()) {
-            r_id = cursor.getInt(0);
+            r_id = cursor.getString(0);
         }
 
         ContentValues contentValues = new ContentValues();
