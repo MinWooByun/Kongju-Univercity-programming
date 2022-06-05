@@ -14,7 +14,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MyPageRepairMan extends AppCompatActivity {
-
+    String u_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +31,7 @@ public class MyPageRepairMan extends AppCompatActivity {
         Button btnUpdate = findViewById(R.id.btnUpdate);
 
         Intent intent = getIntent();
-        String u_id = intent.getExtras().getString("u_id");
+        u_id = intent.getExtras().getString("u_id");
         Intent intent1 = new Intent(MyPageRepairMan.this, SumbitCertificate.class);
 
         dbHelper helper = new dbHelper(this, 1);
@@ -98,5 +98,13 @@ public class MyPageRepairMan extends AppCompatActivity {
                 }
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(MyPageRepairMan.this, noticeBoardActivity.class);
+        intent.putExtra("u_id", u_id);
+        intent.putExtra("type", 1);
+        startActivity(intent);
+        finish();
     }
 }
