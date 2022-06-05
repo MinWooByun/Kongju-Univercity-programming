@@ -22,6 +22,13 @@ public class dbHelper extends SQLiteOpenHelper {
 
    @Override
     public void onCreate(SQLiteDatabase db) {
+       db.execSQL("CREATE TABLE imgTable (id varchar(20), imgBLOB BLOB, FOREIGN KEY(id) REFERENCES userTable(id))");
+       db.execSQL("CREATE TABLE repairManTable (id tvarchar(20),isproof INTEGER DEFAULT 0 CHECK(isproof == 0 OR isproof == 1),openlink varchar(200),FOREIGN KEY(id) REFERENCES userTable(id))");
+       db.execSQL("CREATE TABLE repairRequestTable (userID varchar(20),number INTEGER,title varchar(100),symptom INTEGER,symptom_contents varchar(10000),object INTEGER,declar INTEGER DEFAULT 0,state INTEGER DEFAULT 0,PRIMARY KEY(number),FOREIGN KEY(userID) REFERENCES userTable(id))");
+       db.execSQL("CREATE TABLE repairSuggestionTable (r_id varchar(20),p_num INTEGER,e_pay INTEGER,r_details varchar(10000),u_checked INTEGER, FOREIGN KEY(p_num) REFERENCES repairRequestTable(number),FOREIGN KEY(r_id) REFERENCES userTable(id),PRIMARY KEY(r_id,p_num))");
+       db.execSQL("CREATE TABLE satisficationTable (r_id varchar(20),p_num INTEGER,S_State INTEGER,S_Kindness INTEGER,S_Term INTEGER,price INTEGER,FOREIGN KEY(r_id) REFERENCES userTable(id),FOREIGN KEY(p_num) REFERENCES repairRequestTable(number))");
+       db.execSQL("CREATE TABLE userTable (id varchar(20) NOT NULL UNIQUE,pw varchar(30),type int,PRIMARY KEY(id))");
+       db.execSQL("CREATE TABLE declarTable (r_id INTEGER,p_num INTEGER,FOREIGN KEY(p_num) REFERENCES repairRequestTable(number),FOREIGN KEY(r_id) REFERENCES userTable(id))");
     }
 
     @Override
