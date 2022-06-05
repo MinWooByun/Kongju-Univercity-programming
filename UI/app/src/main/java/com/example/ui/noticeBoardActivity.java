@@ -146,10 +146,15 @@ public class noticeBoardActivity extends AppCompatActivity {
         btnReqeustRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(noticeBoardActivity.this ,RequestRegisterActivity.class);
-                intent.putExtra("u_id", u_id);
-                startActivity(intent);
-                finish();
+                if(dbHelper.getRequestCount(u_id)<=5){
+                    Intent intent = new Intent(noticeBoardActivity.this ,RequestRegisterActivity.class);
+                    intent.putExtra("u_id", u_id);
+                    startActivity(intent);
+                    finish();
+                }
+               else{
+
+                }
 
             }
         });
