@@ -1,6 +1,8 @@
 package com.example.ui;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -92,8 +94,8 @@ public class noticeBoardActivity extends AppCompatActivity {
                     intent = new Intent(noticeBoardActivity.this ,MyPageUser.class);
 
                 intent.putExtra("u_id", u_id);
-                    startActivity(intent);
-
+                startActivity(intent);
+                finish();
 
 
 
@@ -119,6 +121,11 @@ public class noticeBoardActivity extends AppCompatActivity {
         btnlogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //자동 로그인 해제
+                SharedPreferences sharedPreferences = getSharedPreferences("sharedPreferences", Activity.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.commit();
                 Intent intent = new Intent(noticeBoardActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
@@ -193,8 +200,21 @@ public class noticeBoardActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(noticeBoardActivity.this, LoginActivity.class);
-        startActivity(intent);
-        finish();
+        String ID;
+        String PW;
+        SharedPreferences sharedPreferences = getSharedPreferences("sharedPreferences", Activity.MODE_PRIVATE);
+
+        ID = sharedPreferences.getString("userID", null);
+        PW = sharedPreferences.getString("userPW", null);
+        //자동 로그인 정보가 있으면 종료
+        //정보가 없으면 로그인 페이지로 넘어감
+        if(ID != null && PW != null) {
+            finish();
+        }else{
+            Intent intent = new Intent(noticeBoardActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
     }
 }

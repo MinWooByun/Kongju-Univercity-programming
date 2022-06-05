@@ -3,8 +3,10 @@ package com.example.ui;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -44,7 +46,6 @@ public class LoginActivity extends AppCompatActivity {
                 cursor = sqlDB.rawQuery("SELECT * FROM userTable WHERE id = '" + ID + "'" +
                         "AND pw = '" + PW + "';", null);
                 //등록된 사용자인 경우, 중복된 ID가 없으므로 카운트가 1일것
-
                 if (cursor.getCount() > 0) {
                     while (cursor.moveToNext()) {
                         Intent intent = new Intent(getApplicationContext(), noticeBoardActivity.class);
@@ -52,6 +53,14 @@ public class LoginActivity extends AppCompatActivity {
                         intent.putExtra("u_id", cursor.getString(0));
                         intent.putExtra("type", cursor.getInt(2));
                         //type에 맞는 사용자의 적절한 게시판 화면을 출력
+                        //자동 로그인 체크 시 정보 저장
+                        if(cbAuto.isChecked()){
+                            SharedPreferences sharedPreferences = getSharedPreferences("sharedPreferences", Activity.MODE_PRIVATE);
+                            SharedPreferences.Editor autoLogin = sharedPreferences.edit();
+                            autoLogin.putString("userID", edtID.getText().toString());
+                            autoLogin.putString("userPW", edtPW.getText().toString());
+                            autoLogin.commit();
+                        }
                         startActivity(intent);
                         sqlDB.close();
                         cursor.close();
@@ -59,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 } else {
                     //등록된 사용자가 아니면 메시지 출력
-                    Toast.makeText(getApplicationContext(), "존재하지 않음", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "존재하지 않는 계정정보 입니다", Toast.LENGTH_SHORT).show();
                     sqlDB.close();
                     cursor.close();
                 }
@@ -91,6 +100,36 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //자동 로그인
+        String autoID;
+        String autoPW;
+        SharedPreferences sharedPreferences = getSharedPreferences("sharedPreferences", Activity.MODE_PRIVATE);
+
+        autoID = sharedPreferences.getString("userID", null);
+        autoPW = sharedPreferences.getString("userPW", null);
+        if(autoID != null && autoPW != null) {
+            sqlDB = myHelper.getReadableDatabase();
+            Cursor cursor;
+            //입력된 ID와 PW를 userTable에서 검색
+            cursor = sqlDB.rawQuery("SELECT * FROM userTable WHERE id = '" + autoID + "'" +
+                        "AND pw = '" + autoPW + "';", null);
+            //등록된 사용자인 경우, 중복된 ID가 없으므로 카운트가 1일것
+            if (cursor.getCount() > 0) {
+                while (cursor.moveToNext()) {
+                    Intent intent = new Intent(getApplicationContext(), noticeBoardActivity.class);
+                    //사용자의 ID와 type을 넘기고
+                    intent.putExtra("u_id", cursor.getString(0));
+                    intent.putExtra("type", cursor.getInt(2));
+                    //type에 맞는 사용자의 적절한 게시판 화면을 출력
+                    Toast.makeText(getApplicationContext(), autoID+"으로 자동 로그인 됨", Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                    sqlDB.close();
+                    cursor.close();
+                    finish();
+                }
+            }
+        }
     }
     @Override
     public void onBackPressed() {
