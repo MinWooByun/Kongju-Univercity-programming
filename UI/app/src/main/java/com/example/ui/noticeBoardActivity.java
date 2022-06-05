@@ -57,6 +57,8 @@ public class noticeBoardActivity extends AppCompatActivity {
         }
 
 
+
+
         //리스트 뷰 설정
         ListView listView = findViewById(R.id.contentsBar);
 
@@ -94,6 +96,7 @@ public class noticeBoardActivity extends AppCompatActivity {
                     intent = new Intent(noticeBoardActivity.this ,MyPageUser.class);
 
                 intent.putExtra("u_id", u_id);
+                intent.putExtra("type", type);
                 startActivity(intent);
                 finish();
 
@@ -174,11 +177,23 @@ public class noticeBoardActivity extends AppCompatActivity {
         btnCheckPro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(noticeBoardActivity.this ,ScreenSlidePagerDynamicActivity.class);
-                intent.putExtra("u_id", u_id);
-                intent.putExtra("type", type);
+                if(dbHelper.getSuggestionCount(u_id,type) > 0){
+                    Intent intent = new Intent(noticeBoardActivity.this ,ScreenSlidePagerDynamicActivity.class);
+                    intent.putExtra("u_id", u_id);
+                    intent.putExtra("type", type);
+                    startActivity(intent);
+                }
+               else {
+                   if(type==1)
+                    Toast.makeText(getApplicationContext(),
+                            "제시한 견적이 없습니다.",
+                            Toast.LENGTH_SHORT).show();
+                   else if(type==2)
+                            Toast.makeText(getApplicationContext(),
+                            "제시된 견적이 없습니다.",
+                            Toast.LENGTH_SHORT).show();
 
-                startActivity(intent);
+                }
 
             }
         });
