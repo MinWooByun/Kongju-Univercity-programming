@@ -1,5 +1,6 @@
 package com.example.ui;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -21,6 +22,8 @@ public class RequestRegisterActivity extends AppCompatActivity {
         setContentView(R.layout.request_register);
         dbHelper = new dbHelper(RequestRegisterActivity.this, 1);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         Intent intent = getIntent();
         u_id= intent.getExtras().getString("u_id");
