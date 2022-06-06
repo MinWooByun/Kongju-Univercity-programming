@@ -24,6 +24,8 @@ public class Proposal_Suggest extends AppCompatActivity {
     int e_pay;
     int type;
     String r_details;
+    dbHelper helper;
+    SQLiteDatabase db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,11 +44,8 @@ public class Proposal_Suggest extends AppCompatActivity {
         p_num = gIntent.getIntExtra("p_num",0);
         type = gIntent.getIntExtra("type",0);
 
-        dbHelper helper;
-        SQLiteDatabase db;
+
         helper = new dbHelper(Proposal_Suggest.this, 1);
-        db = helper.getWritableDatabase();
-        helper.onCreate(db);
         //helper.onUpgrade(db,1,1);
         Context context = this.getApplicationContext();
 
@@ -60,7 +59,7 @@ public class Proposal_Suggest extends AppCompatActivity {
                 if(isStringInteger(pay_check,10)) {
                     int pay = Integer.parseInt(EdtPay.getText().toString()); //스트링을변환한거임
                     if(!details.matches("")) {
-                        helper.insertProposal(db, r_id, p_num, pay, details);
+                        helper.insertProposal(r_id, p_num, pay, details);
                         Toast myToast = Toast.makeText(context, "견적 제시를 완료했습니다.", Toast.LENGTH_SHORT);
                         myToast.show();
                         Intent intent = new Intent(Proposal_Suggest.this,noticeBoardActivity.class);
