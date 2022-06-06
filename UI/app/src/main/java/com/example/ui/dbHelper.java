@@ -414,7 +414,8 @@ public class dbHelper extends SQLiteOpenHelper {
         return openlink;
     }
 
-    public void insertProposal(SQLiteDatabase db, String r_id, int p_num, int e_pay, String r_details){
+    public void insertProposal(String r_id, int p_num, int e_pay, String r_details){
+        SQLiteDatabase db = getReadableDatabase();
         String sql = "INSERT INTO repairSuggestionTable VALUES"+"("+"'"+r_id+"'"+","+p_num+","+e_pay+","+"'"+r_details+"'"+","+0+");";
         db.execSQL(sql);
     }
