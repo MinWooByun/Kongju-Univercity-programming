@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="content_text" parent="@style/TextAppearance.AppCompat">
+        <item name="android:textSize">15sp</item>
+    </style>
+    <style name="title_text" parent="@style/TextAppearance.AppCompat">
+        <item name="android:textSize">20sp</item>
+    </style>
+</resources>
