@@ -67,7 +67,7 @@ public class RequestDetailActivity extends AppCompatActivity {
             btnReport_Update.setVisibility(View.GONE);
 
         //신고_갱신 버튼은 자신의 아이디가 아니거나 관리자는 보이면 안 된다.
-        if(!array[0].equals(u_id) || type== 0)
+        if(!array[0].equals(u_id) || type== 0 || tag==2)
             btnReport_Update.setVisibility(View.GONE);
 
         //수리기사이며, 인증을 받았을 때만 견적 제시가 보임.
@@ -75,8 +75,8 @@ public class RequestDetailActivity extends AppCompatActivity {
             btnProposal.setVisibility(View.GONE);
 
 
-        //자신의 글이 아니면 수정 버튼이 보여지면 안 된다.
-        if(!array[0].equals(u_id))
+        //자신의 글이 아니고 수리 완료 상태가 되면 수정 버튼이 보여지면 안 된다.
+        if(!array[0].equals(u_id) || tag==2)
             btnFix.setVisibility(View.GONE);
 
         //관리자와 자신을 제외하고는 삭제 버튼이 보여지면 안 된다.
