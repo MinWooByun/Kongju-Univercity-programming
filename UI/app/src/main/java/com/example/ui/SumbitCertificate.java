@@ -1,7 +1,6 @@
 package com.example.ui;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -19,12 +18,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class SumbitCertificate extends Activity {
+public class SumbitCertificate extends AppCompatActivity {
     Button btnSelect, btnSubmit;
     ImageView imgView;
     TextView tvFileName;
@@ -35,12 +36,13 @@ public class SumbitCertificate extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.certificate);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         //회원가입 양식으로부터 받아오는 정보
         Intent intent = getIntent();
         String re_id= intent.getExtras().getString("u_id");
         String re_pw= intent.getExtras().getString("pw","");
-        String re_nick= intent.getExtras().getString("nickname","");
         String re_link= intent.getExtras().getString("link","");
         String state = intent.getExtras().getString("state");
 
@@ -87,8 +89,7 @@ public class SumbitCertificate extends Activity {
                         sqlDB.execSQL("INSERT INTO userTable VALUES ('"//전체회원테이블
                                 +re_id+"','"
                                 +re_pw+"',"
-                                +1+",'"
-                                +re_nick+"');");
+                                +1+");");
                     }catch (SQLException ex){
                         Toast.makeText(getApplicationContext(), "오류가 발생했습니다", Toast.LENGTH_SHORT).show();
                     }
@@ -114,6 +115,7 @@ public class SumbitCertificate extends Activity {
     //갤러리에서 이미지 선택후 이름과 이미지 출력
     //완료
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode != 1 || resultCode != RESULT_OK) {
             return;
         }
@@ -130,7 +132,7 @@ public class SumbitCertificate extends Activity {
             image.compress(Bitmap.CompressFormat.JPEG, 100, os);
             blobByte = os.toByteArray();
             in.close();
-        } catch(IOException ioe) {
+        } catch (IOException ioe) {
             ioe.printStackTrace();
         }
     }

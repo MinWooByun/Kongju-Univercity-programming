@@ -110,7 +110,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            style="@style/content_text"
             android:layout_weight="1"
             android:layout_marginHorizontal="10dp"
             android:text="견적 제시" />
@@ -120,7 +119,6 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:layout_weight="1"
-            style="@style/content_text"
             android:layout_marginHorizontal="10dp"
             android:text="수리 의뢰 완료(만족도 평가)" />
         <Button
@@ -129,7 +127,6 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:layout_weight="1"
-            style="@style/content_text"
             android:layout_marginHorizontal="10dp"
             android:text="만족도 평가 확인하기" />
     </LinearLayout>
