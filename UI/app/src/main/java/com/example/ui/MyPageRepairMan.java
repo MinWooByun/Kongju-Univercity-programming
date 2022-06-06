@@ -44,10 +44,8 @@ public class MyPageRepairMan extends AppCompatActivity {
         while (cursor.moveToNext()) {
             tvId.setText(cursor.getString(0));
             String pw = cursor.getString(1);
-            String nickname = cursor.getString(3);
             intent1.putExtra("u_id", u_id);
             intent1.putExtra("pw", pw);
-            intent1.putExtra("nickname", nickname);
         }
 
         while (cursor1.moveToNext()) {
