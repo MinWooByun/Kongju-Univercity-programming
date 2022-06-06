@@ -36,8 +36,6 @@
             android:exported="true"/>
         <activity android:name=".Proposal_Suggest"
             android:exported="true"/>
-        <activity android:name=".Proposal_Select"
-            android:exported="true"/>
         <activity android:name=".AdminAuthority"
             android:exported="true"/>
         <activity android:name=".AdminList"
