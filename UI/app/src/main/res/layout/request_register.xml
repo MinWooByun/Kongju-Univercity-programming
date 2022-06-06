@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="20dp"
     android:orientation="vertical"
     tools:context=".RequestRegisterActivity">
 
@@ -19,6 +20,7 @@
             android:ems="10"
             android:layout_margin="10dp"
             android:gravity="center_horizontal"
+            style="@style/content_text"
             android:inputType="textPersonName"
             android:background="@drawable/rect_editbox"
             android:hint="의뢰 제목" />
@@ -35,6 +37,7 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:background="@drawable/rect_editbox"
+            style="@style/content_text"
             android:inputType="textMultiLine"
             android:ems="10"
             android:gravity="center_horizontal"
@@ -49,6 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
+            style="@style/content_text"
             android:gravity="center_vertical"
             android:entries="@array/카테고리"
             android:layout_weight="1"
@@ -64,6 +68,7 @@
             android:id="@+id/R_symptom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/content_text"
             android:gravity="center_vertical"
             android:entries="@array/고장증상"
             android:layout_marginHorizontal="10dp"
@@ -78,6 +83,7 @@
             android:id="@+id/R_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/content_text"
             android:gravity="center_horizontal"
             android:layout_weight="1"
             android:layout_marginHorizontal="10dp"

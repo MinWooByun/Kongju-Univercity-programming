@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_margin="20dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -67,9 +68,8 @@
             android:layout_height="400dp"
             android:text="고장증상"
             android:layout_weight="8"
+            android:layout_margin="10dp"
             style="@style/content_text"
-            android:layout_margin="40dp"
-            android:layout_marginBottom="500dp"
             android:gravity="center_vertical"
             android:background="@drawable/rect_editbox"
             />
