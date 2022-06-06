@@ -83,7 +83,6 @@
             android:id="@+id/R_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/content_text"
             android:gravity="center_horizontal"
             android:layout_weight="1"
             android:layout_marginHorizontal="10dp"
