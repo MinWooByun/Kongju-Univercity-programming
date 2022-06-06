@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class RequestFixActivity extends AppCompatActivity {
@@ -17,6 +18,10 @@ public class RequestFixActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.request_register);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
         Intent intent = getIntent();
         dbHelper = new dbHelper(RequestFixActivity.this, 1);
         String u_id = intent.getExtras().getString("u_id");
@@ -69,5 +74,16 @@ public class RequestFixActivity extends AppCompatActivity {
         });
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = getIntent();
+        String u_id = intent.getExtras().getString("u_id");
+        int type = intent.getExtras().getInt("type");
+        intent = new Intent(RequestFixActivity.this, noticeBoardActivity.class);
+        intent.putExtra("u_id", u_id);
+        intent.putExtra("type", type);
+        startActivity(intent);
+        finish();
+    }
 }

@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class RequestDetailActivity extends AppCompatActivity {
@@ -20,6 +21,8 @@ public class RequestDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.request_detail);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         res=getResources();
         //intent 값 가져오기, helper 설정
