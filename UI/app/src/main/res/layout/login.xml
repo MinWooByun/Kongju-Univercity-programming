@@ -33,7 +33,8 @@
             android:ems="10"
             android:inputType="text"
             android:drawableLeft="@drawable/id"
-            android:hint="ID"/>
+            android:hint="ID"
+            style="@style/title_text"/>
         <EditText
             android:id="@+id/edtPW"
             android:layout_width="wrap_content"
@@ -41,18 +42,19 @@
             android:ems="10"
             android:inputType="textPassword"
             android:drawableLeft="@drawable/pw"
-            android:hint="Password"/>
+            android:hint="Password"
+            style="@style/title_text"/>
         <CheckBox
             android:layout_width="104dp"
             android:layout_height="54dp"
             android:text="자동 로그인"
-            android:id="@+id/cbAutologin"
-            />
+            android:id="@+id/cbAutologin"/>
         <Button
             android:id="@+id/btnLogin"
-            android:layout_width="204dp"
-            android:layout_height="54dp"
-            android:text="로그인" />
+            android:layout_width="160dp"
+            android:layout_height="50dp"
+            android:text="로그인"
+            style="@style/content_text"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -67,7 +69,8 @@
             android:layout_height="wrap_content"
             android:text="고객 회원가입"
             android:layout_weight="1"
-            android:layout_margin="20dp"/>
+            android:layout_margin="15dp"
+            style="@style/content_text"/>
 
         <Button
             android:id="@+id/btnSignupRepairman"
@@ -75,6 +78,7 @@
             android:layout_height="wrap_content"
             android:text="수리기사 회원가입"
             android:layout_weight="1"
-            android:layout_margin="20dp"/>
+            android:layout_margin="15dp"
+            style="@style/content_text"/>
     </LinearLayout>
 </LinearLayout>

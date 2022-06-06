@@ -22,7 +22,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ID" />
+                android:text="ID"
+                style="@style/content_text"/>
 
             <EditText
                 android:id="@+id/edtID_Signup1"
@@ -30,12 +31,14 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="text"
-                android:hint="dndud0104"/>
+                android:hint="dndud0104"
+                style="@style/title_text"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="PW"/>
+                android:text="PW"
+                style="@style/content_text"/>
 
             <EditText
                 android:id="@+id/edtPW_Signup1"
@@ -43,12 +46,14 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPassword"
-                android:hint="*******"/>
+                android:hint="*********"
+                style="@style/title_text"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="PW 확인" />
+                android:text="PW 확인"
+                style="@style/content_text"/>
 
             <EditText
                 android:id="@+id/edtrePW_Signup1"
@@ -56,12 +61,14 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPassword"
-                android:hint="*******"/>
+                android:hint="*********"
+                style="@style/title_text"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="오픈 채팅방 링크" />
+                android:text="오픈 채팅방 링크"
+                style="@style/content_text"/>
 
             <EditText
                 android:id="@+id/edtLink1"
@@ -69,7 +76,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="text"
-                android:hint="https://open.kakao.com/o/sqwwjBhe"/>
+                android:hint="https://open.kakao.com/o/sqwwjBhe"
+                style="@style/title_text"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -82,7 +90,8 @@
                 android:id="@+id/btnOverlap1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="중복체크"/>
+                android:text="중복체크"
+                style="@style/content_text"/>
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -96,7 +105,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="회원가입"/>
+            android:text="회원가입"
+            style="@style/content_text"/>
     </LinearLayout>
 
 
