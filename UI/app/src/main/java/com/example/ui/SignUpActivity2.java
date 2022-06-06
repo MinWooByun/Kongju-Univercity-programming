@@ -15,14 +15,18 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class SignUpActivity2 extends Activity {
+public class SignUpActivity2 extends AppCompatActivity {
     //고객 회원가입
     dbHelper myHelper;
     SQLiteDatabase sqlDB;
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_up_layout2);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         EditText edtID, edtPW, edtrePW;
         Button btnSignup, btnOverlap;

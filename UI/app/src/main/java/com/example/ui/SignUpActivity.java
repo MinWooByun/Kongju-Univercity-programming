@@ -16,10 +16,12 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.ParseException;
 
-public class SignUpActivity extends Activity {
+public class SignUpActivity extends AppCompatActivity {
     //수리기사 회원가입
     //고객 회원가입
     dbHelper myHelper;
@@ -44,6 +46,8 @@ public class SignUpActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_up_layout);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         EditText edtID, edtPW, edtrePW, edtLink;
         Button btnSignup, btnOverlap;
@@ -72,8 +76,8 @@ public class SignUpActivity extends Activity {
                 }
                 //링크 입력 여부
                 if(edtLink.length()>=1){
-                    check[3]=1;
-                }else{check[3]=0;
+                    check[2]=1;
+                }else{check[2]=0;
                 }
                 //조건을 모두 만족하면 증명서 제출 페이지로 넘어감
                 if(check[0]==1&&check[1]==1&&check[2]==1){
