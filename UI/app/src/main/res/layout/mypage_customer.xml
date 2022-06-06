@@ -13,7 +13,7 @@
         android:layout_marginTop="100dp"
         android:text="아이디 : "
         android:textColor="@color/black"
-        android:textSize="20dp"
+        style="@style/title_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,6 +24,7 @@
         android:layout_marginTop="100dp"
         android:textSize="20dp"
         android:textColor="@color/black"
+        style="@style/title_text"
         app:layout_constraintStart_toEndOf="@+id/tv1"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,8 +35,8 @@
         android:layout_marginStart="70dp"
         android:layout_marginTop="10dp"
         android:text="PW : "
-        android:textSize="20dp"
         android:textColor="@color/black"
+        style="@style/title_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv1" />
 
@@ -47,6 +48,7 @@
         android:hint="비밀번호"
         android:inputType="textPassword"
         android:textColor="@color/black"
+        style="@style/title_text"
         app:layout_constraintStart_toEndOf="@+id/tv2"
         app:layout_constraintTop_toBottomOf="@+id/tvId" />
 
@@ -57,8 +59,8 @@
         android:layout_marginStart="70dp"
         android:layout_marginTop="20dp"
         android:text="PW : "
-        android:textSize="20dp"
         android:textColor="@color/black"
+        style="@style/title_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv2" />
 
@@ -70,6 +72,7 @@
         android:hint="비밀번호 재입력"
         android:inputType="textPassword"
         android:textColor="@color/black"
+        style="@style/title_text"
         app:layout_constraintStart_toEndOf="@+id/tv3"
         app:layout_constraintTop_toBottomOf="@+id/etPw" />
 
@@ -79,7 +82,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
         android:text="저장"
-        android:textSize="20dp"
+        style="@style/content_text"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
