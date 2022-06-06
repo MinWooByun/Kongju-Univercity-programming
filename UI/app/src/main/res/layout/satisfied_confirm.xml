@@ -15,7 +15,7 @@
         android:layout_marginTop="10dp"
         android:text=""
         android:textColor="@color/black"
-        android:textSize="15dp"
+        style="@style/content_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,7 +26,7 @@
         android:layout_marginTop="10dp"
         android:text="만족도 평가"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        style="@style/title_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -39,7 +39,7 @@
         android:layout_marginTop="15dp"
         android:text="수리상태"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        style="@style/title_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv1" />
 
@@ -61,7 +61,7 @@
         android:layout_marginTop="40dp"
         android:text="친절함"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        style="@style/title_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv2" />
 
@@ -84,7 +84,7 @@
         android:layout_marginTop="40dp"
         android:text="수리기간"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        style="@style/title_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv3" />
 
@@ -107,7 +107,7 @@
         android:layout_marginTop="40dp"
         android:text="가격"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        style="@style/title_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv4" />
 
@@ -118,7 +118,7 @@
         android:layout_marginTop="24dp"
         android:text="TextView"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        style="@style/title_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tv5"
         app:layout_constraintTop_toBottomOf="@+id/ratingBarTerm" />
@@ -131,7 +131,7 @@
         android:backgroundTint="#6200eb"
         android:text="닫기"
         android:textColor="@color/white"
-        android:textSize="20dp"
+        style="@style/content_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPrice" />
