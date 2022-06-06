@@ -54,7 +54,8 @@
             android:layout_width="160dp"
             android:layout_height="50dp"
             android:text="로그인"
-            style="@style/content_text"/>
+            style="@style/content_text"
+            android:textColor="@color/white"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -70,7 +71,8 @@
             android:text="고객 회원가입"
             android:layout_weight="1"
             android:layout_margin="15dp"
-            style="@style/content_text"/>
+            style="@style/content_text"
+            android:textColor="@color/white"/>
 
         <Button
             android:id="@+id/btnSignupRepairman"
@@ -79,6 +81,7 @@
             android:text="수리기사 회원가입"
             android:layout_weight="1"
             android:layout_margin="15dp"
-            style="@style/content_text"/>
+            style="@style/content_text"
+            android:textColor="@color/white"/>
     </LinearLayout>
 </LinearLayout>

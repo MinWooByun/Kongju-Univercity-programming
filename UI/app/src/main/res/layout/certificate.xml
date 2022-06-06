@@ -30,7 +30,8 @@
             android:layout_marginRight="10dp"
             android:layout_marginLeft="20dp"
             android:text="증명서 선택"
-            style="@style/content_text"/>
+            style="@style/content_text"
+            android:textColor="@color/white"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -54,7 +55,8 @@
             android:layout_height="wrap_content"
             android:text="증명서 제출"
             android:layout_margin="10dp"
-            style="@style/content_text"/>
+            style="@style/content_text"
+            android:textColor="@color/white"/>
     </LinearLayout>
 
 </LinearLayout>
