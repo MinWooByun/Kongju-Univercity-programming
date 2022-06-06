@@ -1,6 +1,7 @@
 package com.example.ui;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -26,6 +27,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         //ID, PW, 로그인 버튼 연결
         EditText edtID = (EditText) findViewById(R.id.edtID);

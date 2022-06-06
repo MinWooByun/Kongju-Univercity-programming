@@ -3,9 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/resourcelist"
-    >
+    android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,8 +24,9 @@
             android:layout_height="match_parent"
             android:hint="비용 입력"
             android:textColor="@color/black"
+            android:textSize="20dp"
             android:layout_margin="20dp"
-            android:textColorHint="@color/black"
+            android:textColorHint="#888888"
             android:background="@drawable/memo_under"
             android:layout_weight="3">
         </EditText>
@@ -35,7 +34,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="2">
+        android:layout_weight="6">
         <EditText
             android:id="@+id/edtContent"
             android:layout_width="match_parent"
@@ -44,15 +43,11 @@
             android:background="@drawable/memo_border"
             android:textColor="@color/black"
             android:hint="견적 내용"
-            android:textColorHint="@color/black"
+            android:textColorHint="#888888"
             android:gravity="top">
         </EditText>
         
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="4"></LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
