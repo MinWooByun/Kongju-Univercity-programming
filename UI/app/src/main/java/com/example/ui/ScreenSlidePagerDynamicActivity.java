@@ -14,6 +14,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -60,16 +62,10 @@ public class ScreenSlidePagerDynamicActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.proposal_back);
-        Intent intent = getIntent();
-
-
-        Intent gIntent = new Intent();
-        gIntent = getIntent();
+        Intent gIntent = getIntent();
         u_id = gIntent.getExtras().getString("u_id");
         type = gIntent.getExtras().getInt("type");
-        /*
-        u_id="KWH";
-        */
+
         //여기서 생성자 불러와서 실행
         helper = new dbHelper(this, 1);
         ArrayList<fragmentListItem> flist;
@@ -79,8 +75,6 @@ public class ScreenSlidePagerDynamicActivity extends FragmentActivity {
         else {//수리기사일때
             flist = helper.getRMRepairSuggetionTableData(u_id);
         }
-
-        //}
 
         fragmentListItemAdapter fadapter = new fragmentListItemAdapter(this, flist);
         NUM_PAGES = fadapter.getCount();

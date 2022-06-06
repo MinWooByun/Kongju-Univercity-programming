@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.regex.Matcher;
@@ -38,6 +39,8 @@ public class Proposal_Select extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.proposal_select);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         Context context = this.getApplicationContext();
         //db로부터 오픈링크 받기
         // String url="https://open.kakao.com/o/srlWPsie";

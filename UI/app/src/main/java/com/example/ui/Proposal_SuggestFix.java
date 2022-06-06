@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -28,6 +29,8 @@ public class Proposal_SuggestFix extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.proposal_suggest);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         EdtPay = (EditText) findViewById(R.id.edtPay);
         EdtContent = (EditText) findViewById(R.id.edtContent);
