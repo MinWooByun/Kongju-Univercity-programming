@@ -203,6 +203,7 @@ public class RequestDetailActivity extends AppCompatActivity {
         });
 
     }
+    //뒤로 가는 버튼 처리
     @Override
     public void onBackPressed() {
         super.onBackPressed();
