@@ -44,9 +44,11 @@ public class Satisfied extends Activity {
                     price = Integer.parseInt(price1);
                 }
 
+                // RatingBar의 별점들을 최소 1점이라도 선택하도록 유도하는 조건문이다.
                 if(state == 0.0 || kindness == 0.0 || term == 0.0 || price == 0) {
                     Toast.makeText(Satisfied.this, "평가를 완료해주세요.", Toast.LENGTH_LONG).show();
                 } else {
+                    // db의 성공 여부를 result에 넣어주고 토스트 메시지를 띄워 보여준다.
                     long result = helper.satisfiedUpdate(u_id, number, state, kindness, term, price);
                     if(result == -1) {
                         Toast.makeText(Satisfied.this, "오류발생", Toast.LENGTH_LONG).show();

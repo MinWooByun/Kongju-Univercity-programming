@@ -223,6 +223,7 @@ public class dbHelper extends SQLiteOpenHelper {
         db.execSQL(sql2);
     }
 
+    // 권한 승인
     public boolean isProofApprove(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -232,6 +233,7 @@ public class dbHelper extends SQLiteOpenHelper {
         return true;
     }
 
+    // 권한 거부
     public boolean isProofRefusal(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -241,6 +243,7 @@ public class dbHelper extends SQLiteOpenHelper {
         return true;
     }
 
+    // 고객 및 관리자의 비밀번호 변경
     public boolean userUpdate(String id, String pw) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -250,6 +253,7 @@ public class dbHelper extends SQLiteOpenHelper {
         return true;
     }
 
+    // 수리기사의 비밀번호 및 오픈링크 변경
     public boolean repairManUpdate(String id, String pw , String openLink) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -260,6 +264,7 @@ public class dbHelper extends SQLiteOpenHelper {
         return true;
     }
 
+    // 만족도 저장
     public long satisfiedUpdate(String id, int number, int statePopup, int kindnessPopup, int termPopup, int pricePopup) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT r_id FROM repairSuggestionTable WHERE p_num = '"+number+"' AND u_checked = 1",null);
