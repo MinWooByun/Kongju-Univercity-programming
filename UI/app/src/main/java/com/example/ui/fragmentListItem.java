@@ -1,7 +1,7 @@
 package com.example.ui;
 
 public class fragmentListItem {
-
+    //견적 확인에 들어가야할 모든 데이터를 여기서 저장하고 다룬다
     private String r_name;
     private int p_num;
     private int e_pay;

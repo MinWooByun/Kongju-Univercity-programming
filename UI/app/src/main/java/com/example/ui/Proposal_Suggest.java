@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -15,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Scanner;
 
 public class Proposal_Suggest extends AppCompatActivity {
+    TextView TvUserID;
+    TextView TvRepairID;
     EditText EdtPay;
     EditText EdtContent;
     Button BtnSuggest;
@@ -33,6 +36,9 @@ public class Proposal_Suggest extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
+        TvUserID = (TextView) findViewById(R.id.tvUserID);
+        TvRepairID = (TextView) findViewById(R.id.tvRepairID);
+
         EdtPay = (EditText) findViewById(R.id.edtPay);
         EdtContent = (EditText) findViewById(R.id.edtContent);
         BtnSuggest = (Button) findViewById(R.id.btnSuggest);
@@ -48,7 +54,10 @@ public class Proposal_Suggest extends AppCompatActivity {
         helper = new dbHelper(Proposal_Suggest.this, 1);
         //helper.onUpgrade(db,1,1);
         Context context = this.getApplicationContext();
-
+        //유저ID와 수리기사ID 세팅
+        TvUserID.setText(helper.getProposalUID(p_num));
+        TvRepairID.setText(r_id);
+        //견적제시 버튼 프레스시 수행
         BtnSuggest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,6 +94,7 @@ public class Proposal_Suggest extends AppCompatActivity {
             }
         });
     }
+    //비용 입력에서 숫자인지 확인해주는 역할
     public static boolean isStringInteger(String stringToCheck, int radix) {
         Scanner sc = new Scanner(stringToCheck.trim());
         if(!sc.hasNextInt(radix)) return false;

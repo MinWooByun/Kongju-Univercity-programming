@@ -11,6 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class fragmentListItemAdapter extends BaseAdapter {
+    //견적확인에 들어갈 데이터를 어댑터 해주는 역할
     ArrayList<fragmentListItem> items = null;
     Context context;
     String r_id;

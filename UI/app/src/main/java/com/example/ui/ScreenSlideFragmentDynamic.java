@@ -80,6 +80,7 @@ public class ScreenSlideFragmentDynamic extends Fragment{
         tvProposalEP = rootView.findViewById(R.id.tvProposalExpectPayment);
         tvProposalSC = rootView.findViewById(R.id.tvProposalSuggestContent);
 
+        //각 프래그먼트별 텍스트뷰 설정을 여기서 모두 한다.
         switch(state){
             case 0: {
                 tvProposalS.setText("의뢰중");
@@ -97,7 +98,6 @@ public class ScreenSlideFragmentDynamic extends Fragment{
                 tvProposalS.setText("불러올수 없습니다");
                 break;}
         }
-
         tvProposalRID.setText(r_id);
         tvProposalSS.setText(String.format("%.2f",s_state));
         tvProposalSK.setText(String.format("%.2f",s_kindness));
@@ -106,6 +106,7 @@ public class ScreenSlideFragmentDynamic extends Fragment{
         tvProposalEP.setText(Integer.toString(e_pay));
         tvProposalSC.setText(r_details);
 
+        //오픈링크 누를시 이동시키는 역할
         Linkify.TransformFilter mTransform = new Linkify.TransformFilter() {
             @Override
             public String transformUrl(Matcher matcher, String url) {
@@ -118,19 +119,7 @@ public class ScreenSlideFragmentDynamic extends Fragment{
         };
         Pattern pattern1 = Pattern.compile("Open Link"); // 링크로 이동
         Linkify.addLinks(tvOpenTalk, pattern1, "",null,mTransform);
-        /*
-        tvCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ct, noticeBoardActivity.class);
-                intent.putExtra("u_id", u_id);
-                intent.putExtra("type", type);
-                startActivity(intent);
-                getActivity().finish();
-            }
-        });
-
-         */
+        
         //u_check, state에 따라 다르게 처리해야 한다. 그 상황별 버튼 설정
         if(type==2) {
             if (u_check == 0) {//submit
@@ -181,7 +170,7 @@ public class ScreenSlideFragmentDynamic extends Fragment{
         }
         return rootView;
     }
-
+    //철회
     public void mOnCancelClick(String r_id, int p_num, int type){
         helper.updateStatesToZero(r_id,p_num);
         Toast myToast = Toast.makeText(ct, "철회 하였습니다.",Toast.LENGTH_SHORT);
@@ -193,6 +182,7 @@ public class ScreenSlideFragmentDynamic extends Fragment{
         getActivity().finish();
 
     }
+    //선택
     public void mOnPopupClick(String r_id,int p_num){
         helper.updateStatesToOne(r_id, p_num);
         Toast myToast = Toast.makeText(ct, "의뢰를 진행하였습니다.",Toast.LENGTH_SHORT);
@@ -211,6 +201,7 @@ public class ScreenSlideFragmentDynamic extends Fragment{
          */
 
     }
+    //생성자
     public ScreenSlideFragmentDynamic(String r_name,int p_num, int e_pay,String r_details,String r_id,int state, float s_state, float s_kindness, float s_term,int u_check,int type,String u_id){
         this.r_name = r_name;
         this.p_num = p_num;
