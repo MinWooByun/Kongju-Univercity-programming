@@ -1,5 +1,6 @@
 package com.example.ui;
-
+//증명서를 제출하는 클래스
+//회원가입과 로그인시 넘어옴
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
@@ -75,8 +76,10 @@ public class SumbitCertificate extends AppCompatActivity {
                 //이미지를 불러올때 같이 수행
                 //3. 바이트 파일로 변환된 이미지를 db에 저장
                 //4. 직전 화면에서 받아온 데이터를 db에 저장
+                //5. 마이페이지에서 넘어온 경우는 이미지만 저장
                 sqlDB = myHelper.getWritableDatabase();
                 Object[] args;
+                //회원가입
                 if(state.compareTo("SignUp")==0){
                     try{
                         String sql = "INSERT INTO imgTable(id, imgBLOB) VALUES(?, ?)";
@@ -92,7 +95,7 @@ public class SumbitCertificate extends AppCompatActivity {
                                 +1+");");
                     }catch (SQLException ex){
                         Toast.makeText(getApplicationContext(), "오류가 발생했습니다", Toast.LENGTH_SHORT).show();
-                    }
+                    }//마이페이지
                 }else if(state.compareTo("MyPage")==0){
                     try{
                         String sql = "INSERT INTO imgTable(id, imgBLOB) VALUES(?, ?)";
@@ -103,7 +106,8 @@ public class SumbitCertificate extends AppCompatActivity {
                     }
                 }
                 sqlDB.close();
-                //회원가입이 완료되면 처음 로그인으로 돌아감
+                //회원가입 시 처음 제출은 로그인으로
+                //증명서 재제출은 마이페이지로 넘어감
                 Intent outIntent = new Intent();
                 setResult(RESULT_OK,outIntent);
                 finish();
@@ -129,7 +133,7 @@ public class SumbitCertificate extends AppCompatActivity {
             tvFileName.setText(filename);
             //비트맵을 바이트형태로 변환
             ByteArrayOutputStream os = new ByteArrayOutputStream();
-            image.compress(Bitmap.CompressFormat.JPEG, 100, os);
+            image.compress(Bitmap.CompressFormat.JPEG, 30, os);
             blobByte = os.toByteArray();
             in.close();
         } catch (IOException ioe) {

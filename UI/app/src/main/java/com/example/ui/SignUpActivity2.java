@@ -1,5 +1,5 @@
 package com.example.ui;
-
+//일반고객 회원가입
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -19,7 +19,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SignUpActivity2 extends AppCompatActivity {
-    //고객 회원가입
     dbHelper myHelper;
     SQLiteDatabase sqlDB;
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,11 +36,12 @@ public class SignUpActivity2 extends AppCompatActivity {
         btnSignup = (Button) findViewById(R.id.btnSignup2);
         btnOverlap = (Button) findViewById(R.id.btnOverlap2);
         myHelper = new dbHelper(this,1);
+
         //회원가입 버튼
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int[] check = {0,0};
+                int[] check = {0,0};//중복버튼, PW일치
                 //중복체크 버튼 활성/비활성 여부
                 if(btnOverlap.isEnabled()) {check[0]=0;
                 }else {check[0]=1;
@@ -71,6 +71,7 @@ public class SignUpActivity2 extends AppCompatActivity {
                 }
             }
         });
+
         //중복체크 버튼
         //완료
         btnOverlap.setOnClickListener(new View.OnClickListener() {

@@ -1,5 +1,5 @@
 package com.example.ui;
-
+//로그인
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,8 +17,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
-//로그인
-//완료
+
 public class LoginActivity extends AppCompatActivity {
     dbHelper myHelper;
     SQLiteDatabase sqlDB;
@@ -36,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         Button btnLogin = (Button) findViewById(R.id.btnLogin);
         CheckBox cbAuto = (CheckBox) findViewById(R.id.cbAutologin);
         myHelper = new dbHelper(this, 1);
+
         //로그인 버튼 이벤트 리스너너
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,8 +83,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        //수리기사 회원가입, 완료
-        //수리기사 회원가입 버튼 연결
+        //수리기사 회원가입
         Button btnReSignup = (Button) findViewById(R.id.btnSignupRepairman);
         //버튼 클릭시 이벤트 리스너
         btnReSignup.setOnClickListener(new View.OnClickListener() {
@@ -96,8 +95,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        //고객 회원가입, 완료
-        //고객 회원가입 버튼 연결
+        //고객 회원가입
         Button btnCuSignup = (Button) findViewById(R.id.btnSignupCustomer);
         //버튼 클릭시 이벤트 리스너
         btnCuSignup.setOnClickListener(new View.OnClickListener() {
@@ -139,6 +137,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
+    //뒤로가기 버튼 이벤트 처리
     @Override
     public void onBackPressed() {
         finish();
