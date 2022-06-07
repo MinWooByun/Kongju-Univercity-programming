@@ -1,5 +1,5 @@
 package com.example.ui;
-
+//수리기사 회원가입
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -22,8 +22,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.text.ParseException;
 
 public class SignUpActivity extends AppCompatActivity {
-    //수리기사 회원가입
-    //고객 회원가입
     dbHelper myHelper;
     SQLiteDatabase sqlDB;
     @Override
@@ -59,12 +57,13 @@ public class SignUpActivity extends AppCompatActivity {
         btnSignup = (Button) findViewById(R.id.btnSignup1);
         btnOverlap = (Button) findViewById(R.id.btnOverlap1);
         myHelper = new dbHelper(this,1);
+
         //회원가입 버튼
         //완료
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int[] check = {0,0,0}; //중복버튼, PW 일치, 닉네임, 링크
+                int[] check = {0,0,0}; //중복버튼, PW 일치, 링크
                 //중복체크 버튼 활성/비활성 여부
                 if(btnOverlap.isEnabled()) {check[0]=0;
                 }else {check[0]=1;
@@ -96,6 +95,7 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             }
         });
+
         //중복체크 버튼
         //완료
         btnOverlap.setOnClickListener(new View.OnClickListener() {
@@ -113,7 +113,7 @@ public class SignUpActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "사용할수 없는 문자나 공백이 포함되었습니다", Toast.LENGTH_SHORT).show();
                 }else{
                     //포함되지 않은 경우
-                    //입력한 ID와 DB에 해당 ID가 존재하는지 비교
+                    //입력한 ID가 DB에 존재하는지 비교
                     sqlDB = myHelper.getReadableDatabase();
                     Cursor cursor;
                     cursor=sqlDB.rawQuery("SELECT * FROM userTable WHERE ID = '"+ID+"';", null);
@@ -132,6 +132,7 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             }
         });
+
         //중복체크후 ID 변경시 중복체크 버튼 활성화
         //완료
         edtID.addTextChangedListener(new TextWatcher() {
