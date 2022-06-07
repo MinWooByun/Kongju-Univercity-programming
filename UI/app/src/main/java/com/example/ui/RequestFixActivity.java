@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -34,9 +35,11 @@ public class RequestFixActivity extends AppCompatActivity {
         Spinner category = (Spinner) findViewById(R.id.R_category);
         Spinner symptom = (Spinner) findViewById(R.id.R_symptom);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
+        TextView R_id = (TextView) findViewById(R.id.R_id);
 
         String getdata = dbHelper.getRequest(number);
         String[] array = getdata.split("##,#");
+        R_id.setText("작성자:"+u_id);
         R_title.setText( array[1]);
         category.setSelection(Integer.parseInt(array[4]));
         symptom.setSelection(Integer.parseInt(array[2]));
@@ -44,8 +47,8 @@ public class RequestFixActivity extends AppCompatActivity {
 
 
         btnR_register.setText("수정");
-        //의뢰 등록 버튼을 누른 경우
 
+        //의뢰 등록 버튼을 누른 경우
         btnR_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,6 +77,7 @@ public class RequestFixActivity extends AppCompatActivity {
         });
     }
 
+    //뒤로 가는 버튼 처리
     @Override
     public void onBackPressed() {
         super.onBackPressed();

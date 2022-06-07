@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class RequestRegisterActivity extends AppCompatActivity {
@@ -35,7 +36,10 @@ public class RequestRegisterActivity extends AppCompatActivity {
         Spinner category = (Spinner)findViewById(R.id.R_category);
         Spinner symptom = (Spinner)findViewById(R.id.R_symptom);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
+        TextView R_id = (TextView) findViewById(R.id.R_id);
 
+
+        R_id.setText("작성자:"+u_id);
         //의뢰 등록 버튼을 누른 경우
         btnR_register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +66,7 @@ public class RequestRegisterActivity extends AppCompatActivity {
             }
         });
     }
+    //뒤로 가는 버튼 처리
     @Override
     public void onBackPressed() {
         super.onBackPressed();

@@ -6,22 +6,39 @@
     android:layout_margin="20dp"
     android:orientation="vertical"
     tools:context=".RequestRegisterActivity">
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="10">
+        <TextView
+            android:id="@+id/R_id"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            android:layout_margin="10dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:gravity="center_vertical"
+            style="@style/content_text"
+            android:background="@drawable/rect_editbox"
+            />
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="10">
 
+
         <EditText
             android:id="@+id/R_title"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="3"
+            android:layout_weight="4"
             android:ems="10"
             android:layout_margin="10dp"
             android:gravity="center_horizontal"
             style="@style/content_text"
-            android:inputType="textPersonName"
+            android:inputType="text"
             android:background="@drawable/rect_editbox"
             android:hint="의뢰 제목" />
     </LinearLayout>

@@ -20,6 +20,7 @@ public class dbHelper extends SQLiteOpenHelper {
         super(context, DB_Name, null, version);
     }
 
+    //DB 없을 경우 실행
    @Override
     public void onCreate(SQLiteDatabase db) {
        db.execSQL("CREATE TABLE imgTable (id varchar(20), imgBLOB BLOB, FOREIGN KEY(id) REFERENCES userTable(id))");
@@ -36,6 +37,7 @@ public class dbHelper extends SQLiteOpenHelper {
 
     }
 
+    //내가 쓴 수리 의뢰 개수 카운트
     public int getRequestCount(String u_id){
         int result = 0;
         SQLiteDatabase db = getReadableDatabase();
@@ -48,6 +50,7 @@ public class dbHelper extends SQLiteOpenHelper {
         return result;
     }
 
+    //아이디를 통해 지금 제안이 몇 개 왔는지나 쓴 개수 확인
     public int getSuggestionCount(String u_id, int type){
         int result = 0;
         SQLiteDatabase db = getReadableDatabase();
@@ -76,6 +79,7 @@ public class dbHelper extends SQLiteOpenHelper {
         return result;
     }
 
+    //게시글에 내 아이디로 제안을 했는지 확인
     public int getSuggestionCount_InRequest(String u_id, int p_num){
         int result = 0;
         SQLiteDatabase db = getReadableDatabase();
@@ -105,15 +109,7 @@ public class dbHelper extends SQLiteOpenHelper {
         return result;
     }
 
-    public int getNumber(String u_id){
-        int result = 0;
-        SQLiteDatabase db = getReadableDatabase();
 
-        StringBuffer sb = new StringBuffer();
-        sb.append("SELECT number FROM repairRequestTable WHERE id = '" + u_id +"';");
-        Cursor cursor = db.rawQuery(sb.toString(), null);
-        return result;
-    }
 
     //모든 제목 가져오기
     public ArrayList<ListItem> getAllTitles(){
