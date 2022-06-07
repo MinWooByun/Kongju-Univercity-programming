@@ -321,11 +321,13 @@ public class dbHelper extends SQLiteOpenHelper {
         }
         return proposalList;
     }
+    // 견적 제시 테이블 갱신
     public void updateSuggstionTableData(String r_id, int p_num, int e_pay, String r_details){
         SQLiteDatabase db = getReadableDatabase();
         String sql =  "UPDATE repairSuggestionTable SET e_pay="+e_pay+","+"  r_details="+"'"+r_details+"'"+" WHERE r_id="+"'"+r_id+"' and p_num="+p_num+";";
         db.execSQL(sql);
     }
+    // 견적 비용 받아옴
     public int getEpaySuggetionTableData(String r_id, int p_num){
         SQLiteDatabase db = getReadableDatabase();
         StringBuffer sb = new StringBuffer();
@@ -337,6 +339,7 @@ public class dbHelper extends SQLiteOpenHelper {
         }
         return result;
     }
+    // 견적 내용 받아옴
     public String getRdetailsSuggetionTableData(String r_id, int p_num){
         SQLiteDatabase db = getReadableDatabase();
         StringBuffer sb = new StringBuffer();
@@ -389,6 +392,7 @@ public class dbHelper extends SQLiteOpenHelper {
         }
         return proposalList;
     }
+    //견적 철회하면 실행되는 메소드
     public void updateStatesToZero(String r_id, int p_num){
         SQLiteDatabase db = getReadableDatabase();
         SQLiteDatabase db2 = getReadableDatabase();
@@ -397,6 +401,7 @@ public class dbHelper extends SQLiteOpenHelper {
         String sql2 = "UPDATE repairRequestTable SET state=0 WHERE number="+p_num+";";
         db2.execSQL(sql2);
     }
+    // 견적 선택하면 실행되는 메소드
     public void updateStatesToOne(String r_id, int p_num) {
         SQLiteDatabase db = getReadableDatabase();
         SQLiteDatabase db2 = getReadableDatabase();
@@ -405,7 +410,7 @@ public class dbHelper extends SQLiteOpenHelper {
         String sql2 = "UPDATE repairRequestTable SET state=1 WHERE number="+p_num+";";
         db2.execSQL(sql2);
     }
-
+    //수리기사의 오픈링크 받아옴
     public String getOpenLink(SQLiteDatabase db, String r_id) {//오픈링크 받아오는 메소드
         String sql= "SELECT openlink from repairManTable Where id="+"'"+r_id+"'"+";";
         Cursor cursor = db.rawQuery(sql,null);
@@ -413,11 +418,23 @@ public class dbHelper extends SQLiteOpenHelper {
         String openlink = cursor.getString(0);
         return openlink;
     }
-
+    //견적 제시 페이지에서 견적 제시 INSERT
     public void insertProposal(String r_id, int p_num, int e_pay, String r_details){
         SQLiteDatabase db = getReadableDatabase();
         String sql = "INSERT INTO repairSuggestionTable VALUES"+"("+"'"+r_id+"'"+","+p_num+","+e_pay+","+"'"+r_details+"'"+","+0+");";
         db.execSQL(sql);
+    }
+    //견적 제시 페이지에서 유저 아이디 가져오는 메소드
+    public String getProposalUID(int p_num){
+        SQLiteDatabase db = getReadableDatabase();
+        StringBuffer sb = new StringBuffer();
+        sb.append("SELECT userID from repairRequestTable Where number="+p_num+";"); //satis
+        Cursor cursor = db.rawQuery(sb.toString(), null);
+        String result = "";
+        while(cursor.moveToNext()) {//db에서 자료 가져와서 한 row객체<<당 4개의 자료(r_id, p_num, e_pay, r_details +추가
+            result = cursor.getString(0);
+        }
+        return result;
     }
     //수리기사가 이미 신고한 글인지 확인
     public boolean checkReport(String id, Integer number){//수리기사 id, 게시글 번호

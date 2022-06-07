@@ -41,17 +41,15 @@ public class Proposal_SuggestFix extends AppCompatActivity {
         r_id = gIntent.getStringExtra("r_id");
         p_num = gIntent.getIntExtra("p_num",0);
         type = gIntent.getIntExtra("type", 0);
-
+        
+        //DB에서 불러와 기존에 입력됫던 내용들 입력해줌
         helper = new dbHelper(this, 1);
         e_pay = helper.getEpaySuggetionTableData(r_id,p_num);
         r_details = helper.getRdetailsSuggetionTableData(r_id,p_num);
-
         EdtPay.setText(Integer.toString(e_pay));
         EdtContent.setText(r_details);
-//        helper.updateSuggetionTableData(r_id, p_num);
-
-
-
+        
+        //견적제시 버튼 누를시 DB에 갱신된다
         Context context = this.getApplicationContext();
         BtnSuggest.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,12 +80,10 @@ public class Proposal_SuggestFix extends AppCompatActivity {
                     Toast myToast = Toast.makeText(context, "비용 산정을 작성해주세요 또는 비용 산정에 숫자만 입력해주세요", Toast.LENGTH_SHORT);
                     myToast.show();
                 }
-
-
-
             }
         });
     }
+    //비용 숫자인지 확인
     public static boolean isStringInteger(String stringToCheck, int radix) {
         Scanner sc = new Scanner(stringToCheck.trim());
         if(!sc.hasNextInt(radix)) return false;

@@ -75,7 +75,7 @@ public class ScreenSlidePagerDynamicActivity extends FragmentActivity {
         else {//수리기사일때
             flist = helper.getRMRepairSuggetionTableData(u_id);
         }
-
+        //어뎁터를 통해 리스트아이템 가져온다.
         fragmentListItemAdapter fadapter = new fragmentListItemAdapter(this, flist);
         NUM_PAGES = fadapter.getCount();
         //uid는 위에서intent로 받아올것입니다.
@@ -107,32 +107,16 @@ public class ScreenSlidePagerDynamicActivity extends FragmentActivity {
         pagerAdapter = new ScreenSlidePagerDynamicAdapter(getSupportFragmentManager());
         mPager.setAdapter(pagerAdapter);
     }
+    //뒤로가기 버튼
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(ScreenSlidePagerDynamicActivity.this, noticeBoardActivity.class);
         intent.putExtra("u_id", u_id);
         intent.putExtra("type", type);
         startActivity(intent);
-        //안드로이드 백버튼 막기
         finish();
-    }/*
-    @Override
-    public void onBackPressed() {
-        if (mPager.getCurrentItem() == 0) {
-            // If the user is currently looking at the first step, allow the system to handle the
-            // Back button. This calls finish() on this activity and pops the back stack.
-            super.onBackPressed();
-        } else {
-            // Otherwise, select the previous step.
-            mPager.setCurrentItem(mPager.getCurrentItem() - 1);
-        }
-    }*/
-
-    /**
-     * A simple pager adapter that represents 5 ScreenSlidePageFragment objects, in
-     * sequence.
-     */
-    //프래그먼트 어댑터 .. 여기서 각 프래그먼트별로 tv.setText를 해줘야함
+    }
+    //프래그먼트 어댑터 .. 여기서 각 프래그먼트별로 데이터를 넘겨준다
     private class ScreenSlidePagerDynamicAdapter extends FragmentStatePagerAdapter {
 
         public ScreenSlidePagerDynamicAdapter(FragmentManager fm) {
