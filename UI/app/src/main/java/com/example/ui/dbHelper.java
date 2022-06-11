@@ -54,6 +54,7 @@ public class dbHelper extends SQLiteOpenHelper {
     public int getSuggestionCount(String u_id, int type){
         int result = 0;
         SQLiteDatabase db = getReadableDatabase();
+        SQLiteDatabase db2 = getReadableDatabase();
         StringBuffer sb = new StringBuffer();
         if(type==1){
             sb.append("SELECT Count(r_id) FROM repairSuggestionTable WHERE r_id = '" + u_id +"';");
@@ -62,18 +63,17 @@ public class dbHelper extends SQLiteOpenHelper {
                 result = cursor.getInt(0);
         }
         else if(type==2){
-            StringBuffer sb2 = new StringBuffer();
             sb.append("SELECT number FROM repairRequestTable WHERE userID = '" + u_id +"' AND state != 2;");
             Cursor cursor = db.rawQuery(sb.toString(), null);
             while(cursor.moveToNext()){
-                sb2.append("SELECT Count(r_id) FROM repairSuggestionTable WHERE p_num = '" + cursor.getInt(0) +"';");
-                Cursor cursor2 = db.rawQuery(sb2.toString(), null);
+                StringBuffer sb2 = new StringBuffer();
+                int p_num = cursor.getInt(0);
+                sb2.append("SELECT Count(r_id) FROM repairSuggestionTable WHERE p_num = '" + p_num +"';");
+                Cursor cursor2 = db2.rawQuery(sb2.toString(), null);
                 while(cursor2.moveToNext()){
                     result += cursor2.getInt(0);
                 }
             }
-
-
         }
 
         return result;

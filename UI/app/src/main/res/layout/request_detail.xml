@@ -15,7 +15,9 @@
             android:text="작성자 id"
             android:layout_weight="8"
             android:layout_margin="10dp"
-            android:gravity="center_vertical"
+            android:gravity="left"
+            android:ellipsize="end"
+            android:maxLines="1"
             style="@style/content_text"
             android:background="@drawable/rect_editbox"
             />
