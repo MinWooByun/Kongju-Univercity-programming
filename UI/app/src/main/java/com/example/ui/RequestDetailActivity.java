@@ -67,8 +67,15 @@ public class RequestDetailActivity extends AppCompatActivity {
             btnReport_Update.setVisibility(View.GONE);
 
         //신고_갱신 버튼은 자신의 아이디가 아니거나 관리자는 보이면 안 된다.
-        if(!array[0].equals(u_id) || type== 0 || tag==2)
-            btnReport_Update.setVisibility(View.GONE);
+      //  if((!array[0].equals(u_id) || type== 0 || tag==2)&& (type!=1 ||dbHelper.getIsproof(u_id)==0))
+       //     btnReport_Update.setVisibility(View.GONE);
+
+        if(type==2)
+            if(!(array[0].equals(u_id)&&tag!=2))
+                btnReport_Update.setVisibility(View.GONE);
+        else if(type == 1)
+                if(!(dbHelper.getIsproof(u_id)==1))
+                    btnReport_Update.setVisibility(View.GONE);
 
         //수리기사이며, 인증을 받았을 때만 견적 제시가 보임.
         if(!(type==1 && dbHelper.getIsproof(u_id)== 1 && tag == 0 ))
@@ -163,6 +170,7 @@ public class RequestDetailActivity extends AppCompatActivity {
                 Intent intent = new Intent(RequestDetailActivity.this ,RequestFixActivity.class);
                 intent.putExtra("u_id", u_id);
                 intent.putExtra("number", number);
+                intent.putExtra("type", type);
                 startActivity(intent);
                 finish();
             }
