@@ -125,6 +125,7 @@ public class RequestDetailActivity extends AppCompatActivity {
                if(type ==2){
                    String getdata =  dbHelper.getRequest(number);
                    String[] array = getdata.split("##,#");
+                   dbHelper.updateSuggestionNumber(number);
                    dbHelper.deleteRequest(number);
                    dbHelper.insertRequest(array[0],array[1],Integer.parseInt(array[2]),array[3],Integer.parseInt(array[4]),Integer.parseInt(array[5]));
                    Toast.makeText(getApplicationContext(),
