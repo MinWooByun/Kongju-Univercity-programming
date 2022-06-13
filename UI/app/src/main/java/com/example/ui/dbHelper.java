@@ -60,7 +60,7 @@ public class dbHelper extends SQLiteOpenHelper {
             sb.append("SELECT Count(r_id) FROM repairSuggestionTable WHERE r_id = '" + u_id +"';");
             Cursor cursor = db.rawQuery(sb.toString(), null);
             while(cursor.moveToNext())
-                result = cursor.getInt(0);
+                result += cursor.getInt(0);
         }
         else if(type==2){
             sb.append("SELECT number FROM repairRequestTable WHERE userID = '" + u_id +"' AND state != 2;");
@@ -480,6 +480,18 @@ public class dbHelper extends SQLiteOpenHelper {
     public void imgDelete(String id){
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "DELETE FROM imgTable WHERE id = '"+ id +"';";
+        db.execSQL(sql);
+    }
+    //수리기사 제시 테이블도 수정ㄱ
+    public void updateSuggestionNumber(int number){
+        int c_number = 0;
+        SQLiteDatabase db = this.getWritableDatabase();
+        StringBuffer sb = new StringBuffer();
+        sb.append("SELECT Count(*) FROM repairRequestTable;");
+        Cursor cursor = db.rawQuery(sb.toString(),null);
+        while(cursor.moveToNext())
+            c_number= cursor.getInt(0);
+        String sql = "UPDATE repairSuggestionTable SET p_num = '" +c_number +"' WHERE p_num = " +number+"";
         db.execSQL(sql);
     }
 }
